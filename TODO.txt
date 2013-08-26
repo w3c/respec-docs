@@ -1,9 +1,10 @@
 
 DOCS:
 
-    - domain (which one?)
-        - buy & point
-        - CNAME file
+    - set up http://www.w3.org/respec
+        - do a void checkout of the root WWW
+        - create a respec directory
+        - add a .htaccess that proxies to http://darobin.github.io/respec-docs/
     - build system
     - look and feel
         - specific bootstrap
