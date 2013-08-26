@@ -1,0 +1,31 @@
+
+DOCS:
+
+    - domain (which one?)
+        - buy & point
+        - CNAME file
+    - build system
+    - look and feel
+        - specific bootstrap
+        - Lato
+        - colour map
+    - create file for each configuration item
+    - specific ReSpec variant
+
+TOC:
+    - Intro
+    - Common Operations
+        - list based on configurations + previous docs
+        - examples using same system as RSv2
+        - getting-started template
+    - Getting Support
+        - Mailing list
+        - Reporting issues
+        - Common problems
+    - Developers
+        - GitHub
+        - Branches
+        - Extension points
+        - Module system
+        - Tests
+        - Building One's Own Profile
