@@ -10,7 +10,7 @@ DOCS:
         - specific bootstrap
         - Lato
         - colour map
-    - create file for each configuration item
+    - create file for each configuration item, class, attribute
     - specific ReSpec variant
 
 TOC:
@@ -19,6 +19,11 @@ TOC:
         - list based on configurations + previous docs
         - examples using same system as RSv2
         - getting-started template
+    - All Configuration
+        - configuration items
+        - elements
+        - attributes
+        - classes
     - Getting Support
         - Mailing list
         - Reporting issues
