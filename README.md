@@ -26,7 +26,7 @@ thusly:
 
 And run it with:
 
-    nodemon -w beryl -w src -e js,css,html tools/build.js 
+    nodemon -w beryl -w src -w tools -e js,css,html,less tools/build.js 
 
 Note that even with ```nodemon``` running, generating the whole build may still take a few seconds
 and so if you edit and reload too fast you might not see the changes. Just chill and reload again.

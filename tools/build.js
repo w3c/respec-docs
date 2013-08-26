@@ -4,6 +4,7 @@ var r    = require("../node_modules/respec/tools/r")
 ,   fs   = require("fs")
 ,   pth  = require("path")
 ,   async = require("async")
+,   less = require("less")
 ,   outPath = pth.join(__dirname, "..")
 ,   srcPath = pth.join(__dirname, "../src")
 ;
@@ -41,7 +42,43 @@ function buildBeryl (cb) {
     });
 }
 
-async.series([buildBeryl], function (err) {
+function buildBootstrap (cb) {
+    var bsPath = pth.join(__dirname, "../node_modules/bootstrap/less/")
+    ,   input = pth.join(__dirname, "../beryl/beryl.less")
+    ,   parser = new less.Parser({
+            paths:      [bsPath]
+        ,   filename:   input
+        })
+    ;
+    parser.parse(fs.readFileSync(input, "utf8"), function (err, tree) {
+        fs.writeFileSync(pth.join(outPath, "css/beryl.css"), tree.toCSS({ compress: true }), "utf8");
+        cb();
+    });
+}
+
+function mungeHeaders (content) {
+    var inject =    "\n    <script>var respecConfig = {};</script>\n" +
+                    "\n    <script src='js/beryl.min.js' async></script>\n" +
+                    "\n    <link rel='stylesheet' href='css/beryl.css'>\n" +
+                    "  </head>";
+    return content.replace(/\n {2}<\/head>/g, inject);
+}
+
+function buildDocs (cb) {
+    var sources = "index".split(" ");
+    for (var i = 0, n = sources.length; i < n; i++) {
+        var src = sources[i]
+        ,   fileName = src + ".html"
+        ,   content = fs.readFileSync(pth.join(srcPath, fileName), "utf8")
+        ,   out = pth.join(outPath, fileName)
+        ;
+        content = mungeHeaders(content);
+        fs.writeFileSync(out, content, "utf8");
+    }
+    cb();
+}
+
+async.series([buildBeryl, buildBootstrap, buildDocs], function (err) {
     if (err) return console.log("ERROR:", err);
     console.log("OK!");
 });

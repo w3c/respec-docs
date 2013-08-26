@@ -5,13 +5,14 @@ DOCS:
         - do a void checkout of the root WWW
         - create a respec directory
         - add a .htaccess that proxies to http://darobin.github.io/respec-docs/
-    - build system
+    ✓ build system
     - look and feel
         - specific bootstrap
+            - pick components
         - Lato
         - colour map
     - create file for each configuration item, class, attribute
-    - specific ReSpec variant
+    ✓ specific ReSpec variant
 
 TOC:
     - Intro
