@@ -3,6 +3,9 @@
     All imports are from Bootstrap
 */
 
+// fonts
+@import "./lato.less";
+
 // Core variables and mixins
 @import "variables.less";
 @import "mixins.less";
@@ -11,8 +14,20 @@
     Overridden Variables
 */
 
-@body-bg:   #f00;
+@font-family-base:              latolight;
 
+@brand-primary:                 #2bb6f7;
+
+@container-desktop:             940px;
+@container-lg-desktop:          @container-desktop;
+
+@code-color:                    #ff9822;
+@code-bg:                       #f9f9f9;
+
+@jumbotron-bg:                  #2bb6f7;
+@jumbotron-color:               #fff;
+@jumbotron-heading-color:       #fff;
+@border-radius-large:           0;
 
 // Reset
 @import "normalize.less";
@@ -24,42 +39,60 @@
 @import "code.less";
 @import "grid.less";
 @import "tables.less";
-@import "forms.less";
+/*@import "forms.less";*/
 @import "buttons.less";
 
 // Components
-@import "component-animations.less";
-@import "glyphicons.less";
-@import "dropdowns.less";
-@import "button-groups.less";
-@import "input-groups.less";
-@import "navs.less";
-@import "navbar.less";
-@import "breadcrumbs.less";
-@import "pagination.less";
-@import "pager.less";
-@import "labels.less";
-@import "badges.less";
+/*@import "component-animations.less";*/
+/*@import "glyphicons.less";*/
+/*@import "dropdowns.less";*/
+/*@import "button-groups.less";*/
+/*@import "input-groups.less";*/
+/*@import "navs.less";*/
+/*@import "navbar.less";*/
+/*@import "breadcrumbs.less";*/
+/*@import "pagination.less";*/
+/*@import "pager.less";*/
+/*@import "labels.less";*/
+/*@import "badges.less";*/
 @import "jumbotron.less";
-@import "thumbnails.less";
-@import "alerts.less";
-@import "progress-bars.less";
-@import "media.less";
-@import "list-group.less";
-@import "panels.less";
-@import "wells.less";
-@import "close.less";
+/*@import "thumbnails.less";*/
+/*@import "alerts.less";*/
+/*@import "progress-bars.less";*/
+/*@import "media.less";*/
+/*@import "list-group.less";*/
+/*@import "panels.less";*/
+/*@import "wells.less";*/
+/*@import "close.less";*/
 
 // Components w/ JavaScript
-@import "modals.less";
-@import "tooltip.less";
-@import "popovers.less";
-@import "carousel.less";
+/*@import "modals.less";*/
+/*@import "tooltip.less";*/
+/*@import "popovers.less";*/
+/*@import "carousel.less";*/
 
 // Utility classes
 @import "utilities.less";
 @import "responsive-utilities.less";
 
+// Own Modifications
 
+.container .jumbotron {
+    padding:    30px 30px 10px 30px;
+    margin-top: 30px;
+}
 
+.container > section {
+    padding:    0 30px;
+}
 
+footer {
+    padding:    30px 30px 10px 30px;
+}
+
+.cc_by {
+    background: url("img/cc-by.png") no-repeat scroll left center transparent;
+    padding-bottom: 3px;
+    padding-left:   19px;
+    padding-top:    3px;
+}

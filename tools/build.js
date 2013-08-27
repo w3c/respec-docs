@@ -5,6 +5,7 @@ var r    = require("../node_modules/respec/tools/r")
 ,   pth  = require("path")
 ,   async = require("async")
 ,   less = require("less")
+,   wrench = require("wrench")
 ,   outPath = pth.join(__dirname, "..")
 ,   srcPath = pth.join(__dirname, "../src")
 ;
@@ -52,6 +53,8 @@ function buildBootstrap (cb) {
     ;
     parser.parse(fs.readFileSync(input, "utf8"), function (err, tree) {
         fs.writeFileSync(pth.join(outPath, "css/beryl.css"), tree.toCSS({ compress: true }), "utf8");
+        wrench.copyDirSyncRecursive(pth.join(__dirname, "../beryl/fonts"), pth.join(outPath, "css/fonts"), { forceDelete: true });
+        wrench.copyDirSyncRecursive(pth.join(__dirname, "../beryl/img"), pth.join(outPath, "css/img"), { forceDelete: true });
         cb();
     });
 }
