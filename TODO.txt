@@ -6,29 +6,34 @@ DOCS:
         - create a respec directory
         - add a .htaccess that proxies to http://darobin.github.io/respec-docs/
     ✓ build system
-    - look and feel
-        - specific bootstrap
-            - pick components
-        - Lato
-        - colour map
+    ✓ look and feel
+        ✓ specific bootstrap
+            ✓ pick components
+        ✓ Lato
+        ✓ colour map
     - create file for each configuration item, class, attribute
     ✓ specific ReSpec variant
+        - ToC
+        - link
+        - footer
+        - header (including hero page)
+        - .container
 
 TOC:
     - Intro
-    - Common Operations
+        ✓ Concepts
+        ✓ Why?
+        ✓ Getting Support
+        - Common problems
+            - still using v1 (or v2)
+    - Usage
         - list based on configurations + previous docs
         - examples using same system as RSv2
-        - getting-started template
-    - All Configuration
+    - Reference
         - configuration items
         - elements
         - attributes
         - classes
-    - Getting Support
-        - Mailing list
-        - Reporting issues
-        - Common problems
     - Developers
         - GitHub
         - Branches
@@ -36,3 +41,5 @@ TOC:
         - Module system
         - Tests
         - Building One's Own Profile
+    
+    - getting-started template

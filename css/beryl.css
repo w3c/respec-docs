@@ -233,4 +233,5 @@ th.visible-print,td.visible-print{display:none !important}
 .container .jumbotron .lead{font-size:21px}
 .container>section{padding:0 30px}
 footer{padding:30px 30px 10px 30px}
-.cc_by{background:url("img/cc-by.png") no-repeat scroll left center transparent;padding-bottom:3px;padding-left:19px;padding-top:3px}
+.cc_by{background:url("img/cc-by.png") no-repeat scroll left center transparent;padding-bottom:3px;padding-left:19px;padding-top:3px;font-size:80%}
+dd{padding-left:15px}

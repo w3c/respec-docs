@@ -81,7 +81,7 @@ function buildDocs (cb) {
     cb();
 }
 
-async.series([buildBeryl, buildBootstrap, buildDocs], function (err) {
+async.series([buildDocs, buildBeryl, buildBootstrap], function (err) {
     if (err) return console.log("ERROR:", err);
     console.log("OK!");
 });
