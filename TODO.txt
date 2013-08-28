@@ -11,7 +11,8 @@ DOCS:
             ✓ pick components
         ✓ Lato
         ✓ colour map
-    - create file for each configuration item, class, attribute
+    - create a file for each configuration item, class, attribute
+        - grep through the code to find all the configuration items
     ✓ specific ReSpec variant
         - ToC
         - link
