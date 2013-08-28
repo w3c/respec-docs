@@ -288,49 +288,19 @@
         <section>
           <h2>Dates</h2>
           <p>
-            The process of publishing specifications typically involves releasing multiple versions in a row that
-            have specific dates (so that people can see the evolution, and also for IP reasons). Additionally,
-            some specification statuses involve delimited review periods. These are all specified using date-related
-            options.
+            The process of publishing specifications typically involves releasing multiple versions
+            in a row that have specific dates (so that people can see the evolution, and also for IP
+            reasons). Additionally, some specification statuses involve delimited review periods.
+            These are all specified using date-related options.
           </p>
           <p>
             The format used for all dates is <code>YYYY-MM-DD</code>.
           </p>
-          <dl>
-            <dt><dfn class='config'>publishDate</dfn></dt>
-            <dd>
-              The publication date of the present document. For documents that are in flux, such as Editor's Drafts
-              or unofficial documents, this is best left unspecified as ReSpec will use the document's last modification
-              date (as provided by the browser) in order to set this. For documents intended for official publication,
-              this is normally required.
-            </dd>
-            <dt><dfn class='config'>previousPublishDate</dfn></dt>
-            <dd>
-              When there is a previous release of a given specification, this is used to generate the "Previous Version"
-              link. It is required for Recommendation Track documents.
-            </dd>
-            <dt><dfn class='config'>previousMaturity</dfn></dt>
-            <dd>
-              When a <a>previousPublishDate</a> is specified, this is typically required as well in order to generate the 
-              "Previous Version" link since it includes an indication of the previous document's maturity level, which
-              cannot be guessed. The values are the same as for <a>specStatus</a>. Please note that some values of
-              this option make no sense depending on the current document <a>specStatus</a> but that the rules for 
-              validating consistency are convoluted enough that ReSpec does not try to check them. If you pick the wrong
-              value (typically by forgetting to change it), the Link Checker will most likely catch the error before
-              publication (the same goes for <a>previousPublishDate</a>).
-            </dd>
-            <dt><dfn class='config'>lcEnd</dfn></dt>
-            <dd>
-              Documents that are in Last Call (<a>specStatus</a> is "LC") are required to indicate an end date for the review
-              period. Use this to provide it.
-            </dd>
-            <dt><dfn class='config'>crEnd</dfn></dt>
-            <dd>
-              Documents that are in Candidate Recommendation (<a>specStatus</a> is "CR") are required to indicate a date 
-              before which the group guarantees that it will not move to the next step on the track (PR or REC) so that
-              implementers know how long they have. Use this to provide that date.
-            </dd>
-          </dl>
+          <div data-include='src/conf/publishDate.html'></div>
+          <div data-include='src/conf/previousPublishDate.html'></div>
+          <div data-include='src/conf/previousMaturity.html'></div>
+          <div data-include='src/conf/lcEnd.html'></div>
+          <div data-include='src/conf/crEnd.html'></div>
         </section>
         <section>
           <h2>Editors &amp; Authors</h2>
