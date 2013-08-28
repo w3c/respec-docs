@@ -68,7 +68,7 @@ function mungeHeaders (content) {
 }
 
 function buildDocs (cb) {
-    var sources = "index guide dev".split(" ");
+    var sources = "index guide dev ref".split(" ");
     for (var i = 0, n = sources.length; i < n; i++) {
         var src = sources[i]
         ,   fileName = src + ".html"
@@ -76,6 +76,16 @@ function buildDocs (cb) {
         ,   out = pth.join(outPath, fileName)
         ;
         content = mungeHeaders(content);
+        if (src === "ref") {
+            var incs = "conf els attrs classes".split(" ")
+            ;
+            for (var j = 0, m = incs.length; j < m; j++) {
+                var incDir = incs[j]
+                ,   files = fs.readdirSync(pth.join(srcPath, incDir)).join("\n")
+                ;
+                content = content.replace("<!-- " + incDir.toUpperCase() + " -->", files);
+            }
+        }
         fs.writeFileSync(out, content, "utf8");
     }
     cb();
