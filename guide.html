@@ -50,6 +50,127 @@
           explaining the core principles at play. We also look at basics elements of styling and
           parts that you can't do without.
         </p>
+        <p>
+          A ReSpec document is essentially a straightforward HTML document that brings in the ReSpec
+          script, defines a few configuration variables, and follows a few conventions. The simplest
+          way to see it at work is to look at an example — and don't worry if everything isn't
+          immediately clear.
+        </p>
+        <pre class="example highlight" data-include='examples/minimal-w3c.html' data-include-format='text'></pre>
+        <p>
+          Before anything else, you may wish to see <a href='examples/minimal-w3c.html'>this example
+          in action</a>.
+        </p>
+        <p>
+          That is essentially the smallest W3C specification you can write using ReSpec (in
+          practice, you could eliminate a few things but then you would have a truly useless
+          document). Some of the configuration may seem cryptic, but it is there because all W3C
+          documents must have some specific information available — all will be explained soon.
+        </p>
+        <section>
+          <h2>The Very Basics</h2>
+          <p>
+            As you can see, the document that is rendered in your browser is quite different from
+            the one which is authored here. Yet they are the same document, with a sprinkle of
+            ReSpec on top. If you have a tool in your browser such as Firebug, Dragonfly, or other
+            such developer tools, you may wish to take a look at the real DOM that is being produced
+            and compare it with the source.
+          </p>
+          <p>
+            Some basic things can be seen above. First, as you can see from the <code>DOCTYPE</code>
+            and the <code>section</code> elements, ReSpec documents are built on HTML5. This does
+            not imply that you need to know the ins and outs of HTML5 — just a few simple bits will
+            suffice. It also does not imply that the resulting document that you will produce at the
+            end will be HTML5. It is the recommended output format, but if you need to you can also
+            produce XHTML.
+          </p>
+          <p>
+            Note that the <code>title</code> of the document is reused as the title of the
+            specification in the resulting document's <code>h1</code>. It's a small win, but that's
+            always something less to repeat.
+          </p>
+          <p>
+            The <code>meta</code> element is merely there to indicate the encoding in cases in which
+            it may be misunderstood (which are many). It may not always be necessary, but I
+            recommend that you leave it there. (You're saving your documents as UTF-8, right? Right?
+            Right? Yes, of course you are. Right?)
+          </p>
+        </section>
+        <section>
+          <h2>Including ReSpec</h2>
+          <p>
+            You can see that the example above includes a script sourced at 
+            <code>http://www.w3.org/Tools/respec/respec-w3c-common</code>. That is the ReSpec 
+            profile for W3C specifications. If you look at examples in the wild you may on occasion
+            find other links — but use this one. You may also be tempted to save the script to your
+            local directory and use it from there. That may on occasion be useful (e.g. if you're on
+            a flight and your cache is busted) but I strongly recommend that you link to the 
+            canonical URL provided above. The code is regularly updated and this will allow you to
+            benefit from bug fixes and enhancements without even having to think about it. To give
+            an example: in 2013 the copyright line changed to include Beihang university. Anyone
+            using the canonical ReSpec got that upgrade without ever knowing it; while all other
+            editors had to make the change manually (typically at publication time, while under
+            pressure).
+          </p>
+          <p>
+            You may be wondering what that <code>class='remove'</code> is doing in there. We'll get
+            to that later, but be sure to keep it on those <code>script</code> elements.
+          </p>
+        </section>
+        <section>
+          <h2>Specifying Configuration</h2>
+          <p>
+            In the example you can see a <code>script</code> element defining a
+            <code>respecConfig</code> variable. Astute as you are, you've guessed that this is the
+            ReSpec configuration. There are many things that can be done there, but we won't get
+            into the details right now, but rather explore it piece by piece as needed. No doubt you
+            can guess what some of those fields do.
+          </p>
+          <p>
+            One thing to remember though is this: that is how configuration is specified in ReSpec.
+            Whenever you will see an indication that you can set a configuration option to a given
+            value, it will be by modifying this object, simply adding, removing, or changing one of
+            its fields.
+          </p>
+          <p>
+            Also note that this is just a simple JavaScript variable; there is nothing magical about
+            the way in which it is declared (it just needs to be fully defined when the load event
+            triggers). If for instance you are working on a family of specifications that share
+            some information (e.g. working group, editors) you can specify those in a common file
+            which you load, and then add the document-specific fields.
+          </p>
+        </section>
+        <section>
+          <h2>Sections</h2>
+          <p>
+            Sections in ReSpec specifications are specified using — shock! — the
+            <code>section</code> element. These can be nested, and the first <code>h*</code>
+            child element is taken to be the section's title. You do not need to worry about nesting
+            depth: ReSpec will take any element in the <code>h1</code>-<code>h6</code> range and
+            renumber it to match the section's nesting depth correctly. It is a common convetion
+            (though by no means a requirement) to use <code>h2</code> for all sections.
+          </p>
+          <p>
+            The two first sections in this example specification are special (and required). We will
+            get to those in the next chapter. For the time being, just accept them as part of the 
+            basic specification template.
+          </p>
+          <p>
+            The last section in the specification is a regular section — it is simply there in order
+            for there to be a little bit of content. There is no requirement to start a document
+            with an introduction, though of course that's not necessarily a bad idea.
+          </p>
+        </section>
+        <section>
+          <h2>Language</h2>
+          <p>
+            W3C specifications are assumed to be in English. As a result, if you don't specify a
+            <code>lang</code> attribute on your root element, ReSpec will add <code>lang='en'</code>
+            as well as <code>dir='ltr'</code>. This does not prevent you from using other languages
+            though: simply specify your own <code>lang</code> (in which case you may wish to also
+            specify your own <code>dir</code> for good measure).
+          </p>
+        </section>
       </section>
 
       <section>
