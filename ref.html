@@ -36,7 +36,78 @@
 
       <section>
         <h2>JavaScript Configuration Options</h2>
-        
+        <section>
+  <h2>shortName</h2>
+  <p>
+    The specification's "short name", which is the name used in W3C URLs such as
+    "http://www.w3.org/TR/short-name" (and several other generated URLs).
+  </p>
+</section>
+
+<section>
+  <h2>subtitle</h2>
+  <p>
+    A simple string that will be used as a subtitle for the specification, right under the title.
+  </p>
+</section>
+
+<section>
+  <h2>wg</h2>
+  <p>
+    The full public name of the group, including "Working/Interest/Incubator/etc. Group" as 
+    applicable. E.g. "Device APIs Working Group".
+  </p>
+</section>
+
+<section>
+  <h2>wgPatentURI</h2>
+  <p>
+    The URL of the public list of patent disclosures for the group, e.g.
+    "http://www.w3.org/2004/01/pp-impl/43696/status".
+  </p>
+  <p>
+    <strong>PLEASE NOTE</strong>: it is extremely easy to cut and paste this value from somewhere
+    else and to fail to notice that you are using the wrong value. Given the legal patent
+    implications in pointing to the wrong resource, please triple-check that you are using the link
+    relevant to your group. In order to find your group's link, go to <a
+    href='http://www.w3.org/2004/01/pp-impl/'>http://www.w3.org/2004/01/pp-impl/</a>, locate your
+    group, and click on its "(Status)" link.
+  </p>
+</section>
+
+<section>
+  <h2>wgPublicList</h2>
+  <p>
+    The short name of the mailing list on which the group conducts its public discussion. E.g.
+    "public-device-apis".
+  </p>
+</section>
+
+<section>
+  <h2>wgURI</h2>
+  <p>
+    The URI to the public page of the group. E.g. "http://w3.org/2009/dap/".
+  </p>
+</section>
+
+<section>
+  <h2>xgrDocShortName</h2>
+  <p>
+    <em>Deprecated</em>. The short name of the group report, e.g. "mbui". Since XGs typically
+    produce a single report, it is typical to use the same short name for the report as is used for
+    the group, therefore this option defaults to <a>xgrGroupShortName</a>.
+  </p>
+</section>
+
+<section>
+  <h2>xgrGroupShortName</h2>
+  <p>
+    <em>Deprecated</em>. The short name of the group, as included in its URI, e.g. "model-based-ui".
+    This is required for XGs.
+  </p>
+</section>
+
+
       </section>
 
       <section>
@@ -65,12 +136,18 @@
     <dl>
       <dt>abstract</dt>
       <dd>
-        Required. The specification's abstract, which should contain a paragraph. You shouldn't
+        <em>Required</em>. The specification's abstract, which should contain a paragraph. You shouldn't
         include the "Abstract" title.
+      </dd>
+      <dt>conformance</dt>
+      <dd>
+        Specifications often have "Conformance Requirements", which are made of free-form text and
+        some boilerplate mentioning RFC 2119. A section with this ID will add the title and the
+        boilerplate, while keeping the content you include in it.
       </dd>
       <dt>sotd</dt>
       <dd>
-        Required. The "Status of this Document" section. Obviously, you do not need to include the
+        <em>Required</em>. The "Status of this Document" section. Obviously, you do not need to include the
         endless reams of boilerplate that that section normally contains: that's generated for
         you. However, the PubRules require that part of that boilerplate be "a custom paragraph".
         The content you include in this section is therefore injected as that custom paragraph (you

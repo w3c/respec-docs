@@ -183,6 +183,467 @@
           various W3C specification URLs, the people writing it, information about the working
           group, and core sections such as Abstract, Status of this Document, and Conformance.
         </p>
+        <p>
+          We will start by using an example of a basic specification very similar to the one used in
+          the previous section.
+        </p>
+        <pre class="example highlight" data-include='examples/boilerplate.html' data-include-format='text'></pre>
+        <p>
+          You can <a href='examples/boilerplate.html'>see the result in action</a>.
+        </p>
+        <p class='note'>
+          There's a nifty trick that you will likely want to keep in your toolbox: many of ReSpec's
+          configuration options can be specified in the query string (separated by semicolons) and
+          they override the options specified in the source. We will use it a lot in this
+          documentation so as to avoid having to generate examples for each small change that is
+          possible (there are quite a few). So if I want to test the <a>subtitle</a> option without
+          generating a copy of the same example with just that option changed, instead of accessing 
+          <code>examples/boilerplate.html</code> I can simply go to
+          <code>examples/boilerplate.html?subtitle=This%20is%20a%20subtitle</code>.
+        </p>
+        <section>
+          <h2>Title, Subtitle, Short Name</h2>
+          <p>
+            As noted in the previous chapter, the <code>title</code> of the document is reused as
+            the title of the specification in the resulting document's <code>h1</code>. That way,
+            they are always in sync and you need not worry about specifying it twice. Including a
+            title is required.
+          </p>
+          <p>
+            Optionally, you can also specify a subtitle. The <a>subtitle</a> configuration option
+            takes a simple string that will be used as a subtitle for the specification, right under
+            the title. You can <a
+            href='examples/boilerplate.html?subtitle=Breaking%20the%20web%20in%20the%20animal%20kingdom'>look
+            at an example</a>.
+          </p>
+          <p>
+            Specifications typically require having a "short name", which is the name used (amongst
+            other places) in the canonical "http://w3.org/TR/short-name/" URLs. This is specified
+            using the <a>shortName</a> option, as seen in the example above.
+            <a href='examples/boilerplate.html?shortName=something-else'>Look at an example</a>.
+          </p>
+        </section>
+        <section>
+          <h2>Working Group Information</h2>
+          <p>
+            Most (but not all) W3C documents are produced by groups of some sort: Working Groups
+            (WG), Interest Groups (IG), Incubator Groups (XG, now defunct), Coordination Groups, the
+            TAG, and Community or Business Groups (CG, BG). For simplicity, we will be referring to
+            all of the above as "Working Groups", since one should not be required to understand the
+            many subtleties of the W3C Process in order to write a good specification. Configuration
+            options that are prefixed with <code>wg</code> work equally well for all group types.
+          </p>
+          <p>
+            When these groups release a document, they must include some information that is
+            relevant and specific to them — all of this information is required. Documents produced
+            in other situations (e.g. Submissions, unofficial drafts, etc.) don't require these
+            options.
+          </p>
+          <div data-include='src/conf/wg.html'></div>
+          <div data-include='src/conf/wgURI.html'></div>
+          <div data-include='src/conf/wgPublicList.html'></div>
+          <div data-include='src/conf/wgPatentURI.html'></div>
+          <p>
+            The result of changing these configuration options can be seen in the "Status of this
+            Document" section. Here is <a
+            href='examples/boilerplate.html?wg=Supercool%20Incubator%20Group;wgURI=http://berjon.com/;wgPublicList=public-supercool-xg;wgPatentURI=http://berjon.com/'>an
+            example with different values</a>.
+          </p>
+          <p>
+            Incubator Groups require some additional information in addition to the above, but since
+            this group type no longer exists they are deprecated:
+            <a href='ref.html#xgrGroupShortName'>xgrGroupShortName</a>,
+            <a href='ref.html#xgrDocShortName'>xgrDocShortName</a>.
+          </p>
+        </section>
+        <section>
+          <h2>Specification Status</h2>
+          <p>
+            At any given time a specification must be in a given status. The <dfn class='config'>specStatus</dfn> option
+            indicates which status that is. Typically, a status has implications in terms of what other options may be
+            required. For instance, a document that is intended to become a Recommendation eventually and that is not the
+            First Public Working Draft (FPWD) of that specification will require <a>previousPublishDate</a> and
+            <a>previousMaturity</a> to be specified. The following table lists the values currently understood. Each of
+            them has an example link demonstrating what it produces.
+          </p>
+          <table class='simple'>
+            <thead>
+              <tr>
+                <th>key</th>
+                <th>value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>base</td>
+                <td>
+                  Just the basic template, not a specification. Use this for public documentation produced by a
+                  group that has no current clear plan to be officially published.
+                  <a href='eg/boilerplate.html?specStatus=base;previousPublishDate=;previousMaturity='>Example</a>
+                </td></tr>
+              <tr><td>MO</td>
+                <td>
+                  Member-Only Document. Similar to base, but for documents that need to be clearly flagged as
+                  being restricted in access to W3C Members.
+                  <a href='eg/boilerplate.html?specStatus=MO;previousPublishDate=;previousMaturity='>Example</a></td></tr>
+              <tr><td>unofficial</td>
+                <td>
+                  An unofficial draft. Use this if you're producing a document outside of W3C but want
+                  to use styles that match those of W3C specifications, for instance to propose a new document
+                  while hosting it on your own server. Note that this automatically licences the content under CC
+                  by Attribute, v3.0. If you want a different copyright, read the <a href='#copyrights'>Copyrights</a>
+                  section.
+                  <a href='eg/boilerplate.html?specStatus=unofficial;previousPublishDate=;previousMaturity='>Example</a></td></tr>
+              <tr><td>ED</td>
+                <td>
+                  Editor's Draft. Use this for documents that are maintained in the group's own repository. Requires
+                  <a>edDraftURI</a> to be specified.
+                  <a href='eg/boilerplate.html?specStatus=ED;edDraftURI=http://respec.specifiction.com/guide/eg/boilerplate.html'>Example</a></td></tr>
+              <tr><td>FPWD</td>
+                <td>
+                  First Public Working Draft. <a href='eg/boilerplate.html?specStatus=FPWD'>Example</a></td></tr>
+              <tr><td>WD</td>
+                <td>
+                  Working Draft. Requires <a>previousPublishDate</a> and <a>previousMaturity</a>.
+                  <a href='eg/boilerplate.html?specStatus=WD'>Example</a></td></tr>
+              <tr><td>LC</td>
+                <td>
+                  Last Call Working Draft. Requires <a>previousPublishDate</a>, <a>previousMaturity</a>, and
+                  <a>lcEnd</a>.
+                  <a href='eg/boilerplate.html?specStatus=LC;lcEnd=2017-03-15'>Example</a></td></tr>
+              <tr><td>CR</td>
+                <td>
+                  Candidate Recommendation. Requires <a>previousPublishDate</a>, <a>previousMaturity</a>, and
+                  <a>crEnd</a>.
+                  <a href='eg/boilerplate.html?specStatus=CR;crEnd=2017-03-15'>Example</a></td></tr>
+              <tr><td>PR</td>
+                <td>
+                  Proposed Recommendation. Requires <a>previousPublishDate</a> and <a>previousMaturity</a>.
+                  <a href='eg/boilerplate.html?specStatus=PR'>Example</a></td></tr>
+              <tr><td>PER</td>
+                <td>
+                  Proposed Edited Recommendation. Requires <a>previousPublishDate</a> and <a>previousMaturity</a>.
+                  <a href='eg/boilerplate.html?specStatus=PER'>Example</a></td></tr>
+              <tr><td>REC</td>
+                <td>
+                  Recommendation. Requires <a>previousPublishDate</a> and <a>previousMaturity</a>.
+                  <a href='eg/boilerplate.html?specStatus=REC'>Example</a></td></tr>
+              <tr><td>RSCND</td>
+                <td>
+                  Rescinded Recommendation. Requires <a>previousPublishDate</a> and <a>previousMaturity</a>.
+                  I wish there were more of those.
+                  <a href='eg/boilerplate.html?specStatus=RSCND'>Example</a></td></tr>
+
+              <tr><td>NOTE</td>
+                <td>
+                  Note. It is unclear to me how this differs from the more specific WG-NOTE and friends.
+                  I would recommend using the more specific variants.
+                  <a href='eg/boilerplate.html?specStatus=NOTE;previousPublishDate=null'>Example</a></td></tr>
+              <tr><td>FPWD-NOTE</td>
+                <td>
+                  First Public Working Draft of a Note (of which kind, that's unclear).
+                  <a href='eg/boilerplate.html?specStatus=FPWD-NOTE'>Example</a></td></tr>
+              <tr><td>WG-NOTE</td>
+                <td>Working Group Note. <a href='eg/boilerplate.html?specStatus=WG-NOTE'>Example</a></td></tr>
+              <tr><td>CG-NOTE</td>
+                <td>Co-ordination Group Note. <a href='eg/boilerplate.html?specStatus=CG-NOTE'>Example</a></td></tr>
+              <tr><td>IG-NOTE</td>
+                <td>Interest Group Note. <a href='eg/boilerplate.html?specStatus=IG-NOTE'>Example</a></td></tr>
+              <tr><td>Member-SUBM</td>
+                <td>
+                  Member Submission. Note that ReSpec uses the default W3C copyright for this, but that you are
+                  entitled to retain your own copyright instead of transferring it to W3C. To specify this,
+                  read the <a href='#copyrights'>Copyrights</a> section.
+                  <a href='eg/boilerplate.html?specStatus=Member-SUBM;previousPublishDate=null'>Example</a></td></tr>
+              <tr><td>Team-SUBM</td>
+                <td>Team Submission. <a href='eg/boilerplate.html?specStatus=Team-SUBM;previousPublishDate=null'>Example</a></td></tr>
+              <tr><td>XGR</td>
+                <td>
+                  Incubator Group Report. Requires <a>xgrGroupShortName</a> and <a>xgrDocShortName</a>.
+                  <a href='eg/boilerplate.html?specStatus=XGR;previousPublishDate=null;xgrGroupShortName=dahunicorn'>Example</a></td></tr>
+              <tr><td>draft-finding</td>
+                <td>
+                  Draft TAG Finding. If you are one of the Nine and working on a Finding, this is for you. Note that for
+                  findings, ReSpec currently does not support SotD generation (there don't seem to be solid rules for
+                  what constitutes a valid Finding SotD) so you'll have to specify your own. If there are rules that could
+                  be used, please report a bug. ReSpec further assumes some conventions for finding URIs that are not
+                  consistent throughout all of the TAG's repository, specifically that all findings live in 
+                  "http://www.w3.org/2001/tag/doc/", that the latest version is at "http://www.w3.org/2001/tag/doc/shortName",
+                  and that the dated versions are at "latestVersion-YYYYMMDD".
+                  <a href='eg/boilerplate.html?specStatus=draft-finding'>Example</a></td></tr>
+              <tr><td>finding</td>
+                <td>
+                  TAG Finding. See above for more details.
+                  <a href='eg/boilerplate.html?specStatus=finding'>Example</a></td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Extra Styling</h2>
+          <p>
+            You can easily see that the resulting documents contain a lot of styling that does not appear in the
+            source. That is because ReSpec loads both the W3C stylesheet that corresponds to the type of document
+            that you are editing, as well as a its own CSS that work with its specific features.
+          </p>
+          <p>
+            This does not prevent you from adding your own style on top if you so desire. You can include style
+            directly in the source document using the usual HTML methods, but this is no recommended since in some
+            cases they may clash with publication rules that require the W3C style to be the last to be included
+            (ReSpec will try to enforce this however). Furthermore, people usually find it convenient to point to
+            external stylesheets rather than inline them in the document, but when making an official publication
+            it cannot depend on an external resource. In order to address this, it is recommended that in order to
+            add style you use the <dfn class='config'>extraCSS</dfn> option. It takes an array of URIs to external
+            stylesheets, will include them in the correct positions, and will inline them for you.
+          </p>
+        </section>
+        <section>
+          <h2>Dates</h2>
+          <p>
+            The process of publishing specifications typically involves releasing multiple versions in a row that
+            have specific dates (so that people can see the evolution, and also for IP reasons). Additionally,
+            some specification statuses involve delimited review periods. These are all specified using date-related
+            options.
+          </p>
+          <p>
+            The format used for all dates is <code>YYYY-MM-DD</code>.
+          </p>
+          <dl>
+            <dt><dfn class='config'>publishDate</dfn></dt>
+            <dd>
+              The publication date of the present document. For documents that are in flux, such as Editor's Drafts
+              or unofficial documents, this is best left unspecified as ReSpec will use the document's last modification
+              date (as provided by the browser) in order to set this. For documents intended for official publication,
+              this is normally required.
+            </dd>
+            <dt><dfn class='config'>previousPublishDate</dfn></dt>
+            <dd>
+              When there is a previous release of a given specification, this is used to generate the "Previous Version"
+              link. It is required for Recommendation Track documents.
+            </dd>
+            <dt><dfn class='config'>previousMaturity</dfn></dt>
+            <dd>
+              When a <a>previousPublishDate</a> is specified, this is typically required as well in order to generate the 
+              "Previous Version" link since it includes an indication of the previous document's maturity level, which
+              cannot be guessed. The values are the same as for <a>specStatus</a>. Please note that some values of
+              this option make no sense depending on the current document <a>specStatus</a> but that the rules for 
+              validating consistency are convoluted enough that ReSpec does not try to check them. If you pick the wrong
+              value (typically by forgetting to change it), the Link Checker will most likely catch the error before
+              publication (the same goes for <a>previousPublishDate</a>).
+            </dd>
+            <dt><dfn class='config'>lcEnd</dfn></dt>
+            <dd>
+              Documents that are in Last Call (<a>specStatus</a> is "LC") are required to indicate an end date for the review
+              period. Use this to provide it.
+            </dd>
+            <dt><dfn class='config'>crEnd</dfn></dt>
+            <dd>
+              Documents that are in Candidate Recommendation (<a>specStatus</a> is "CR") are required to indicate a date 
+              before which the group guarantees that it will not move to the next step on the track (PR or REC) so that
+              implementers know how long they have. Use this to provide that date.
+            </dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Editors &amp; Authors</h2>
+          <p>
+            Every specification must have some <dfn class='config'>editors</dfn> (at least one) and may have some 
+            <dfn class='config'>authors</dfn>. Both of these options take arrays of simple objects that have the following
+            fields:
+          </p>
+          <dl>
+            <dt>name</dt>
+            <dd>
+              The name of the person. This field is required (and the only required one).
+            </dd>
+            <dt>url</dt>
+            <dd>
+              The URL for the person, can be used to point to the person's personal site.
+            </dd>
+            <dt>company</dt>
+            <dd>
+              The company for which the person is working.
+            </dd>
+            <dt>companyURL</dt>
+            <dd>
+              The URL for the above company.
+            </dd>
+            <dt>mailto</dt>
+            <dd>
+              An email with which to contact the person.
+            </dd>
+            <dt>note</dt>
+            <dd>
+              Additional information on the person, often used to indicate a former employer (if the person
+              switched companies during edition) or to clarify that an editor is no longer active even if her
+              name is still attached to the document out of respect for her past contributions.
+            </dd>
+          </dl>
+          <p>
+            Editors are the people in charge of the document. Authors are people who produced substantial contributions,
+            but did not manage the document per se. Most of the time authors are not specified, but that practice
+            varies between groups (it is more common in XGs for instance). Here is an example of specifying two
+            editors and one author (with the surrounding document clipped for readability):
+          </p>
+          <pre class='example highlight'>
+            var respecConfig = {
+                // ...
+                editors: [
+                      {   name:       "Robin Berjon",
+                          url:        "http://berjon.com/",
+                          company:    "Robineko",
+                          companyURL: "http://robineko.com/",
+                          mailto:     "robin@berjon.com",
+                          note:       "A Really Cool Frood"
+                      },
+                      {   name:       "Billie Berthezène-Berjon",
+                          company:    "Catwoman"
+                      }
+                ],
+                authors: [
+                      {   name:       "Ada Lovelace",
+                          url:        "http://findingada.com/",
+                          company:    "Aristocracy",
+                          note:       "until &lt;time>1852-11-27&lt;/time>"
+                      }
+                ],
+                // ...
+            };
+          </pre>
+        </section>
+        <section>
+          <h2>Special Sections</h2>
+          <p>
+            There are three "special" <code>section</code> elements in the example, with IDs <code>abstract</code>,
+            <code>sotd</code>, and <code>conformance</code>; the first two are required for W3C documents, the third
+            one is recommended for normative documents.
+          </p>
+          <p>
+            The <code>abstract</code> section is simply the specification's abstract, the very first item of content
+            right at the beginning. You can include anything from a simple paragraph to a more detailed overview of
+            the topics involved.
+          </p>
+          <p>
+            The <code>sotd</code> section is there because the W3C publication rules require there to be a non-boilerplate,
+            human-customised paragraph as part of the "Status of this Document" section. By all accounts that's a bug in the
+            publication rules, but until such a time as we get them fixed this will be required. Don't waste too much time
+            saying anything useful there, the only people who will read it are those who check to see that there is indeed
+            a non-boilerplate paragraph there.
+          </p>
+          <p>
+            The <code>conformance</code> section is useful to have in normative documents. As you can see, in the source
+            there is only a paragraph and no title, yet in the resulting document there are three paragraphs (the first two
+            have been added automatically) and a title. The added paragraphs are essentially boilerplate but are useful
+            in clarifying the normative status of specific sections and listing the RFC 2119 keywords that are normally
+            used for testable assertions in the specification. The part that you write is dedicated to providing more
+            information about how conformance works for your given specification, it is often used to define product
+            conformance classes.
+          </p>
+          <p>
+            If testable assertions and conformance classes sound like gibberish to you, it is highly recommended that you
+            read <a href='http://www.w3.org/TR/test-methodology/'>http://www.w3.org/TR/test-methodology/</a>. In fact,
+            even if you understand what those are but haven't read this document, go read it.
+          </p>
+        </section>
+        <section>
+          <h2>Editor's Drafts</h2>
+          <p>
+            Most groups maintain some form of version control system which is exposed over the web so that people
+            can keep track of what edits are being made to a specification in between official releases. It is
+            often useful to point to such documents, including from released specifications, so that people wishing
+            to report issues can make sure that they aren't already fixed, and in general get the very latest version.
+            Two options control this.
+          </p>
+          <dl>
+            <dt><dfn class='config'>edDraftURI</dfn></dt>
+            <dd>
+              The URI of the Editor's Draft, used in the header. This is required for <a>specStatus</a> = "ED". Any
+              good old URI will do the trick.
+            </dd>
+            <dt><dfn class='config'>prevED</dfn></dt>
+            <dd>
+              Sometimes it happens that a document is moved in the version control system, passed from one group
+              to another, or split into several smaller documents. In such cases since the version control information 
+              is harder to find, this option can be used to point to a previous Editor's Draft. Rarely used.
+            </dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Recommendation Track</h2>
+          <p>
+            If you are working on a new version of an existing Recommendation, then it is required that your document
+            point to that previous version. This is done using the <dfn class='config'>prevRecShortname</dfn> and
+            <dfn class='config'>prevRecURI</dfn> options, which respectively provide the <a>shortName</a> for the
+            existing Recommendation (e.g. "SVG", as opposed to "SVG2") and its URI. You can 
+            <a href='eg/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look at an example</a>.
+            If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is, the latter will be used to generate
+            the former by prefixing "http://www.w3.org/TR/" to it. Note however that while in the overwhelming majority
+            of cases this works, it is not recommended to use this approach since if the Recommendation is later Rescinded,
+            the link will be stale. Instead, use the dated link to the Recommendation.
+          </p>
+          <p>
+            What follows in this section is a corner case which you most likely don't need to worry about unless you
+            are Thomas Roessler. Given that you're still reading, you must be Thomas (hi!). Thomas, you already know how this
+            works, so you don't need to read any further either.
+          </p>
+          <p>
+            The process for the publication of Notes is not entirely clearly cut. When producing multiple drafts of a
+            Note in succession, some groups will simply publish them all as Notes one after the other, probably indicating
+            in the abstract or SotD if they intend to work further on this document or if it is final. Since Notes are
+            not normative and entail no IP concerns, they don't need an elaborate process and this is considered the sane
+            option. If that's what you're doing, then you won't need this.
+          </p>
+          <p>
+            In other groups however it is preferred to use a publication process for Notes that is closer to that which
+            is used for Recommendation Track documents, typically: FPWD -> WD (<var>n</var> times) -> LC -> Note. Given that
+            any group may decide at any time to release a Rec-Track document as a Note instead (often because it has
+            been abandoned) this is Process-kosher but it is nevertheless somewhat weird since it uses specification statuses
+            that have IP implications in a situation in which there are none. Confused? That's okay. If you ever find yourself
+            in such a situation, simply set <dfn class='config'>noRecTrack</dfn> to <code>true</code>.
+          </p>
+        </section>
+        <section>
+          <h2>Related Documents</h2>
+          <p>
+            A specification does not always travel alone. In some cases, there can be an accompanying 
+            <dfn class='config'>errata</dfn> document, which you can specify by providing its URI 
+            (<a href='eg/boilerplate.html?specStatus=REC;errata=http://dictionary.reference.com/browse/erratum'>example</a>).
+          </p>
+          <p>
+            Likewise, some groups occasionally find it desirable to produce alternative formats in which people
+            may read the specification. For instance, to access it on an ebook reader you may produce an ePub
+            alternative, or if your specification is intended to be read by printing devices you might use PDF.
+            The <dfn class='config'>alternateFormats</dfn> option is set to an array of objects, each of which has
+            two required fields: <code>uri</code>, for the link to the alternate document, and <code>label</code>,
+            for a human readable string that matches it.
+          </p>
+        </section>
+        <section>
+          <h2>Copyrights</h2>
+          <p>
+            By default, W3C specifications all get the regular W3C copyright notice and document licence, except
+            for unofficial documents which are under CC. In some cases however, that is not appropriate, and can
+            be controlled with the following options.
+          </p>
+          <dl>
+            <dt><dfn class='config'>additionalCopyrightHolders</dfn></dt>
+            <dd>
+              For regular documents, this is used to specify that additional parties hold a copyright jointly with
+              W3C on this document. This is typically used when publishing documents that were developed in
+              cooperation with other friendly SDOs such as the IETF or OASIS. The option is simply some text giving
+              the addition copyright holders. For unofficial documents, this string is used to replace the default
+              CC licence. <a href='eg/boilerplate.html?additionalCopyrightHolders=Internet%20Engineering%20Task%20Force'>Example
+              for regular documents</a> and <a href='eg/boilerplate.html?additionalCopyrightHolders=Copyright%20©%201977%20Robin%20Berjon;specStatus=unofficial'>example
+              for unofficial documents</a>.
+            </dd>
+            <dt><dfn class='config'>copyrightStart</dfn></dt>
+            <dd>
+              ReSpec knows to include a copyright year that matches the <a>publishDate</a> in the copyright notice.
+              However, for documents developed over a period of several years it is preferable to indicate the
+              first year during which the copyright started by setting this option. Note that this can always be
+              safely specified since if copyrightStart is the same as the publishDate's year it is ignored.
+              <a href='eg/boilerplate.html?copyrightStart=1977'>See an example</a>.
+            </dd>
+          </dl>
+        </section>
       </section>
 
       <section>

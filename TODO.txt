@@ -13,12 +13,21 @@ DOCS:
         ✓ colour map
     - create a file for each configuration item, class, attribute
         - grep through the code to find all the configuration items
-    ✓ specific ReSpec variant
+    ✓ Beryl
+        - buggy (doesn't fully run)
         - ToC
         - link
         - footer
-        - header (including hero page)
+        - header
         - .container
+    - local ReSpec postprocessor
+        - get all a,code that contain an item defined in the configuration (as found by dumping
+          some JSON with all the values).
+    - grab all content from v2 docs
+    - grab all content from v1 docs not already covered in v2
+    - grab content from the README (for dev, mostly)
+    - go through code looking for undocumented features
+    - insert missing content markers
 
 TOC:
     - Intro
