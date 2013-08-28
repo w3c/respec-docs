@@ -11,8 +11,7 @@ DOCS:
             ✓ pick components
         ✓ Lato
         ✓ colour map
-    - create a file for each configuration item, class, attribute
-        - grep through the code to find all the configuration items
+    ✓ create a file for each configuration item, class, attribute
     ✓ Beryl
         - buggy (doesn't fully run)
         - ToC
@@ -27,7 +26,7 @@ DOCS:
     - grab all content from v1 docs not already covered in v2
     - grab content from the README (for dev, mostly)
     - go through code looking for undocumented features
-    - insert missing content markers
+    ✓ insert missing content markers
 
 TOC:
     - Intro
