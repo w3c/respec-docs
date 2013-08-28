@@ -270,19 +270,14 @@
         <section>
           <h2>Extra Styling</h2>
           <p>
-            You can easily see that the resulting documents contain a lot of styling that does not appear in the
-            source. That is because ReSpec loads both the W3C stylesheet that corresponds to the type of document
-            that you are editing, as well as a its own CSS that work with its specific features.
+            If you wish to add your own additional styles to your document, just use the regular
+            <code>link</code> and <code>style</code> elements. Be warned however that the W3C styles
+            will <em>always</em> be added after yours, so if you wish to override them you will need
+            to use more specific selectors.
           </p>
           <p>
-            This does not prevent you from adding your own style on top if you so desire. You can include style
-            directly in the source document using the usual HTML methods, but this is no recommended since in some
-            cases they may clash with publication rules that require the W3C style to be the last to be included
-            (ReSpec will try to enforce this however). Furthermore, people usually find it convenient to point to
-            external stylesheets rather than inline them in the document, but when making an official publication
-            it cannot depend on an external resource. In order to address this, it is recommended that in order to
-            add style you use the <dfn class='config'>extraCSS</dfn> option. It takes an array of URIs to external
-            stylesheets, will include them in the correct positions, and will inline them for you.
+            In some old documents, you will on occasion find an <a>extraCSS</a> configuration
+            option. Do not use it, it is deprecated.
           </p>
         </section>
         <section>
