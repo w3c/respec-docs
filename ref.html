@@ -41,7 +41,49 @@
 
       <section>
         <h2>Elements</h2>
-        section.html
+        <section>
+  <h2>section</h2>
+  <p>
+    Specification sections are indicated using the <code>section</code> element. They can be
+    nested arbitrarily in order to indicate sub-sections.
+  </p>
+  <p>
+    The first <code>h*</code> child element is taken to be the section's title. You do not need to
+    worry about nesting depth: ReSpec will take any element in the <code>h1</code>-<code>h6</code>
+    range and renumber it to match the section's nesting depth correctly. It is a common convention
+    (though by no means a requirement) to use <code>h2</code> for all sections.
+  </p>
+  <p>
+    If you nest deeper than the <code>h6</code> level, apart from having a hard-to-navigate document
+    you will keep getting <code>h6</code> elements.
+  </p>
+  <section>
+    <h2>Special sections</h2>
+    <p>
+      Some sections with specific IDs have special meanings.
+    </p>
+    <dl>
+      <dt>abstract</dt>
+      <dd>
+        Required. The specification's abstract, which should contain a paragraph. You shouldn't
+        include the "Abstract" title.
+      </dd>
+      <dt>sotd</dt>
+      <dd>
+        Required. The "Status of this Document" section. Obviously, you do not need to include the
+        endless reams of boilerplate that that section normally contains: that's generated for
+        you. However, the PubRules require that part of that boilerplate be "a custom paragraph".
+        The content you include in this section is therefore injected as that custom paragraph (you
+        can have several, in fact any markup you want is used). Don't spend too much time putting
+        together the best of your prose for this, it is almost certain that no one will ever read
+        it.
+      </dd>
+    </dl>
+  </section>
+</section>
+
+
+
       </section>
 
       <section>

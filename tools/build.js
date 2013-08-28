@@ -81,9 +81,13 @@ function buildDocs (cb) {
             ;
             for (var j = 0, m = incs.length; j < m; j++) {
                 var incDir = incs[j]
-                ,   files = fs.readdirSync(pth.join(srcPath, incDir)).join("\n")
+                ,   files = fs.readdirSync(pth.join(srcPath, incDir))
+                ,   insert = ""
                 ;
-                content = content.replace("<!-- " + incDir.toUpperCase() + " -->", files);
+                for (var k = 0, o = files.length; k < o; k++) {
+                    insert += fs.readFileSync(pth.join(srcPath, incDir, files[k]), "utf8") + "\n";
+                }
+                content = content.replace("<!-- " + incDir.toUpperCase() + " -->", insert);
             }
         }
         fs.writeFileSync(out, content, "utf8");
