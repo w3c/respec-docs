@@ -300,43 +300,18 @@
         <section>
           <h2>Editors &amp; Authors</h2>
           <p>
-            Every specification must have some <dfn class='config'>editors</dfn> (at least one) and may have some 
-            <dfn class='config'>authors</dfn>. Both of these options take arrays of simple objects that have the following
-            fields:
+            Every specification must have some <a>editors</a> (at least one) and may have some 
+            <a>authors</a>.
           </p>
-          <dl>
-            <dt>name</dt>
-            <dd>
-              The name of the person. This field is required (and the only required one).
-            </dd>
-            <dt>url</dt>
-            <dd>
-              The URL for the person, can be used to point to the person's personal site.
-            </dd>
-            <dt>company</dt>
-            <dd>
-              The company for which the person is working.
-            </dd>
-            <dt>companyURL</dt>
-            <dd>
-              The URL for the above company.
-            </dd>
-            <dt>mailto</dt>
-            <dd>
-              An email with which to contact the person.
-            </dd>
-            <dt>note</dt>
-            <dd>
-              Additional information on the person, often used to indicate a former employer (if the person
-              switched companies during edition) or to clarify that an editor is no longer active even if her
-              name is still attached to the document out of respect for her past contributions.
-            </dd>
-          </dl>
+          <div data-include='src/conf/editors.html'></div>
+          <div data-include='src/conf/authors.html'></div>
           <p>
-            Editors are the people in charge of the document. Authors are people who produced substantial contributions,
-            but did not manage the document per se. Most of the time authors are not specified, but that practice
-            varies between groups (it is more common in XGs for instance). Here is an example of specifying two
-            editors and one author (with the surrounding document clipped for readability):
+            Editors are the people in charge of the document. Authors are people who produced
+            substantial contributions, but did not manage the document per se. Most of the time
+            authors are not specified, but that practice varies between groups (it was more common
+            in XGs for instance, or sometimes in order to get academic credit the whole group is
+            mentioned). Here is an example of specifying two editors and one author (with the
+            surrounding document clipped for readability):
           </p>
           <pre class='example highlight'>
             var respecConfig = {
@@ -344,8 +319,8 @@
                 editors: [
                       {   name:       "Robin Berjon",
                           url:        "http://berjon.com/",
-                          company:    "Robineko",
-                          companyURL: "http://robineko.com/",
+                          company:    "W3C",
+                          companyURL: "http://w3c.org/",
                           mailto:     "robin@berjon.com",
                           note:       "A Really Cool Frood"
                       },

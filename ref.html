@@ -37,6 +37,14 @@
       <section>
         <h2>JavaScript Configuration Options</h2>
         <section>
+  <h2>authors</h2>
+  <p>
+    An array of objects describing the authors of the document. See <a>editors</a> for details on
+    the objects.
+  </p>
+</section>
+
+<section>
   <h2>crEnd</h2>
   <p>
     A <code>YYYY-MM-DD</code> date. Documents that are in Candidate Recommendation
@@ -44,6 +52,42 @@
     that it will not move to the next step on the track (PR or REC) so that implementers know how
     long they have. Use this to provide that date.
   </p>
+</section>
+
+<section>
+  <h2>editors</h2>
+  <p>
+    An array of objects describing the editors of the document (in order). Each object must follow
+    the structure below:
+  </p>
+  <dl>
+    <dt>name</dt>
+    <dd>
+      The name of the person. This field is required (and the only required one).
+    </dd>
+    <dt>url</dt>
+    <dd>
+      The URL for the person, can be used to point to the person's personal site.
+    </dd>
+    <dt>company</dt>
+    <dd>
+      The company for which the person is working.
+    </dd>
+    <dt>companyURL</dt>
+    <dd>
+      The URL for the above company.
+    </dd>
+    <dt>mailto</dt>
+    <dd>
+      An email with which to contact the person.
+    </dd>
+    <dt>note</dt>
+    <dd>
+      Additional information on the person, often used to indicate a former employer (if the person
+      switched companies during edition) or to clarify that an editor is no longer active even if her
+      name is still attached to the document out of respect for her past contributions.
+    </dd>
+  </dl>
 </section>
 
 <section>
