@@ -68,7 +68,7 @@ function mungeHeaders (content) {
 }
 
 function buildDocs (cb) {
-    var sources = "index".split(" ");
+    var sources = "index guide".split(" ");
     for (var i = 0, n = sources.length; i < n; i++) {
         var src = sources[i]
         ,   fileName = src + ".html"
