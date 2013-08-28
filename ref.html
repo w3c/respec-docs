@@ -55,6 +55,14 @@
 </section>
 
 <section>
+  <h2>edDraftURI</h2>
+  <p>
+    The URI of the Editor's Draft, used in the header. This is required for <a>specStatus</a> =
+    "ED". Any good old URL will do the trick.
+  </p>
+</section>
+
+<section>
   <h2>editors</h2>
   <p>
     An array of objects describing the editors of the document (in order). Each object must follow
@@ -104,6 +112,16 @@
   <p>
     A <code>YYYY-MM-DD</code> date. Documents that are in Last Call (<a>specStatus</a> is "LC") are
     required to indicate an end date for the review period. Use this to provide it.
+  </p>
+</section>
+
+<section>
+  <h2>prevED</h2>
+  <p>
+    Sometimes it happens that a document is moved in the version control system, passed from one
+    group to another, or split into several smaller documents. In such cases since the version
+    control information is harder to find, this option can be used to point to a previous Editor's
+    Draft. Rarely used.
   </p>
 </section>
 

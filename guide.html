@@ -347,25 +347,16 @@
         <section>
           <h2>Editor's Drafts</h2>
           <p>
-            Most groups maintain some form of version control system which is exposed over the web so that people
-            can keep track of what edits are being made to a specification in between official releases. It is
-            often useful to point to such documents, including from released specifications, so that people wishing
-            to report issues can make sure that they aren't already fixed, and in general get the very latest version.
-            Two options control this.
+            Most groups maintain some form of version control system which is exposed over the web
+            so that people can keep track of what edits are being made to a specification in between
+            official releases. It is often useful to point to such documents, including from
+            released specifications, so that people wishing to report issues can make sure that they
+            aren't already fixed, and in general get the very latest version. In fact, EDs are often
+            considered to be the most useful reference to have to a group's work. Two options control
+            this.
           </p>
-          <dl>
-            <dt><dfn class='config'>edDraftURI</dfn></dt>
-            <dd>
-              The URI of the Editor's Draft, used in the header. This is required for <a>specStatus</a> = "ED". Any
-              good old URI will do the trick.
-            </dd>
-            <dt><dfn class='config'>prevED</dfn></dt>
-            <dd>
-              Sometimes it happens that a document is moved in the version control system, passed from one group
-              to another, or split into several smaller documents. In such cases since the version control information 
-              is harder to find, this option can be used to point to a previous Editor's Draft. Rarely used.
-            </dd>
-          </dl>
+          <div data-include='src/conf/edDraftURI.html'></div>
+          <div data-include='src/conf/prevED.html'></div>
         </section>
         <section>
           <h2>Recommendation Track</h2>
