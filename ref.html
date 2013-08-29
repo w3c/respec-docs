@@ -37,10 +37,45 @@
       <section>
         <h2>JavaScript Configuration Options</h2>
         <section>
+  <h2>additionalCopyrightHolders</h2>
+  <p>
+    For regular documents, this is used to specify that additional parties hold a copyright jointly
+    with W3C on this document. This is typically used when publishing documents that were developed
+    in cooperation with other friendly SDOs such as the IETF. The option is simply some text giving
+    the addition copyright holders. For unofficial documents, this string is used to replace the
+    default CC licence. <a
+    href='examples/boilerplate.html?additionalCopyrightHolders=Internet%20Engineering%20Task%20Force'>Example
+    for regular documents</a> and <a
+    href='examples/boilerplate.html?additionalCopyrightHolders=Copyright%20©%201977%20Robin%20Berjon;specStatus=unofficial'>example
+    for unofficial documents</a>.
+  </p>
+</section>
+
+<section>
+  <h2>alternateFormats</h2>
+  <p>
+    An array of objects, each of which has two required fields: <code>uri</code>, for the link to
+    the alternate document, and <code>label</code>, for a human readable string that matches it.
+    This is used to link to alternate formats for the same content (e.g. PDF, ePub, PS).
+  </p>
+</section>
+
+<section>
   <h2>authors</h2>
   <p>
     An array of objects describing the authors of the document. See <a>editors</a> for details on
     the objects.
+  </p>
+</section>
+
+<section>
+  <h2>copyrightStart</h2>
+  <p>
+    ReSpec knows to include a copyright year that matches the <a>publishDate</a> in the copyright
+    notice. However, for documents developed over a period of several years it is preferable to
+    indicate the first year during which the copyright started by setting this option. Note that
+    this can always be safely specified since if copyrightStart is the same as the publishDate's
+    year it is ignored. <a href='examples/boilerplate.html?copyrightStart=1977'>See an example</a>.
   </p>
 </section>
 
@@ -96,6 +131,13 @@
       name is still attached to the document out of respect for her past contributions.
     </dd>
   </dl>
+</section>
+
+<section>
+  <h2>errata</h2>
+  <p>
+    An URL providing a link to a document capturing errata for the specification.
+  </p>
 </section>
 
 <section>

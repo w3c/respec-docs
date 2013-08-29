@@ -358,24 +358,54 @@
           <div data-include='src/conf/edDraftURI.html'></div>
           <div data-include='src/conf/prevED.html'></div>
         </section>
-        <!-- XXX stopped here -->
         <section>
-          <h2>Recommendation Track</h2>
+          <h2>Related Documents</h2>
+          <p>
+            A specification does not always travel alone. In some cases, there can be an accompanying 
+            <a>errata</a> document, which you can specify by providing a URL for it
+            (<a href='examples/boilerplate.html?specStatus=REC;errata=http://dictionary.reference.com/browse/erratum'>example</a>).
+          </p>
+          <p>
+            Likewise, some groups occasionally find it desirable to produce alternative formats in
+            which people may read the specification. For instance, to access it on an ebook reader
+            you may produce an ePub alternative, or if your specification is intended to be read by
+            printing devices you might use PDF. The <a>alternateFormats</a>
+            option is set to an array of objects, each of which has two required fields:
+            <code>uri</code>, for the link to the alternate document, and <code>label</code>, for a
+            human readable string that matches it.
+          </p>
+        </section>
+        <section>
+          <h2>Copyrights</h2>
+          <p>
+            By default, W3C specifications all get the regular W3C copyright notice and archaic
+            document license, except for unofficial documents which are under CC-BY. In some cases
+            however, you will want to modify that.
+          </p>
+          <p>
+            For all document types other than "unofficial", you can use <a>additionalCopyrightHolders</a>
+            to indicate that the copyright is shared not just amongst the W3C's hosts but also with
+            other organisations (typically this is used for documents developed jointly with another
+            SDO such as the IETF). For unofficial documents, this simply replaces the default CC-BY
+            license.
+          </p>
+          <p>
+            If you wish the copyright date to span several years rather than just the year matching
+            <a>publishDate</a> (e.g. 2009-2013) then you can use <a>copyrightStart</a>.
+          </p>
+        </section>
+        <section>
+          <h2>Note &amp; Recommendation Tracks</h2>
           <p>
             If you are working on a new version of an existing Recommendation, then it is required that your document
             point to that previous version. This is done using the <dfn class='config'>prevRecShortname</dfn> and
             <dfn class='config'>prevRecURI</dfn> options, which respectively provide the <a>shortName</a> for the
             existing Recommendation (e.g. "SVG", as opposed to "SVG2") and its URI. You can 
-            <a href='eg/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look at an example</a>.
+            <a href='examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look at an example</a>.
             If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is, the latter will be used to generate
             the former by prefixing "http://www.w3.org/TR/" to it. Note however that while in the overwhelming majority
             of cases this works, it is not recommended to use this approach since if the Recommendation is later Rescinded,
             the link will be stale. Instead, use the dated link to the Recommendation.
-          </p>
-          <p>
-            What follows in this section is a corner case which you most likely don't need to worry about unless you
-            are Thomas Roessler. Given that you're still reading, you must be Thomas (hi!). Thomas, you already know how this
-            works, so you don't need to read any further either.
           </p>
           <p>
             The process for the publication of Notes is not entirely clearly cut. When producing multiple drafts of a
@@ -392,50 +422,6 @@
             that have IP implications in a situation in which there are none. Confused? That's okay. If you ever find yourself
             in such a situation, simply set <dfn class='config'>noRecTrack</dfn> to <code>true</code>.
           </p>
-        </section>
-        <section>
-          <h2>Related Documents</h2>
-          <p>
-            A specification does not always travel alone. In some cases, there can be an accompanying 
-            <dfn class='config'>errata</dfn> document, which you can specify by providing its URI 
-            (<a href='eg/boilerplate.html?specStatus=REC;errata=http://dictionary.reference.com/browse/erratum'>example</a>).
-          </p>
-          <p>
-            Likewise, some groups occasionally find it desirable to produce alternative formats in which people
-            may read the specification. For instance, to access it on an ebook reader you may produce an ePub
-            alternative, or if your specification is intended to be read by printing devices you might use PDF.
-            The <dfn class='config'>alternateFormats</dfn> option is set to an array of objects, each of which has
-            two required fields: <code>uri</code>, for the link to the alternate document, and <code>label</code>,
-            for a human readable string that matches it.
-          </p>
-        </section>
-        <section>
-          <h2>Copyrights</h2>
-          <p>
-            By default, W3C specifications all get the regular W3C copyright notice and document licence, except
-            for unofficial documents which are under CC. In some cases however, that is not appropriate, and can
-            be controlled with the following options.
-          </p>
-          <dl>
-            <dt><dfn class='config'>additionalCopyrightHolders</dfn></dt>
-            <dd>
-              For regular documents, this is used to specify that additional parties hold a copyright jointly with
-              W3C on this document. This is typically used when publishing documents that were developed in
-              cooperation with other friendly SDOs such as the IETF or OASIS. The option is simply some text giving
-              the addition copyright holders. For unofficial documents, this string is used to replace the default
-              CC licence. <a href='eg/boilerplate.html?additionalCopyrightHolders=Internet%20Engineering%20Task%20Force'>Example
-              for regular documents</a> and <a href='eg/boilerplate.html?additionalCopyrightHolders=Copyright%20©%201977%20Robin%20Berjon;specStatus=unofficial'>example
-              for unofficial documents</a>.
-            </dd>
-            <dt><dfn class='config'>copyrightStart</dfn></dt>
-            <dd>
-              ReSpec knows to include a copyright year that matches the <a>publishDate</a> in the copyright notice.
-              However, for documents developed over a period of several years it is preferable to indicate the
-              first year during which the copyright started by setting this option. Note that this can always be
-              safely specified since if copyrightStart is the same as the publishDate's year it is ignored.
-              <a href='eg/boilerplate.html?copyrightStart=1977'>See an example</a>.
-            </dd>
-          </dl>
         </section>
       </section>
 
