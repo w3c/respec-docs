@@ -15,7 +15,7 @@ DOCS:
     ✓ Beryl
         ✓ buggy (doesn't fully run)
         ✓ ToC
-        - link
+        - links for configuration options
         - footer
         - header
         ✓ .container

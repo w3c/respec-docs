@@ -28,6 +28,14 @@ define([
         function (domReady, runner) {
             var args = Array.prototype.slice.call(arguments)
             ,   hasRun = false;
+            window.mungeConf = function (utils, source) {
+                return source.replace("<section>", "<section class='well conf'>");
+                console.log("utils", utils);
+                console.log("source", source);
+                console.log("replace", source.replace("<section>", "<section class='well conf'>"));
+                // return source.replace("<section>", "<section class='well conf'>");
+                return "AAA";
+            };
             domReady(function () {
                 hasRun = true;
                 runner.runAll(args);

@@ -235,10 +235,10 @@
           in other situations (e.g. Submissions, unofficial drafts, etc.) don't require these
           options.
         </p>
-        <div data-include='src/conf/wg.html'></div>
-        <div data-include='src/conf/wgURI.html'></div>
-        <div data-include='src/conf/wgPublicList.html'></div>
-        <div data-include='src/conf/wgPatentURI.html'></div>
+        <div data-include='src/conf/wg.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/wgURI.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/wgPublicList.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/wgPatentURI.html' data-oninclude='mungeConf'></div>
         <p>
           The result of changing these configuration options can be seen in the "Status of this
           Document" section. Here is <a
@@ -292,11 +292,11 @@
         <p>
           The format used for all dates is <code>YYYY-MM-DD</code>.
         </p>
-        <div data-include='src/conf/publishDate.html'></div>
-        <div data-include='src/conf/previousPublishDate.html'></div>
-        <div data-include='src/conf/previousMaturity.html'></div>
-        <div data-include='src/conf/lcEnd.html'></div>
-        <div data-include='src/conf/crEnd.html'></div>
+        <div data-include='src/conf/publishDate.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/previousPublishDate.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/previousMaturity.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/lcEnd.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/crEnd.html' data-oninclude='mungeConf'></div>
       </section>
       <section>
         <h2>Editors &amp; Authors</h2>
@@ -304,8 +304,8 @@
           Every specification must have some <a>editors</a> (at least one) and may have some 
           <a>authors</a>.
         </p>
-        <div data-include='src/conf/editors.html'></div>
-        <div data-include='src/conf/authors.html'></div>
+        <div data-include='src/conf/editors.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/authors.html' data-oninclude='mungeConf'></div>
         <p>
           Editors are the people in charge of the document. Authors are people who produced
           substantial contributions, but did not manage the document per se. Most of the time
@@ -351,8 +351,8 @@
           considered to be the most useful reference to have to a group's work. Two options control
           this.
         </p>
-        <div data-include='src/conf/edDraftURI.html'></div>
-        <div data-include='src/conf/prevED.html'></div>
+        <div data-include='src/conf/edDraftURI.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/prevED.html' data-oninclude='mungeConf'></div>
       </section>
       <section>
         <h2>Related Documents</h2>

@@ -93,6 +93,7 @@ function buildDocs (cb) {
         }
         fs.writeFileSync(out, content, "utf8");
     }
+    console.log("[OK] Docs built");
     cb();
 }
 
