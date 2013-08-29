@@ -709,12 +709,35 @@
     <section>
       <h2>Creating a Static Snapshot</h2>
       <p>
-        Once your specification is ready to be published on the W3C website, you will need to
-        create a static snapshot. This chapter covers this process, what happens, the various
-        formats, RDFa support, diffs, and what to do with the result once you have it.
+        Of course the downside of the approach taken by ReSpec is that the specification as it is
+        expected to be, with all its bells and whistles, exists only in your browser's memory as a
+        DOM. Publishing directly with the script would not work as the source would not pass
+        PubRules and would work poorly with search engines that do not process JS (also people
+        generally frown upon reference documents that do not work without JavaScript). does not work
+        for all browsers (and there are still quite a few people using Internet Explorer out there)
+        and would not show all the content for search indexing.
       </p>
       <p>
-        XXX to be written
+        The solution that is used here is that you hit the <code>Ctrl+Shift+Alt+S</code> key
+        combination. Unless you know what you are doing, pick "Save as HTML (Source)". This will
+        produce a dump of the generated source, which you can paste into the document you want to be
+        your specification snapshot. The process is a little bit tedious, but normally you should
+        only need to do it very rarely. You can hit <code>Esc</code> to hide the menu.
+      </p>
+      <p>
+        If you have a copy of the ReSpec repository handy, you may see that there is also a
+        <code>respec2html.js</code> tool under <code>tools/</code>. Feel free to try using it
+        instead of the above process, but please note that it is not used much currently and may
+        behave in a somewhat experimental manner (experiences with it vary — but it's worth a shot
+        if you're looking for a way to generate ReSpec output from the command line).
+      </p>
+      <p>
+        ReSpec is also capable of producing a diff-marked version if you have a configuration
+        setting of <a>previousDiffURI</a> set to a document to compare to (which defaults to
+        <a>previousURI</a>). When you press that button, you will obtained a diffmarked version
+        instead of a regular specification. By default, the diff tool is set to
+        <code>http://www.aptest.com/standards/htmldiff/htmldiff.pl</code>, but you can override this
+        by setting <a>diffTool</a>.
       </p>
     </section>
 

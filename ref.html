@@ -75,6 +75,16 @@
 </section>
 
 <section>
+  <h2>diffTool</h2>
+  <p>
+    If you want to produce a diffmarked version of your specification, you can use this setting to
+    point to a specific diff tool. It should expect to receive parameters called
+    <code>oldfile</code>, <code>newcontent</code>, and <code>base</code>. By default it is set to
+    <code>http://www.aptest.com/standards/htmldiff/htmldiff.pl</code>.
+  </p>
+</section>
+
+<section>
   <h2>edDraftURI</h2>
   <p>
     The URI of the Editor's Draft, used in the header. This is required for <a>specStatus</a> =
@@ -218,6 +228,14 @@
     the overwhelming majority of cases this works, it is not recommended to use this approach since
     if the Recommendation is later Rescinded, the link will be stale. Instead, use the dated link to
     the Recommendation.
+  </p>
+</section>
+
+<section>
+  <h2>previousDiffURI</h2>
+  <p>
+    When producing a diffmarked version, ReSpec uses the <a>previousURI</a> as the old version by
+    default. Use this configuration option if you wish to override this to a specific URL.
   </p>
 </section>
 

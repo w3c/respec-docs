@@ -27,6 +27,8 @@ DOCS:
     - grab content from the README (for dev, mostly)
     - go through code looking for undocumented features
     ✓ insert missing content markers
+    - add described links to other pages in the home page
+    - add pointer to how to contribute to the docs, submit issues, etc.
 
 TOC:
     - Intro
