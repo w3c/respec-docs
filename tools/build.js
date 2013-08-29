@@ -10,12 +10,6 @@ var r    = require("../node_modules/respec/tools/r")
 ,   srcPath = pth.join(__dirname, "../src")
 ;
 
-
-// build custom Bootstrap
-// build page with all configurations
-// copy pages in the right templates
-
-
 function buildBeryl (cb) {
     var config = {
         baseUrl:    pth.join(__dirname, "../beryl")

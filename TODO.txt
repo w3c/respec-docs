@@ -37,14 +37,35 @@ TOC:
         ✓ Getting Support
         - Common problems
             - still using v1 (or v2)
-    - Usage
-        - list based on configurations + previous docs
-        - examples using same system as RSv2
-    - Reference
-        - configuration items
-        - elements
-        - attributes
-        - classes
+    ✓ Usage
+        ✓ list based on configurations + previous docs
+        ✓ examples using same system as RSv2
+        - WebIDL (build example based on v1 docs)
+        - best practices
+        - prevRecHeader?
+        - testSuiteURI?
+        - implementationReportURI?
+        - doRDFa
+        - noIDLSorting
+        - noIDLIn
+        - addPatentNote?
+        - dfn algorithm (from v1)
+        - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
+        - data-oninclude (instead of data-transform for included stuff)
+        - .example @title
+        - pre.illegal-example, aside.example, example numbering
+        - <aside>
+        - noTOC
+        - is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
+    ✓ Reference
+        ✓ configuration items
+        ✓ elements
+        ✓ attributes
+        ✓ classes
+        - scheme (deprecated?)
+        - .practicelab
+        - .externalDFN
+        
     - Developers
         - GitHub
         - Branches
