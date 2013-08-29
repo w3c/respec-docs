@@ -607,13 +607,103 @@
       <p>
         Many repetitive tasks happen at the level of inline text, and ReSpec helps with those as
         well. This chapter covers references, along with the <a
-        href='https://github.com/tobie/specref'>Specifiction database</a>, the handling of
+        href='https://github.com/tobie/specref'>SpecRef database</a>, the handling of
         abbreviations and acronyms, automatic RFC 2119 keyword detection, <code>dfn</code>
         definitions, and easier in-document linking.
       </p>
+      <pre class="example highlight" data-include='examples/inlines.html' data-include-format='text'></pre>
       <p>
-        XXX to be written
+        You can <a href='examples/inlines.html'>see this example in action</a>.
       </p>
+      <section>
+        <h2>RFC 2119</h2>
+        <p>
+          A very common construct in specifications is to use keywords defined in RFC 2119 which
+          indicate precisely, using commonly agreed conventions, what requirements are placed on an
+          implementation with what degree of strength (e.g. MUST, SHOULD NOT). All you need to do as
+          an author is to include an all-caps MUST in your source and it will automatically get
+          marked up as such (with the accompanying style applied to it afterwards).
+        </p>
+      </section>
+      <section>
+        <h2>Abbreviations &amp; Acronyms</h2>
+        <p>
+          HTML supports functionality to mark abbreviations and acronyms (using <code>abbr</code>
+          and <code>acronym</code> respectively), using the <code>title</code> attribute to provide
+          the expanded version. This is something that's nice to do once, but tedious to repeat
+          every time that a given term is used. What ReSpec does is that it allows you to do it just
+          once, and it will detect all other uses of the same in the text and will automatically
+          mark them up in the same way.
+        </p>
+        <p>
+          Note that ReSpec could not possibly care less about whether you think that
+          <code>acronym</code> is a valid element or not; if you use it, it will process it.
+        </p>
+      </section>
+      <section>
+        <h2>Definitions and Linking</h2>
+        <p>
+          HTML also supports the notion that you can give a term's definition using the
+          <code>dfn</code> element. While that is nice, it is even better to link back to the
+          definition whenever a term is used, which in turn is tedious. While ReSpec could go
+          through the entire text and link every occurrence of a defined term back to its
+          definition, that would be a problematic approach since it would risk linking the same term
+          used with a different meaning. What it does instead is that it allows you to use an
+          <code>href</code>-less <code>a</code> element around a term when you use it, and it will
+          manage the link on its own (e.g. <code>&lt;a>term&lt;/a></code>).
+        </p>
+        <p>
+          On occasion that won't be enough since you may be using the term in plural or conjugated,
+          or in some other variant that does not exactly match the <code>dfn</code>. If so, then you
+          can use the <code>title</code> attribute on the <code>a</code> element in order to
+          indicate the exact term that you wish to have a link to.
+        </p>
+        <p>
+          Also note that the <code>href</code>-less <code>a</code> element is not limited to linking
+          to definitions but also knows how to link to other items such as WebIDL interfaces.
+        </p>
+      </section>
+      <section>
+        <h2>References</h2>
+        <p>
+          Specifications typically need to have references to other specifications on which they
+          build to define their own technology. Managing references is a pain, as is linking to them
+          every time that they are mentioned.
+        </p>
+        <p>
+          ReSpec takes the pain out of this with multiple features that are used together. First,
+          when you need to refer to a given specification in the body of the text, simply do so
+          using <code>[[<span>FOO</span>]]</code> for informative references (those that are just
+          intended to clarify the matter at hand) and <code>[[!<spac>FOO</spac>]]</code> for
+          normative ones (those which are required for the implementation of the specification at
+          hand). ReSpec will replace those with the link the reference and the appropriate markup
+          around it.
+        </p>
+        <p>
+          Then, using all the collected references from the document, ReSpec will generate a
+          “References” section with subsections for normative and informative references (when they
+          appear). Inside the latter, it will place the relevant bibliographical data for those
+          references, using the conventional markup.
+        </p>
+        <p>
+          References are loaded from a shared database that is maintained by a group of volunteers.
+          If you need a reference that is not in the database, then the right thing to do is to
+          submit it for inclusion so that others can benefit from it too. However, if that is not
+          possible then you can make use of the <a>localBiblio</a> configuration option.
+        </p>
+        <p>
+          If you wish the “References” section to be prefaced with some text, you can set the
+          <a>refNote</a> option to the content you wish to use, as in <a
+          href='examples/inlines.html?refNote=Some%20text%20inserted%20here'>this example</a>.
+        </p>
+        <p>
+          The only things you therefore need to know for references are the reference names of the
+          specifications you wish to refer to (as well as to how to add your own to the database).
+          The names are usually rather logical, and most of the time can be guessed. In other cases,
+          you can go look for them in the central bibliographical database that is maintained at <a
+          href='https://github.com/tobie/specref'>SpecRef database</a>.
+        </p>
+      </section>
     </section>
 
     <section>
