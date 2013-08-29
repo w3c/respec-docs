@@ -439,6 +439,23 @@
     <section>
       <h2>Elements</h2>
       <section>
+  <h2>figure</h2>
+  <p>
+    Specification figures are indicated using the <code>figure</code> element, with a nested
+    <code>figcaption</code>. They can occur anywhere.
+  </p>
+  <p>
+    A Table of Figures is generated and inserted in the document if you include an element with
+    ID <code>tof</code>.
+  </p>
+  <p>
+    Figures can be automatically linked to using a link pointing to their ID with no content
+    (e.g. <code>&lt;a href='#foo-figures'>&lt;/a></code>).
+  </p>
+</section>
+
+
+<section>
   <h2>section</h2>
   <p>
     Specification sections are indicated using the <code>section</code> element. They can be
@@ -453,6 +470,10 @@
   <p>
     If you nest deeper than the <code>h6</code> level, apart from having a hard-to-navigate document
     you will keep getting <code>h6</code> elements.
+  </p>
+  <p>
+    Section can be automatically linked to using a link pointing to their ID with no content
+    (e.g. <code>&lt;a href='#foo-section'>&lt;/a></code>).
   </p>
   <section>
     <h2>Special sections</h2>
