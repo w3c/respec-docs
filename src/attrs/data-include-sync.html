@@ -1,0 +1,13 @@
+<section>
+  <h2>data-include-sync</h2>
+  <p>
+    Inclusion is normally asynchronous, which means that the content may or may not get further
+    processed by ReSpec depending on the point at which it gets inserted (which isn't 
+    deterministic). If you need to ensure that content gets injected before the rest of the
+    pipeline runs, set this to any truthy value.
+  </p>
+  <p>
+    Be warned that there is a steep performance penalty in doing so, since all ReSpec processing
+    will effectively pause until the content has been fully fetched and inserted.
+  </p>
+</section>

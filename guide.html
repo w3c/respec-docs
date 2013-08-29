@@ -527,54 +527,77 @@
       <section>
         <h2>Inclusions &amp; Transformations</h2>
         <p>
-          At times you need to include an external resource directly into your document. This may be because your
-          specifications have additional boilerplate, or (like it's done in this very guide) because you want
-          examples to be both inlined and accessed directly without having to make sure that they are always in
-          sync.
+          At times you need to include an external resource directly into your document. This may be
+          because your specifications have additional boilerplate, or (like it's done in this very
+          guide) because you want examples to be both inlined and accessed directly without having
+          to make sure that they are always in sync.
         </p>
         <p>
-          Inclusion of external content in ReSpec is done using the <code>data-include</code> attribute. It is
-          expected to point to a resource, using its relative path from the including document. The content will
-          get included as a child of the element on which the inclusion is performed, replacing its existing content.
-          In the processing pipeline, inclusion happens right after everything to do with the document's headers, style, and
-          transformations (see next item for that one) have happened, which means that all the processing to do with
-          structure, inlines, WebIDL, and everything else is applied to the included content as if it had always
-          been part of the source. What's more, the include filter runs recursively so that included content that
-          contains <code>data-include</code> attributes will work (just be sure not to build a circular loop in
-          there, ReSpec won't detect it if only because it doesn't mind if you're shooting yourself in the foot).
+          Inclusion of external content in ReSpec is done using the <code><a>data-include</a></code>
+          attribute. It is expected to point to a resource, using its relative path from the
+          including document. The content will get included as a child of the element on which the
+          inclusion is performed (unless <a>data-include-replace</a> is used, in which case it
+          replaces the element), replacing its existing content.
         </p>
         <p>
-          At times however one does not wish included content to be processed as if it were intended to be ReSpec
-          content. For instance, content containing HTML may be an example that should not be processed (the example
-          at the beginning of this document is included that way). In such cases, in addition to the <code>data-include</code>
-          attribute, you can specify <code>data-include-format='text'</code>. This will include the content as
-          if it were text, and therefore only process it as much as text is expected to be. The only recognised value is
-          text, nominally you can always set it to <code>html</code> but that's the default value.
+          The include filter runs recursively so that included content that contains
+          <code><a>data-include</a></code> attributes will work (just be sure not to build a circular loop
+          in there, ReSpec won't detect it if only because it doesn't mind if you're shooting yourself in
+          the foot).
         </p>
         <p>
-          There is an important caveat to take into account with the <code>data-include</code> functionality. ReSpec
-          is designed so as to make life easier on editors. Because of that, people who do not wish to run a local
-          web server and simply want to edit and refresh the specification they're working on from their local
-          drives, using a <code>file:</code> URI in the browser, are completely supported in doing so (this involves
-          some trickery behind the scenes since it would normally make it impossible to load some of the content that
-          ReSpec uses — but that's not something you should ever have to know). When using <code>data-include</code>
-          however, this is no longer possible. You either have to serve your ReSpec content from your own local
-          server (something that isn't particularly hard, but is always an extra step), or commit it and reload
-          from another server (which is a pain). There is, unfortunately, no easy way to work around this. Be sure
-          to note however that if you're <em>not</em> using <code>data-include</code>, you <em>never</em> have to
-          worry about this.
+          By default the inclusion is asynchronous, which means that the included content may or may
+          not be further processed by ReSpec after it gets added to the DOM (the result won't be
+          deterministic and so is only useful if the content is <em>not</em> meant to be further
+          processed). If you wish to ensure that ReSpec processing is applied to the content, use
+          <code><a>data-include-sync</a></code>. Be warned that there is a steep performance penalty
+          in doing so, since all ReSpec processing will effectively pause until the content has been
+          fully fetched and inserted.
         </p>
         <p>
-          Finally, at times, you may wish to perform a quick and dirty transformation of some of your content. The
-          proper way of doing that as of ReSpec v2 is actually to write a ReSpec plugin that can get included to
-          perform whichever processing you may need. However, in a pinch (and for backwards compatibility), this approach
-          will work as well. The way in which it is done is that you include a globally available Javascript function
-          that takes the ReSpec object as its first parameter and a string of the content to be transformed as its
-          second; then returns the processed value. Then where you wish the transformation to apply, you place a
-          <code>data-transform</code> attribute — it will then process the entire content. The value of 
-          <code>data-transform</code> is a white space separated list of Javascript functions. They are applied left to
-          right, as if they were a pipeline. Again, I would like to stress that, in general, that is not the recommended
-          approach.
+          In the processing pipeline, inclusion happens right after everything to do with the document's
+          headers, style, and transformations have happened, which means that all the processing to do
+          with structure, inlines, WebIDL, and everything else is applied to the included content as if it
+          had always been part of the source.
+        </p>
+        <p>
+          At times however one does not wish included content to be processed as if it were intended
+          to be ReSpec content. For instance, content containing HTML may be an example that should
+          not be processed (the examples in this document are included that way). In such cases, you
+          can specify <code><a>data-include-format</a>='text'</code>. This will include the content
+          as if it were text, and therefore only process it as much as text is expected to be. The
+          only recognised value is <code>text</code>, nominally you can always set it to
+          <code>html</code> but that's the default value.
+        </p>
+        <p>
+          There is an important caveat to take into account with the <code>data-include</code>
+          functionality. ReSpec is designed so as to make life easier on editors. Because of that,
+          people who do not wish to run a local web server and simply want to edit and refresh the
+          specification they're working on from their local drives, using a <code>file:</code> URI
+          in the browser, are completely supported in doing so (this involves some trickery behind
+          the scenes since it would normally make it impossible to load some of the content that
+          ReSpec uses — but that's not something you should ever have to know). When using
+          <code>data-include</code> however, this is no longer possible. You either have to serve
+          your ReSpec content from a web server or the included content will get blocked by the
+          same-origin policy (which applies to all things <code>file:</code>). There is,
+          unfortunately, no easy way to work around this. Be sure to note however that if you're
+          <em>not</em> using <code>data-include</code>, you <em>never</em> have to worry about this.
+        </p>
+        <p>
+          Finally, at times, you may wish to perform a quick and dirty transformation of some of
+          your content. If the transformation is one that is commonly used and could be of general
+          usefulness outside your own specification, then the proper way of handling it is to add
+          the functionality to ReSpec itself. However, in a pinch, this approach will work as well.
+          The way in which it is done is that you include a globally available Javascript function
+          that takes the ReSpec <code>utils</code> object as its first parameter and a string of the
+          content to be transformed as its second; then returns the processed value (when used on an
+          element that also performs a <code><a>data-include</a></code> a third parameter is
+          included indicating the relative URL from which the content was loaded). Then where you
+          wish the transformation to apply, you place a <code><a>data-transform</a></code> attribute
+          — it will then process the entire content. The value of <code><a>data-transform</a></code>
+          is a white space separated list of JavaScript function names. They are applied left to
+          right, as if they were a pipeline. Again, I would like to stress that, in general, that is
+          not the recommended approach.
         </p>
       </section>
     </section>

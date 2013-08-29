@@ -529,6 +529,84 @@
     <section>
       <h2>Attributes</h2>
       <section>
+  <h2>data-include-format</h2>
+  <p>
+    Data is normally included as HTML (injected into the DOM as such) but there are time when you
+    want to include content as text. If so, set this attribute to <code>text</code>. That is the
+    only supported value (you can also use <code>html</code>, but that's the default behaviour).
+  </p>
+</section>
+
+<section>
+  <h2>data-include-replace</h2>
+  <p>
+    By default inclusion happens by placing the content inside the including element. At time, you
+    will actually want the element to be replaced by the inclusion. If so, simply set this attribute
+    to any truthy value.
+  </p>
+</section>
+
+<section>
+  <h2>data-include-sync</h2>
+  <p>
+    Inclusion is normally asynchronous, which means that the content may or may not get further
+    processed by ReSpec depending on the point at which it gets inserted (which isn't 
+    deterministic). If you need to ensure that content gets injected before the rest of the
+    pipeline runs, set this to any truthy value.
+  </p>
+  <p>
+    Be warned that there is a steep performance penalty in doing so, since all ReSpec processing
+    will effectively pause until the content has been fully fetched and inserted.
+  </p>
+</section>
+
+<section>
+  <h2>data-include</h2>
+  <p>
+    A URL pointing to a resource, relative to the including document. The content will get included
+    as a child of the element on which the inclusion is performed (unless
+    <code><a>data-include-replace</a></code> is used, in which case it replaces the element),
+    replacing its existing content.
+  </p>
+  <p>
+    The include filter runs recursively so that included content that contains
+    <code><a>data-include</a></code> attributes will work (just be sure not to build a circular loop
+    in there, ReSpec won't detect it if only because it doesn't mind if you're shooting yourself in
+    the foot).
+  </p>
+  <p>
+    By default the inclusion is asynchronous, which means that the included content may or may not
+    be further processed by ReSpec after it gets added to the DOM (the result won't be deterministic
+    and so is only useful if the content is <em>not</em> meant to be further processed). If you wish
+    to ensure that ReSpec processing is applied to the content, use
+    <code><a>data-include-sync</a></code>
+  </p>
+  <p>
+    In the processing pipeline, inclusion happens right after everything to do with the document's
+    headers, style, and transformations have happened, which means that all the processing to do
+    with structure, inlines, WebIDL, and everything else is applied to the included content as if it
+    had always been part of the source.
+  </p>
+</section>
+
+<section>
+  <h2>data-transform</h2>
+  <p>
+    This is a list of white space separated JavaScript function names that will be called in turn
+    in order to transform the content inside the given element. The functions need to be globally
+    available.
+  </p>
+  <p>
+    Each function gets called with the ReSpec <code>utils</code> object and a string of the content
+    to transform. If applied on an element that is also using <code><a>data-include</a></code>, a
+    third parameter giving the URL of the loaded content is provided.
+  </p>
+  <p>
+    Each function must return the transformed content.
+  </p>
+</section>
+
+<section>
   <h2>dir</h2>
   <p>
     ReSpec defaults the <code>dir</code> attribute on your root element to <code>ltr</code>. If you

@@ -7,3 +7,6 @@ var respecConfig = {
     ,   { url: "dev.html", label: "Developers" }
     ]
 };
+window.mungeConf = function (utils, source) {
+    return source.replace("<section>", "<section class='well conf'>");
+};
