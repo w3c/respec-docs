@@ -4,6 +4,8 @@ require.config({
         domReady:   "../node_modules/respec/js/domReady"
     ,   core:       "../node_modules/respec/js/core/"
     ,   text:       "../node_modules/respec/js/text"
+    ,   tmpl:       "../node_modules/respec/js/tmpl"
+    ,   handlebars: "../node_modules/respec/js/handlebars"
     }
 });
 
@@ -12,6 +14,8 @@ define([
         ,   "core/base-runner"
         ,   "core/override-configuration"
         ,   "core/default-root-attr"
+        ,   "beryl/style"
+        ,   "beryl/boilerplate"
         ,   "core/data-include"
         ,   "core/inlines"
         ,   "core/examples"
@@ -30,11 +34,6 @@ define([
             ,   hasRun = false;
             window.mungeConf = function (utils, source) {
                 return source.replace("<section>", "<section class='well conf'>");
-                console.log("utils", utils);
-                console.log("source", source);
-                console.log("replace", source.replace("<section>", "<section class='well conf'>"));
-                // return source.replace("<section>", "<section class='well conf'>");
-                return "AAA";
             };
             domReady(function () {
                 hasRun = true;

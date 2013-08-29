@@ -15,9 +15,9 @@ DOCS:
     ✓ Beryl
         ✓ buggy (doesn't fully run)
         ✓ ToC
-        - links for configuration options
-        - footer
-        - header
+        ✓ link for style
+        ✓ footer
+        ✓ header
         ✓ .container
     - local ReSpec postprocessor
         - get all a,code that contain an item defined in the configuration (as found by dumping

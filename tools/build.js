@@ -27,6 +27,8 @@ function buildBeryl (cb) {
         ,   domReady:   "../node_modules/respec/js/domReady"
         ,   core:       "../node_modules/respec/js/core/"
         ,   text:       "../node_modules/respec/js/text"
+        ,   tmpl:       "../node_modules/respec/js/tmpl"
+        ,   handlebars: "../node_modules/respec/js/handlebars"
         }
     ,   name:       "beryl"
     ,   include:    "requireLib simpleNode shortcut".split(" ")
@@ -60,8 +62,7 @@ function buildBootstrap (cb) {
 }
 
 function mungeHeaders (content) {
-    var inject =    "\n    <script class='remove'>var respecConfig = {};</script>\n" +
-                    "\n    <script src='js/beryl.min.js' async class='remove'></script>\n" +
+    var inject =    "\n    <script src='js/beryl.min.js' async class='remove'></script>\n" +
                     // "\n    <script src='node_modules/respec/js/require.js' data-main='beryl/beryl' async class='remove'></script>\n" +
                     "\n    <link rel='stylesheet' href='css/beryl.css'>\n" +
                     "  </head>";
@@ -93,6 +94,10 @@ function buildDocs (cb) {
         }
         fs.writeFileSync(out, content, "utf8");
     }
+    // copy the JS
+    fs.writeFileSync(pth.join(outPath, "js/beryl-config.js")
+                ,    fs.readFileSync(pth.join(srcPath, "js/beryl-config.js"), "utf8")
+                ,    "utf8");
     console.log("[OK] Docs built");
     cb();
 }

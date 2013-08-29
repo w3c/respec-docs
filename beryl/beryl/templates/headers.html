@@ -1,0 +1,15 @@
+{{#if nav}}
+  <div class='clearfix'>
+    <ul class="nav nav-pills pull-right">
+      {{#each nav}}
+        <li><a href="{{url}}">{{label}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+<div class="jumbotron">
+  <h1>{{title}}</h1>
+  {{#if subtitle}}
+    <p class="lead">{{subtitle}}</p>
+  {{/if}}
+</div>
