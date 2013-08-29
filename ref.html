@@ -158,12 +158,43 @@
 </section>
 
 <section>
+  <h2>noRecTrack</h2>
+  <p>
+    A boolean indicating that a document is not intended to become a Recommendation. Used for Notes
+    while in unfinished maturity states.
+  </p>
+</section>
+
+<section>
   <h2>prevED</h2>
   <p>
     Sometimes it happens that a document is moved in the version control system, passed from one
     group to another, or split into several smaller documents. In such cases since the version
     control information is harder to find, this option can be used to point to a previous Editor's
     Draft. Rarely used.
+  </p>
+</section>
+
+<section>
+  <h2>prevRecShortname</h2>
+  <p>
+    If you are working on a new version of an existing Recommendation, use this to indicate what
+    its <a>shortName</a> was.
+  </p>
+</section>
+
+<section>
+  <h2>prevRecURI</h2>
+  <p>
+    If you are working on a new version of an existing Recommendation, use this to indicate what
+    its URL was.
+  </p>
+  <p>
+    If a <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is, the latter will be used
+    to generate the former by prefixing "http://www.w3.org/TR/" to it. Note however that while in
+    the overwhelming majority of cases this works, it is not recommended to use this approach since
+    if the Recommendation is later Rescinded, the link will be stale. Instead, use the dated link to
+    the Recommendation.
   </p>
 </section>
 

@@ -397,30 +397,35 @@
         <section>
           <h2>Note &amp; Recommendation Tracks</h2>
           <p>
-            If you are working on a new version of an existing Recommendation, then it is required that your document
-            point to that previous version. This is done using the <dfn class='config'>prevRecShortname</dfn> and
-            <dfn class='config'>prevRecURI</dfn> options, which respectively provide the <a>shortName</a> for the
-            existing Recommendation (e.g. "SVG", as opposed to "SVG2") and its URI. You can 
-            <a href='examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look at an example</a>.
-            If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is, the latter will be used to generate
-            the former by prefixing "http://www.w3.org/TR/" to it. Note however that while in the overwhelming majority
-            of cases this works, it is not recommended to use this approach since if the Recommendation is later Rescinded,
-            the link will be stale. Instead, use the dated link to the Recommendation.
+            If you are working on a new version of an existing Recommendation, then it is required
+            that your document point to that previous version. This is done using the
+            <a>prevRecShortname</a> and <a>prevRecURI</a> options, which respectively provide the
+            <a>shortName</a> for the existing Recommendation (e.g. "SVG", as opposed to "SVG2") and
+            its URI. You can <a
+            href='examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look
+            at an example</a>. If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is,
+            the latter will be used to generate the former by prefixing "http://www.w3.org/TR/" to
+            it. Note however that while in the overwhelming majority of cases this works, it is not
+            recommended to use this approach since if the Recommendation is later Rescinded, the
+            link will be stale. Instead, use the dated link to the Recommendation.
           </p>
           <p>
-            The process for the publication of Notes is not entirely clearly cut. When producing multiple drafts of a
-            Note in succession, some groups will simply publish them all as Notes one after the other, probably indicating
-            in the abstract or SotD if they intend to work further on this document or if it is final. Since Notes are
-            not normative and entail no IP concerns, they don't need an elaborate process and this is considered the sane
-            option. If that's what you're doing, then you won't need this.
+            The process for the publication of Notes has been a source of confusion. When producing
+            multiple drafts of a Note in succession, some groups have traditionally simply published them all as
+            Notes one after the other, indicating in the abstract or SotD if they intend to
+            work further on this document or if it is final. Since Notes are not normative and
+            entail no IP concerns, they don't need an elaborate process and this process was perhaps
+            not entirely bad. However, that's not how Notes are commonly handled nowadays.
           </p>
           <p>
-            In other groups however it is preferred to use a publication process for Notes that is closer to that which
-            is used for Recommendation Track documents, typically: FPWD -> WD (<var>n</var> times) -> LC -> Note. Given that
-            any group may decide at any time to release a Rec-Track document as a Note instead (often because it has
-            been abandoned) this is Process-kosher but it is nevertheless somewhat weird since it uses specification statuses
-            that have IP implications in a situation in which there are none. Confused? That's okay. If you ever find yourself
-            in such a situation, simply set <dfn class='config'>noRecTrack</dfn> to <code>true</code>.
+            The currently recommended process for Notes is closer to that which is used for
+            Recommendation Track documents, typically: FPWD -> WD (<var>n</var> times) -> LC ->
+            Note. Given that any group may decide at any time to release a Rec-Track document as a
+            Note instead (often because it has been abandoned) this is Process-correct but it does
+            involve jumping through hoops (notably for IP) that likely should not be needed. It has
+            been explained to me several times why this switch took place, but I can never recall
+            the justification. At any rate, if you are confused with the Note track process but wish
+            to stick to it, you can do so by setting <a>noRecTrack</a> to <code>true</code>.
           </p>
         </section>
       </section>
