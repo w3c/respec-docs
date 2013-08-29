@@ -417,14 +417,165 @@
     <section>
       <h2>Structure</h2>
       <p>
-        Several tools that help you maintain a sane structure are described here, notably how to
-        use <code>section</code> and <code>h*</code> elements, automatic table of contents,
-        numbering, section links, handling of figures, examples, code highlighting, as well as
-        inclusions and transformations.
+        This chapter covers all the aspects of a ReSpec document's structure that were not covered
+        as part of the very basics. As usual, let's start with an example. It is fairly long as it
+        needs a decent amount of content in order to exemplify some features, but it should
+        nevertheless be easy to understand.
       </p>
+      <pre class="example highlight" data-include='examples/structure.html' data-include-format='text'></pre>
       <p>
-        XXX to be written
+        You can see <a href='examples/structure.html'>this example in action</a>.
       </p>
+      <section>
+        <h2>Sections</h2>
+        <p>
+          Sections, subsections, appendices, and whatever other structural items are marked up in
+          ReSpec using <code>&lt;section></code> elements. If you're concerned about using an HTML5
+          construct that won't degrade well to older browsers, don't worry: ReSpec also adds the 
+          HTML5 shim/shiv and styling that makes them work.
+        </p>
+        <p>
+          The first child element of a section is expected to be one of the
+          <code>h1</code>-<code>h6</code> elements. Any old one will do, since whichever one you
+          pick will be renamed to use the level that matches the depth at which your section is
+          nested. As you can see, the example uses only <code>h2</code> elements, but that is not
+          what appears in the output. Using <code>h2</code> everywhere is sort of a tacit
+          convention, but if you prefer <code>h5</code> that'll work just the same.
+        </p>
+        <p>
+          Sections will be automatically numbered. If you wish a section to have a specific ID, then
+          simply use an <code>id</code> attribute on it. If you don't, ReSpec will generate one for
+          you based on the section title, and will ensure that it is unique.
+        </p>
+        <p>
+          ReSpec sections understand some specific classes. First is the
+          <code><a>introductory</a></code> class. It is used (rarely) for preliminary content that
+          sits at the beginning of the document and which is not expected to be linked to from the
+          table of contents. The abstract, SotD, and ToC sections automatically fall into this
+          category (you need not worry about flagging them as such); the example above adds an
+          “Overview” section exemplifying the behaviour. If you <em>do</em> wish all the
+          introductory sections to be present in the ToC, see <a>tocIntroductory</a>.
+        </p>
+        <p>
+          Then is the <code><a>informative</a></code> class. It is used for regular sections or
+          appendices that are not meant to contain normative material. It will automatically preface
+          its content with the well-know “This section is non-normative” paragraph. The
+          “Introduction” section in the example shows how it works.
+        </p>
+        <p>
+          And finally is the <code><a>appendix</a></code> class. It marks a section as being an
+          appendix, as can be seen appearing at the end of the example. One important thing to know
+          about appendix sections is that all the sections that follow an appendix will also be
+          marked as appendices.
+        </p>
+        <p>
+          If you wish to link to a section and have its number and title automatically appear as
+          part of the link, then you can use an empty anchor pointing to that ID, as in <code>&lt;a
+          href='#foo'>&lt;/a></code>. The “Overview” section contains an example of that.
+        </p>
+        <p>
+          A table of contents is generated automatically and placed right after the SotD. If you
+          have a deeply nested document structure and find that the ToC is either too long or too
+          deep, you can use the <a>maxTocLevel</a> option to limit how deep it goes. In the example
+          used above, there is no limit and indeed one section is numbered 4.1.1.1.1.1 — rather
+          deep. Setting <a>maxTocLevel</a> to other values will yield <a
+          href='examples/structure.html?maxTocLevel=1'>different results</a> (<a
+          href='examples/structure.html?maxTocLevel=2'>other example with maxTocLevel=2</a>).
+        </p>
+        <p>
+          The more observant readers will have noted that ReSpec also inserts some strange-looking
+          comments in the generated source, that look like <code>&lt;!-- OddPage --></code>. These
+          are present so that <code>html2ps</code> knows how to paginate correctly. Perhaps not
+          useful to most but helpful to those who rely on it for printing, and harmless.
+        </p>
+      </section>
+      <section>
+        <h2>Figures</h2>
+        <p>
+          Figures are also supported natively, and exhibit some features similar to sections. Anything bearing
+          a class of <code>figure</code> will see its <code>title</code> (or <code>alt</code>) or failing that
+          the <code>title</code> (or <code>alt</code>) of its children being extracted for a caption. The caption
+          will then be added right under it. Like sections, figures are automatically numbered, but naturally
+          they don't nest. Unlike section, figures don't use the HTML5 <code>figure</code> element — this may be
+          addressed later though.
+        </p>
+        <p>
+          The Table of Figures is not generated by default, but making it happen is straightforward: all you need
+          to do is add a section with ID <code>tof</code> anywhere in the document. ReSpec will do its best to
+          guess if it should be an appendix, introductory, or just a regular section. Because the list has no depth,
+          there is no equivalent to <a>maxTocLevel</a>.
+        </p>
+        <p>
+          And finally, automatic linking to figures works just as it does for sections, with 
+          <code>&lt;a href='#foo-figures'>&lt;/a></code>. All of the above is demonstrated in the example.
+        </p>
+      </section>
+      <section>
+        <h2>Examples &amp; Syntax Highlighting</h2>
+        <p>
+          Any <code>pre</code> element that has the <code>example</code> class on it will get the additional
+          example header and style. Additionally, if a <code>highlight</code> class is added to the same,
+          the content will get syntax highlighted using Prettify. Prettify does not need to be instructed about
+          which language it is highlighting and will try to do a decent job of guessing.
+        </p>
+        <p>
+          You can also use <code>highlight</code> on <code>code</code> elements. If the highlighting is insufficient
+          for your needs, or in the wrong colours, you can override the applicable styles in your own style sheet.
+        </p>
+      </section>
+      <section>
+        <h2>Inclusions &amp; Transformations</h2>
+        <p>
+          At times you need to include an external resource directly into your document. This may be because your
+          specifications have additional boilerplate, or (like it's done in this very guide) because you want
+          examples to be both inlined and accessed directly without having to make sure that they are always in
+          sync.
+        </p>
+        <p>
+          Inclusion of external content in ReSpec is done using the <code>data-include</code> attribute. It is
+          expected to point to a resource, using its relative path from the including document. The content will
+          get included as a child of the element on which the inclusion is performed, replacing its existing content.
+          In the processing pipeline, inclusion happens right after everything to do with the document's headers, style, and
+          transformations (see next item for that one) have happened, which means that all the processing to do with
+          structure, inlines, WebIDL, and everything else is applied to the included content as if it had always
+          been part of the source. What's more, the include filter runs recursively so that included content that
+          contains <code>data-include</code> attributes will work (just be sure not to build a circular loop in
+          there, ReSpec won't detect it if only because it doesn't mind if you're shooting yourself in the foot).
+        </p>
+        <p>
+          At times however one does not wish included content to be processed as if it were intended to be ReSpec
+          content. For instance, content containing HTML may be an example that should not be processed (the example
+          at the beginning of this document is included that way). In such cases, in addition to the <code>data-include</code>
+          attribute, you can specify <code>data-include-format='text'</code>. This will include the content as
+          if it were text, and therefore only process it as much as text is expected to be. The only recognised value is
+          text, nominally you can always set it to <code>html</code> but that's the default value.
+        </p>
+        <p>
+          There is an important caveat to take into account with the <code>data-include</code> functionality. ReSpec
+          is designed so as to make life easier on editors. Because of that, people who do not wish to run a local
+          web server and simply want to edit and refresh the specification they're working on from their local
+          drives, using a <code>file:</code> URI in the browser, are completely supported in doing so (this involves
+          some trickery behind the scenes since it would normally make it impossible to load some of the content that
+          ReSpec uses — but that's not something you should ever have to know). When using <code>data-include</code>
+          however, this is no longer possible. You either have to serve your ReSpec content from your own local
+          server (something that isn't particularly hard, but is always an extra step), or commit it and reload
+          from another server (which is a pain). There is, unfortunately, no easy way to work around this. Be sure
+          to note however that if you're <em>not</em> using <code>data-include</code>, you <em>never</em> have to
+          worry about this.
+        </p>
+        <p>
+          Finally, at times, you may wish to perform a quick and dirty transformation of some of your content. The
+          proper way of doing that as of ReSpec v2 is actually to write a ReSpec plugin that can get included to
+          perform whichever processing you may need. However, in a pinch (and for backwards compatibility), this approach
+          will work as well. The way in which it is done is that you include a globally available Javascript function
+          that takes the ReSpec object as its first parameter and a string of the content to be transformed as its
+          second; then returns the processed value. Then where you wish the transformation to apply, you place a
+          <code>data-transform</code> attribute — it will then process the entire content. The value of 
+          <code>data-transform</code> is a white space separated list of Javascript functions. They are applied left to
+          right, as if they were a pipeline. Again, I would like to stress that, in general, that is not the recommended
+          approach.
+        </p>
+      </section>
     </section>
 
     <section>

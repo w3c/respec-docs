@@ -143,6 +143,14 @@
 </section>
 
 <section>
+  <h2>maxTocLevel</h2>
+  <p>
+    A number indicating the maximum depth of the table of contents, in case you wish to limit it
+    so as to keep it more readable. Defaults to 0 which includes all levels.
+  </p>
+</section>
+
+<section>
   <h2>noRecTrack</h2>
   <p>
     A boolean indicating that a document is not intended to become a Recommendation. Used for Notes
@@ -362,6 +370,14 @@
 </section>
 
 <section>
+  <h2>tocIntroductory</h2>
+  <p>
+    A boolean which when set to true will cause the introductory sections to also show up in the
+    table of contents. This is rarely needed, but some groups prefer to have it that way.
+  </p>
+</section>
+
+<section>
   <h2>wg</h2>
   <p>
     The full public name of the group, including "Working/Interest/Incubator/etc. Group" as 
@@ -514,6 +530,40 @@
     <section>
       <h2>Classes</h2>
       <section>
+  <h2>appendix</h2>
+  <p>
+    Marks a section as being an appendix (which will be numbered with letters). Note that this does
+    not make it informative as some appendices can contain normative material.
+  </p>
+  <p>
+    It is important to know that every section following an appendix will also be made to be an
+    appendix.
+  </p>
+</section>
+
+<section>
+  <h2>informative</h2>
+  <p>
+    Used for regular sections or appendices that are not meant to contain normative material. It
+    will automatically preface its content with the well-know “This section is non-normative”
+    paragraph.
+  </p>
+</section>
+
+<section>
+  <h2>introductory</h2>
+  <p>
+    When set on a section indicates that it is meant as introductory material that need not be
+    linked to from the table of contents. The abstract, SotD, and ToC sections automatically fall
+    into this category (but you need not worry about flagging them as such).
+  </p>
+  <p>
+    If you <em>do</em> wish all the introductory sections to be present in the ToC, see
+    <a>tocIntroductory</a>.
+  </p>
+</section>
+
+<section>
   <h2>remove</h2>
   <p>
     If you want to include content that is used during the generation of the specification but must

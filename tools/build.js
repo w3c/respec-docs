@@ -57,6 +57,7 @@ function buildBootstrap (cb) {
         fs.writeFileSync(pth.join(outPath, "css/beryl.css"), tree.toCSS({ compress: true }), "utf8");
         wrench.copyDirSyncRecursive(pth.join(__dirname, "../beryl/fonts"), pth.join(outPath, "css/fonts"), { forceDelete: true });
         wrench.copyDirSyncRecursive(pth.join(__dirname, "../beryl/img"), pth.join(outPath, "css/img"), { forceDelete: true });
+        console.log("[OK] Bootstrap for Beryl built");
         cb();
     });
 }
