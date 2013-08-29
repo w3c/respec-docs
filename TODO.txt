@@ -13,12 +13,12 @@ DOCS:
         ✓ colour map
     ✓ create a file for each configuration item, class, attribute
     ✓ Beryl
-        - buggy (doesn't fully run)
-        - ToC
+        ✓ buggy (doesn't fully run)
+        ✓ ToC
         - link
         - footer
         - header
-        - .container
+        ✓ .container
     - local ReSpec postprocessor
         - get all a,code that contain an item defined in the configuration (as found by dumping
           some JSON with all the values).

@@ -60,8 +60,9 @@ function buildBootstrap (cb) {
 }
 
 function mungeHeaders (content) {
-    var inject =    "\n    <script>var respecConfig = {};</script>\n" +
-                    "\n    <script src='js/beryl.min.js' async></script>\n" +
+    var inject =    "\n    <script class='remove'>var respecConfig = {};</script>\n" +
+                    "\n    <script src='js/beryl.min.js' async class='remove'></script>\n" +
+                    // "\n    <script src='node_modules/respec/js/require.js' data-main='beryl/beryl' async class='remove'></script>\n" +
                     "\n    <link rel='stylesheet' href='css/beryl.css'>\n" +
                     "  </head>";
     return content.replace(/\n {2}<\/head>/g, inject);

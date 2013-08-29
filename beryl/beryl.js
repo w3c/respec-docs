@@ -21,6 +21,7 @@ define([
         ,   "core/structure"
         ,   "core/section-refs"
         ,   "core/id-headers"
+        ,   "beryl/container"
         ,   "core/remove-respec"
         ,   "core/location-hash"
         ],

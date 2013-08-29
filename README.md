@@ -30,3 +30,17 @@ And run it with:
 
 Note that even with ```nodemon``` running, generating the whole build may still take a few seconds
 and so if you edit and reload too fast you might not see the changes. Just chill and reload again.
+
+## What to edit
+
+The source documents are in ```src``` and the examples are in ```examples```. Do ***not*** edit the
+documents at the root as they are generated and will get overwritten.
+
+The contents of ```css``` and ```js``` are also generated, so don't touch those either.
+
+The ```beryl``` directory contains the definition for the specific variant of ReSpec used in this
+documentation. It will eventually be moved to its own repository, but in the meantime if you need
+changes to the functionality or style sheet, that's the place to look.
+
+The build system is in ```tools```. It is a bit of a kludge; I plan to replace it with Grunt as soon
+as I'm sure of what it really needs to do.

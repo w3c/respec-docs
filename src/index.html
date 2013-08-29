@@ -6,184 +6,182 @@
     <title>ReSpec</title>
   </head>
   <body>
-    <div class="container">
-      <div class='clearfix'>
-        <ul class="nav nav-pills pull-right">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="guide.html">User's Guide</a></li>
-          <li><a href="ref.html">Reference</a></li>
-          <li><a href="dev.html">Developers</a></li>
-        </ul>
-      </div>
-      <div class="jumbotron">
-        <h1>ReSpec</h1>
-        <p class="lead">
-          The stark raving awesome way to write specs.
-        </p>
-      </div>
-      
-      <section>
-        <p>
-          ReSpec is a small, unobtrusive tool that makes writing specifications easier.
-          Or at least, somewhat less painful. It cannot do anything to quell the barrage of
-          disputatious feedback that you are being slammed with, nor can it find you implementers
-          ever-so-slightly less hopelessly hapless at reading. It has no means to fix the bizarre
-          process fixations of your group's chair, and sadly it cannot replace <a
-          href='https://tools.ietf.org/html/rfc2119'>RFC 2119</a> with the more accurate <a
-          href='https://tools.ietf.org/html/rfc6919'>RFC 6919</a>. It will not stop those people
-          carrying pitchforks to your secret lair.
-        </p>
-        <p>
-          What is <em>can</em> do however, is make the toil of writing a specification easier.
-          Specifications tend to follow all manners of formalism, and in some cases will follow a
-          strict set of conventions (e.g. W3C's "PubRules"). As an editor, you focus on actual
-          features and correctness, ReSpec handle the likes of styling, referential integrity,
-          bibliographical data, and a whole set of other dragons.
-        </p>
-      </section>
-
-      <section>
-        <h2>Concepts</h2>
-        <p>
-          The fundamental ideas that underlie ReSpec are:
-        </p>
-        <dl>
-          <dt>It's Just HTML</dt>
-          <dd>
-            You just edit HTML, with some extra convention but nothing extra. All the decoration is
-            performed by the script, informed by some very basic configuration. There is a simple 
-            <a href='examples/template.html'>template</a> that you can use to get started.
-          </dd>
-          <dt>No Tool</dt>
-          <dd>
-            You never have to run a tool outside of your editor and browser. While the specification
-            is being developed that's all that's needed. When a snapshot is needed for publication,
-            all it takes is saving the generated DOM to a file (the script is very careful to cleanly
-            remove itself and its dependencies so that you should normally get a document that's 
-            immediately PubRules-OK). Moving from an <em>Edit-Run Tool-Browser</em> cycle to an
-            <em>Edit-Browser</em> cycle can obviously be shown to make editors 33% more efficient.
-          </dd>
-          <dt><acronym title="Don't Repeat Yourself">DRY</acronym></dt>
-          <dd>
-            Specifications often require repetitive structure (e.g. the header boilerplate, table of
-            contents), repetitive markup (e.g. cross-linking to definitions, identifying conformance
-            requirements), repeated information (e.g. an interface definition and its unfolded
-            description), and many other things that make the process slow, painful, and
-            error-prone. ReSpec makes every attempt to either generate that information for you
-            based only on what varies from document to document, and to avoid repeating information
-            inside of a document by reusing information automatically as much as possible.
-          </dd>
-          <dt>DWIM (Do What I Mean)</dt>
-          <dd>
-            There are many things in specifications that are somewhat obvious, but which you have to
-            take care of anyway. RFC 2119 statements need to be marked up for instance, or
-            references to definitions need linking. These are all handled for you trivially, so that
-            you can focus on breaking the web and forget about the annoying details.
-          </dd>
-          <dt>(Almost) All In The Browser</dt>
-          <dd>
-            Typical technical writing tools will work in three steps: 1) make changes to the
-            document, 2) run some arcane processing tool that will turn it into a format that can be
-            displayed, 3) refresh the display to see if the change looks right — then rinse and
-            repeat. ReSpec gets rid of the second step by making all the processing happen in the
-            browser, which is also the tool you use for step 3. By skipping one stage out of three,
-            it will make you 33% more efficient as an editor. The only case in which you will need
-            to play with a processing tool is when you need to publish a snapshot of your
-            specification as static HTML. This part is somewhat less trivial than the iterative use
-            of ReSpec while editing, but it should be rare enough (typically once every few months)
-            that it should pose no major issue.
-          </dd>
-        </dl>
-        <p>
-          There are many good existing tools that can be used to produce W3C specifications. A
-          non-exhaustive list includes:
-        </p>
-        <ul>
-          <li><a href='http://www.w3.org/2002/xmlspec/'>XMLSpec</a></li>
-          <li><a href='http://www.w3.org/Style/Group/css3-src/bin/postprocess'>CSS3 Module PostProcessor</a></li>
-          <li><a href='http://anolis.gsnedders.com/'>Anolis</a></li>
-          <li><a href='http://dev.w3.org/2006/webapi/ReSpec/'>ReSpec</a> (Perl version)</li>
-          <li>Many I forget...</li>
-        </ul>
-        <p>
-          But I was dissatisfied with all of them, including the one I wrote. The primary reason for
-          that was that they all require one to run a tool in between editing and reloading the
-          browser — an extra step that at the end of a long day's work editing is one step too many.
-          Beyond that there are some smaller issues that I personally have with each, but it is
-          largely a matter of taste.
-        </p>
-        <p>
-          The first version of ReSpec was shipped in August 2009. Since then, it has become the most
-          popular tool for specification editing at W3C. It benefits from a lively community of
-          users that provide support to one another and contribute patches regularly. Now at version
-          3, it is a robust, full-featured tool surrounded by kind people.
-        </p>
-      </section>
-
-      <section>
-        <h2>Getting Support</h2>
-        <p>
-          The official support channel for ReSpec is <a href='mailto:spec-prod@w3.org'>spec-prod@w3.org</a>.
-          The archives are available at 
-          <a href='http://lists.w3.org/Archives/Public/spec-prod/'>http://lists.w3.org/Archives/Public/spec-prod/</a>.
-          You can subscribe by sending email to 
-          <a href='mailto:spec-prod-request@w3.org?Subject=subscribe'>spec-prod-request@w3.org</a> 
-          with "subscribe" as the subject line.
-        </p>
-        <p>
-          <em>Please</em> use that instead of emailing me (Robin) directly as the chances 
-          are that questions or enhancement ideas will be shared by others. Thanks!
-        </p>
-        <p>
-          The source code for ReSpec is maintained in its
-          <a href='https://github.com/darobin/respec'>GitHub repository</a>. Feel free to fork and
-          improve it! If you find a bug, you can consult the
-          <a href='https://github.com/darobin/respec/issues'>list of known issues</a> and
-          <a href='https://github.com/darobin/respec/issues/new'>file a new issue</a> if needed.
-        </p>
-      </section>
-
-      <section>
-        <h2>Acknowledgements</h2>
-        <p>
-          The following organisations deserve thanks for their direct support of ReSpec.
-        </p>
-        <p>
-          Expway, for giving me the leeway and time to work on the original Perl version of ReSpec
-          over a decade ago. While that code has since been discontinued, it was nevertheless very
-          helpful in establishing the principles that made the current version possible.
-        </p>
-        <p>
-          Vodafone for being kind enough to support a huge part of the initial work on ReSpec v1.
-          This project would not exist without their support for web standards, and for the creation
-          of tools that make building open standards easier.
-        </p>
-        <p>
-          The W3C for giving me the time to work on many refinements to ReSpec v3, notably this
-          documentation which was put together during the W3C "Geek Week".
-        </p>
-        <p>
-          The following people have been contributed to the project: Tobie Langel, 
-          Marcos Càceres, Greg Kellogg, Frederick Hirsch, Shane McCarron, Markus Lanthaler, Roy
-          Fielding, Yves Lafon, Anssi Kostiainen, Cyril Concolato, Dominique Hazael-Massieux,
-          Silvia Pfeiffer, Rich Tibbet, Dirk Schulze, Steven Speiche, Mounir Lamouri, Travis
-          Leithead, Peter Linss, Mike Smith, Jacob Rossi, Chris Wilson, Bryan Sullivan, Adam
-          Retter.
-        </p>
-        <p>
-          Many deep thanks to all! If I've forgotten you, holler; it's an oversight due to the sorry
-          overall state of my brain.
-        </p>
-      </section>
-
-      <footer>
-        <p>
-          <a class="cc_by" href="http://creativecommons.org/licenses/by/3.0/"><sup>BY</sup></a>
-          <a href='mailto:robin@berjon.com'>Robin Berjon</a> |
-          <a href='http://berjon.com/'>http://berjon.com/</a> |
-          <a href='http://twitter.com/robinberjon'>@robinberjon</a>
-        </p>
-      </footer>
+    <div class='clearfix'>
+      <ul class="nav nav-pills pull-right">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="guide.html">User's Guide</a></li>
+        <li><a href="ref.html">Reference</a></li>
+        <li><a href="dev.html">Developers</a></li>
+      </ul>
     </div>
+    <div class="jumbotron">
+      <h1>ReSpec</h1>
+      <p class="lead">
+        The stark raving awesome way to write specs.
+      </p>
+    </div>
+    
+    <section>
+      <p>
+        ReSpec is a small, unobtrusive tool that makes writing specifications easier.
+        Or at least, somewhat less painful. It cannot do anything to quell the barrage of
+        disputatious feedback that you are being slammed with, nor can it find you implementers
+        ever-so-slightly less hopelessly hapless at reading. It has no means to fix the bizarre
+        process fixations of your group's chair, and sadly it cannot replace <a
+        href='https://tools.ietf.org/html/rfc2119'>RFC 2119</a> with the more accurate <a
+        href='https://tools.ietf.org/html/rfc6919'>RFC 6919</a>. It will not stop those people
+        carrying pitchforks to your secret lair.
+      </p>
+      <p>
+        What is <em>can</em> do however, is make the toil of writing a specification easier.
+        Specifications tend to follow all manners of formalism, and in some cases will follow a
+        strict set of conventions (e.g. W3C's "PubRules"). As an editor, you focus on actual
+        features and correctness, ReSpec handle the likes of styling, referential integrity,
+        bibliographical data, and a whole set of other dragons.
+      </p>
+    </section>
+
+    <section>
+      <h2>Concepts</h2>
+      <p>
+        The fundamental ideas that underlie ReSpec are:
+      </p>
+      <dl>
+        <dt>It's Just HTML</dt>
+        <dd>
+          You just edit HTML, with some extra convention but nothing extra. All the decoration is
+          performed by the script, informed by some very basic configuration. There is a simple 
+          <a href='examples/template.html'>template</a> that you can use to get started.
+        </dd>
+        <dt>No Tool</dt>
+        <dd>
+          You never have to run a tool outside of your editor and browser. While the specification
+          is being developed that's all that's needed. When a snapshot is needed for publication,
+          all it takes is saving the generated DOM to a file (the script is very careful to cleanly
+          remove itself and its dependencies so that you should normally get a document that's 
+          immediately PubRules-OK). Moving from an <em>Edit-Run Tool-Browser</em> cycle to an
+          <em>Edit-Browser</em> cycle can obviously be shown to make editors 33% more efficient.
+        </dd>
+        <dt><acronym title="Don't Repeat Yourself">DRY</acronym></dt>
+        <dd>
+          Specifications often require repetitive structure (e.g. the header boilerplate, table of
+          contents), repetitive markup (e.g. cross-linking to definitions, identifying conformance
+          requirements), repeated information (e.g. an interface definition and its unfolded
+          description), and many other things that make the process slow, painful, and
+          error-prone. ReSpec makes every attempt to either generate that information for you
+          based only on what varies from document to document, and to avoid repeating information
+          inside of a document by reusing information automatically as much as possible.
+        </dd>
+        <dt>DWIM (Do What I Mean)</dt>
+        <dd>
+          There are many things in specifications that are somewhat obvious, but which you have to
+          take care of anyway. RFC 2119 statements need to be marked up for instance, or
+          references to definitions need linking. These are all handled for you trivially, so that
+          you can focus on breaking the web and forget about the annoying details.
+        </dd>
+        <dt>(Almost) All In The Browser</dt>
+        <dd>
+          Typical technical writing tools will work in three steps: 1) make changes to the
+          document, 2) run some arcane processing tool that will turn it into a format that can be
+          displayed, 3) refresh the display to see if the change looks right — then rinse and
+          repeat. ReSpec gets rid of the second step by making all the processing happen in the
+          browser, which is also the tool you use for step 3. By skipping one stage out of three,
+          it will make you 33% more efficient as an editor. The only case in which you will need
+          to play with a processing tool is when you need to publish a snapshot of your
+          specification as static HTML. This part is somewhat less trivial than the iterative use
+          of ReSpec while editing, but it should be rare enough (typically once every few months)
+          that it should pose no major issue.
+        </dd>
+      </dl>
+      <p>
+        There are many good existing tools that can be used to produce W3C specifications. A
+        non-exhaustive list includes:
+      </p>
+      <ul>
+        <li><a href='http://www.w3.org/2002/xmlspec/'>XMLSpec</a></li>
+        <li><a href='http://www.w3.org/Style/Group/css3-src/bin/postprocess'>CSS3 Module PostProcessor</a></li>
+        <li><a href='http://anolis.gsnedders.com/'>Anolis</a></li>
+        <li><a href='http://dev.w3.org/2006/webapi/ReSpec/'>ReSpec</a> (Perl version)</li>
+        <li>Many I forget...</li>
+      </ul>
+      <p>
+        But I was dissatisfied with all of them, including the one I wrote. The primary reason for
+        that was that they all require one to run a tool in between editing and reloading the
+        browser — an extra step that at the end of a long day's work editing is one step too many.
+        Beyond that there are some smaller issues that I personally have with each, but it is
+        largely a matter of taste.
+      </p>
+      <p>
+        The first version of ReSpec was shipped in August 2009. Since then, it has become the most
+        popular tool for specification editing at W3C. It benefits from a lively community of
+        users that provide support to one another and contribute patches regularly. Now at version
+        3, it is a robust, full-featured tool surrounded by kind people.
+      </p>
+    </section>
+
+    <section>
+      <h2>Getting Support</h2>
+      <p>
+        The official support channel for ReSpec is <a href='mailto:spec-prod@w3.org'>spec-prod@w3.org</a>.
+        The archives are available at 
+        <a href='http://lists.w3.org/Archives/Public/spec-prod/'>http://lists.w3.org/Archives/Public/spec-prod/</a>.
+        You can subscribe by sending email to 
+        <a href='mailto:spec-prod-request@w3.org?Subject=subscribe'>spec-prod-request@w3.org</a> 
+        with "subscribe" as the subject line.
+      </p>
+      <p>
+        <em>Please</em> use that instead of emailing me (Robin) directly as the chances 
+        are that questions or enhancement ideas will be shared by others. Thanks!
+      </p>
+      <p>
+        The source code for ReSpec is maintained in its
+        <a href='https://github.com/darobin/respec'>GitHub repository</a>. Feel free to fork and
+        improve it! If you find a bug, you can consult the
+        <a href='https://github.com/darobin/respec/issues'>list of known issues</a> and
+        <a href='https://github.com/darobin/respec/issues/new'>file a new issue</a> if needed.
+      </p>
+    </section>
+
+    <section>
+      <h2>Acknowledgements</h2>
+      <p>
+        The following organisations deserve thanks for their direct support of ReSpec.
+      </p>
+      <p>
+        Expway, for giving me the leeway and time to work on the original Perl version of ReSpec
+        over a decade ago. While that code has since been discontinued, it was nevertheless very
+        helpful in establishing the principles that made the current version possible.
+      </p>
+      <p>
+        Vodafone for being kind enough to support a huge part of the initial work on ReSpec v1.
+        This project would not exist without their support for web standards, and for the creation
+        of tools that make building open standards easier.
+      </p>
+      <p>
+        The W3C for giving me the time to work on many refinements to ReSpec v3, notably this
+        documentation which was put together during the W3C "Geek Week".
+      </p>
+      <p>
+        The following people have been contributed to the project: Tobie Langel, 
+        Marcos Càceres, Greg Kellogg, Frederick Hirsch, Shane McCarron, Markus Lanthaler, Roy
+        Fielding, Yves Lafon, Anssi Kostiainen, Cyril Concolato, Dominique Hazael-Massieux,
+        Silvia Pfeiffer, Rich Tibbet, Dirk Schulze, Steven Speiche, Mounir Lamouri, Travis
+        Leithead, Peter Linss, Mike Smith, Jacob Rossi, Chris Wilson, Bryan Sullivan, Adam
+        Retter.
+      </p>
+      <p>
+        Many deep thanks to all! If I've forgotten you, holler; it's an oversight due to the sorry
+        overall state of my brain.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        <a class="cc_by" href="http://creativecommons.org/licenses/by/3.0/"><sup>BY</sup></a>
+        <a href='mailto:robin@berjon.com'>Robin Berjon</a> |
+        <a href='http://berjon.com/'>http://berjon.com/</a> |
+        <a href='http://twitter.com/robinberjon'>@robinberjon</a>
+      </p>
+    </footer>
   </body>
 </html>
