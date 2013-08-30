@@ -541,6 +541,11 @@
         <em>Required</em>. The specification's abstract, which should contain a paragraph. You shouldn't
         include the "Abstract" title.
       </dd>
+      <dt>bp-summary</dt>
+      <dd>
+        If present, its content will be set to a summary of the list of best practices described in
+        the document.
+      </dd>
       <dt>conformance</dt>
       <dd>
         Specifications often have "Conformance Requirements", which are made of free-form text and
@@ -743,6 +748,28 @@
   <p>
     If you <em>do</em> wish all the introductory sections to be present in the ToC, see
     <a>tocIntroductory</a>.
+  </p>
+</section>
+
+<section>
+  <h2>practice</h2>
+  <p>
+    A <code>div</code> containing a best practice description.
+  </p>
+</section>
+
+<section>
+  <h2>practicedesc</h2>
+  <p>
+    A paragraph containing the description of a best practice, inside a <a>practice</a> description.
+  </p>
+</section>
+
+<section>
+  <h2>practicelab</h2>
+  <p>
+    A <code>span</code> containing the title of a best practice, inside a <a>practice</a>
+    description.
   </p>
 </section>
 

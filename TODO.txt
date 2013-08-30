@@ -23,12 +23,46 @@ DOCS:
         ✓ get all a,code that contain an item defined in the configuration (as found by dumping
           some JSON with all the values).
     - grab all content from v2 docs
-    - grab all content from v1 docs not already covered in v2
+    ✓ grab all content from v1 docs not already covered in v2
+    ✓ redirect old docs to new
+    ✓ remove docs from respec source
     - grab content from the README (for dev, mostly)
     ✓ go through code looking for undocumented features
     ✓ insert missing content markers
     - add described links to other pages in the home page
     - add pointer to how to contribute to the docs, submit issues, etc.
+
+Missing:
+    ✓ best practices
+    - prevRecHeader?
+    - testSuiteURI?
+    - implementationReportURI?
+    - doRDFa, RDFa in general
+    - noIDLSorting
+    - noIDLIn
+    - addPatentNote?
+    - dfn algorithm (from v1)
+    - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
+    - data-oninclude (instead of data-transform for included stuff)
+    - .example @title
+    - pre.illegal-example, aside.example, example numbering
+    - <aside>
+    - noTOC
+    - is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
+    - requirements, .req, a.reqRef
+    - markdown support
+    - mention ARIA support
+    - CG/BG
+    - scheme (deprecated?)
+    - .practicelab
+    - .externalDFN
+    - wg, wgURI, wgPatentURI can be an array
+    - charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
+    - noLegacyStyle
+    - noIDLSectionTitle
+    - idlOldStyleExceptions
+    - trace, preProcess, postProcess, afterEnd
+    
 
 TOC:
     - Intro
@@ -41,41 +75,12 @@ TOC:
     ✓ Usage
         ✓ list based on configurations + previous docs
         ✓ examples using same system as RSv2
-        - WebIDL (build example based on v1 docs)
-        - best practices
-        - prevRecHeader?
-        - testSuiteURI?
-        - implementationReportURI?
-        - doRDFa, RDFa in general
-        - noIDLSorting
-        - noIDLIn
-        - addPatentNote?
-        - dfn algorithm (from v1)
-        - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
-        - data-oninclude (instead of data-transform for included stuff)
-        - .example @title
-        - pre.illegal-example, aside.example, example numbering
-        - <aside>
-        - noTOC
-        - is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
-        - requirements, .req, a.reqRef
-        - markdown support
-        - mention ARIA support
-        - CG/BG
+        ✓ WebIDL (build example based on v1 docs)
     ✓ Reference
         ✓ configuration items
         ✓ elements
         ✓ attributes
         ✓ classes
-        - scheme (deprecated?)
-        - .practicelab
-        - .externalDFN
-        - wg, wgURI, wgPatentURI can be an array
-        - charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
-        - noLegacyStyle
-        - noIDLSectionTitle
-        - idlOldStyleExceptions
-        - trace, preProcess, postProcess, afterEnd
         
     - Developers
         - GitHub

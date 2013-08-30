@@ -704,6 +704,38 @@
           href='https://github.com/tobie/specref'>SpecRef database</a>.
         </p>
       </section>
+      
+      <section>
+        <h2>Best Practice Documents</h2>
+        <p>
+          Best practices may be shown, numbered, and formatted using a <code>div</code> with class
+          <code><a>practice</a></code> containing a <code>p > span.<a>practicelab</a></code> with
+          the practice's title and a <code>p.<a>practicedesc</a></code> with description of the
+          practice.
+        </p>
+        <p>
+          This feature is rarely used, and likely needs to be updated. If you wish to use it in
+          anger, please contact me and we can improve support for it.
+        </p>
+        <pre class='example'>
+&lt;div class="practice"&gt;
+  &lt;p&gt;
+    &lt;span id="some-practice" class="practicelab"&gt;Title of the practice&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p class="practicedesc"&gt;
+    More detailed description of the practice.          
+  &lt;/p&gt;
+&lt;/div&gt;
+        </pre>
+        <p>
+          If a <code>section</code> element with <code>id</code> "<code>bp-summary</code>" is present,
+          then a summary list of best practices will be placed in it, linked to the best practices
+          that have an id on the <code>span</code> element.
+        </p>
+        <pre class="example">
+          &lt;section id='bp-summary'&gt;&lt;/section&gt;
+        </pre>
+      </section>
     </section>
 
     <section>
