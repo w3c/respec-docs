@@ -8,7 +8,6 @@ define(
         return {
             run:    function (conf, doc, cb, msg) {
                 msg.pub("start", "beryl/style");
-                console.log("hi");
                 utils.linkCSS(doc, "css/beryl.css");
                 msg.pub("end", "beryl/style");
                 cb();

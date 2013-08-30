@@ -19,8 +19,8 @@ DOCS:
         ✓ footer
         ✓ header
         ✓ .container
-    - local ReSpec postprocessor
-        - get all a,code that contain an item defined in the configuration (as found by dumping
+    ✓ local ReSpec postprocessor
+        ✓ get all a,code that contain an item defined in the configuration (as found by dumping
           some JSON with all the values).
     - grab all content from v2 docs
     - grab all content from v1 docs not already covered in v2
@@ -75,6 +75,7 @@ TOC:
         - noLegacyStyle
         - noIDLSectionTitle
         - idlOldStyleExceptions
+        - trace, preProcess, postProcess, afterEnd
         
     - Developers
         - GitHub

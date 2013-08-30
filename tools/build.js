@@ -75,6 +75,7 @@ function buildDocs (cb) {
         content = mungeHeaders(content);
         if (src === "ref") {
             var incs = "conf els attrs classes".split(" ")
+            ,   refs = {}
             ;
             for (var j = 0, m = incs.length; j < m; j++) {
                 var incDir = incs[j]
@@ -82,10 +83,12 @@ function buildDocs (cb) {
                 ,   insert = ""
                 ;
                 for (var k = 0, o = files.length; k < o; k++) {
+                    refs[files[k].replace(".html", "")] = true;
                     insert += fs.readFileSync(pth.join(srcPath, incDir, files[k]), "utf8") + "\n";
                 }
                 content = content.replace("<!-- " + incDir.toUpperCase() + " -->", insert);
             }
+            fs.writeFileSync(pth.join(outPath, "js/refs.json"), JSON.stringify(refs), "utf8");
         }
         fs.writeFileSync(out, content, "utf8");
     }
