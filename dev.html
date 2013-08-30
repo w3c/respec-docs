@@ -28,13 +28,158 @@
     <section>
       <h2>Project Basics</h2>
       <p>
-        This chapter covers how to get the code, where bugs and discussion take place, how to run
-        a development version of the code, what its layout is, pointers for the various
-        dependencies, the testing system, how the profile is compiled (only needed for releases),
-        and what the general architecture of ReSpec is.
+        The source for ReSpec can be found at <a
+        href='https://github.com/darobin/respec/'>https://github.com/darobin/respec/</a>. That is
+        also where issues and pull requests are made. More general discussion about ReSpec
+        development takes place on <a href='mailto:spec-prod@w3.org'>spec-prod@w3.org</a> (<a
+        href='http://lists.w3.org/Archives/Public/spec-prod/'>archives</a>, <a
+        href='mailto:spec-prod-request@w3.org?Subject=subscribe'>subscribe</a>).
       </p>
+      <section>
+        <h2>How to contribute</h2>
+        <p>
+          ReSpec has a healthy and lively contributor base and we are happy for you to join the
+          gang. You certainly are welcome to submit whatever change you wish to. Note however that
+          if it is a complex feature or add substantial syntax to the language please try to
+          coordinate with others first to avoid working long on something that will then be
+          rejected).
+        </p>
+        <p>
+          If you're familiar with GitHub then contributing is simple: just fork and make pull
+          requests. Please just be careful to note that the primary branch is <code>gh-pages</code>
+          and not <code>master</code> (this ensures that the result gets published on the Web).
+          <em>More importantly</em>, please note that the development branch is
+          <code>develop</code>. If you are making patches and pull requests, please base them off
+          this branch.
+        </p>
+        <p>
+          If you're not familiar with GitHub, you need to follow the following steps:
+        </p>
+        <ul>
+          <li>
+            Get a GitHub account. This is done quickly, and the GH people will not bother you at
+            all. Plus, it's pretty much a requirement for the majority of OSS communities these
+            days.
+          </li>
+          <li>
+            If all you want to make is a small, simple change, you can use the Web interface.
+            Navigate to the file that you want to change, click “Edit this file” in the toolbar,
+            then save your changes — they will get sent to the project for approval (which ought to
+            be quick).
+          </li>
+          <li>
+            If you wish to make more complex changes, you will need to fork the project (click
+            “Fork”), clone the resulting repository, make the changes there, and push it back. Then
+            click the “Pull Request” button. This allows you to request that the project integrate
+            your changes. Those should normally get processed relatively fast (depending on how
+            complex they are).
+          </li>
+        </ul>
+        <p>
+          If you have an existing fork, please make sure to synchronise it with the upstream
+          repository before you make a pull request.
+        </p>
+      </section>
+      <section>
+        <h2>Running the test suite</h2>
+        <p>
+          ReSpec runs a number of high level, end-to-end tests using <a
+          href='http://pivotal.github.io/jasmine/'>Jasmine</a>. These tests are run by <a
+          href='https://travis-ci.org/darobin/respec'>Travis</a>, a hosted continuous integration
+          solution, on each pull requests.
+        </p>
+        <p>
+          There are two options to run these tests locally: in a browser or using <a
+          href='http://phantomjs.org/'>PhantomJS</a>.
+        </p>
+        <section>
+          <h2>In a browser</h2>
+          <p>
+            The tests need to be served using a proper Web server, from the root of the repository
+            to function properly. Any server will do. For instance, if you're one of those people
+            who like Python, this will work:
+          </p>
+          <pre class='example highlight'>
+            $ cd /path/to/repo/
+            $ python -m SimpleHTTPServer
+            Serving HTTP on 0.0.0.0 port 8000 ...
+          </pre>
+          <p>
+            Navigating to <code>http://localhost:8000/tests/SpecRunner.html</code> with any recent
+            browser will launch the test suite.
+          </p>
+        </section>
+        <section>
+          <h2>In PhantomJS</h2>
+          <p>
+            PhantomJS is a headless, WebKit-based browser. It allows running the tests directly from
+            the command line.
+          </p>
+          <p>
+            In order to run the test from the command line, you need to <a
+            href='http://nodejs.org/download/'>install Node</a>, <a
+            href='https://npmjs.org/'>npm</a> and <a
+            href='http://phantomjs.org/download.html'>PhantomJS</a>. <em>Note that npm comes bundled
+            with recent versions of Node.</em>
+          </p>
+          <p>
+            Once these dependencies are installed, running the test suite should be as simple as:
+          </p>
+          <pre class='highlight'>$ npm test</pre>
+        </section>
+      </section>
+    </section>
+    
+    <section>
+      <h2>Building ReSpec</h2>
       <p>
-        XXX to be written
+        Normally, producing a build of ReSpec should not be necessary for anyone, unless you're on
+        the core development team (and even then, mostly Robin does this). Certainly don't bother
+        with this if you are providing pull requests. But on occasion it can be useful in order to
+        debug a painful corner-case, so here are the instructions. This not being something normally
+        exposed to the world, they are a bit convoluted (and may be simplified).
+      </p>
+      <ol>
+        <li>
+          Make sure you are up to date and on the develop branch (<code>git up; git checkout
+          develop</code>).
+        </li>
+        <li>
+          You will need to have <a href='https://github.com/nvie/gitflow'>git flow</a>.
+        </li>
+        <li>
+          Get the current version (<code>grep version package.json</code>) and increment it in your
+          head (or, you know, on a piece of paper).
+        </li>
+        <li>
+          Start a new release in git flow using v$NEW_VERSION as the name, e.g. <code>git flow
+          release start v3.1.61</code> if you are currently on 3.1.60.
+        </li>
+        <li>
+          Update the version in <code>package.json</code>.
+        </li>
+        <li>
+          Run the build script (<code>node tools/build-w3c-common.js</code>). This should respond
+          "OK!" (if not, fix the issue).
+        </li>
+        <li>
+          Add the new build (<code>git add builds/respec-w3c-common-3.1.61.js</code>).
+        </li>
+        <li>
+          Commit your changes (<code>git commit -am v3.1.61</code>).
+        </li>
+        <li>
+          Finish the release git flow (<code>git flow release finish v3.1.61</code>). This should
+          prompt you to enter a message for the tag.
+        </li>
+        <li>
+          Push everything back to the server (<em>make sure you are pushing at least the develop and
+          gh-pages branches</em>).
+        </li>
+      </ol>
+      <p>
+        That should be all. Normally, within a few minutes the W3C server will have picked up,
+        gzipped, and published the latest and greatest version.
       </p>
     </section>
 
