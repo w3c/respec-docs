@@ -1,37 +1,4 @@
 
-DOCS:
-
-    ✓ set up http://www.w3.org/respec
-        ✓ do a void checkout of the root WWW
-        ✓ create a respec directory
-        ✓ add a .htaccess that proxies to http://darobin.github.io/respec-docs/
-    ✓ build system
-    ✓ look and feel
-        ✓ specific bootstrap
-            ✓ pick components
-        ✓ Lato
-        ✓ colour map
-    ✓ create a file for each configuration item, class, attribute
-    ✓ Beryl
-        ✓ buggy (doesn't fully run)
-        ✓ ToC
-        ✓ link for style
-        ✓ footer
-        ✓ header
-        ✓ .container
-    ✓ local ReSpec postprocessor
-        ✓ get all a,code that contain an item defined in the configuration (as found by dumping
-          some JSON with all the values).
-    ✓ grab all content from v2 docs
-    ✓ grab all content from v1 docs not already covered in v2
-    ✓ redirect old docs to new
-    ✓ remove docs from respec source
-    ✓ grab content from the README (for dev, mostly)
-    ✓ go through code looking for undocumented features
-    ✓ insert missing content markers
-    ✓ add described links to other pages in the home page
-    ✓ add pointer to how to contribute to the docs, submit issues, etc.
-
 Missing:
     ✓ best practices
     ✓ .practicelab
@@ -57,31 +24,15 @@ Missing:
     - charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
     - trace, preProcess, postProcess, afterEnd
     
+    - Common problems
+        - still using v1 (or v2)
+        - specification published by multiple groups
 
-TOC:
-    - Intro
-        ✓ Concepts
-        ✓ Why?
-        ✓ Getting Support
-        - Common problems
-            - still using v1 (or v2)
-            - specification published by multiple groups
-    ✓ Usage
-        ✓ list based on configurations + previous docs
-        ✓ examples using same system as RSv2
-        ✓ WebIDL (build example based on v1 docs)
-    ✓ Reference
-        ✓ configuration items
-        ✓ elements
-        ✓ attributes
-        ✓ classes
-        
     - Developers
-        - GitHub
-        - Branches
+        ✓ GitHub
+        ✓ Branches
         - Extension points
         - Module system
-        - Tests
+        ✓ Tests
         - Building One's Own Profile
     
-    ✓ getting-started template
