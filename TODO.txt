@@ -25,7 +25,7 @@ DOCS:
     - grab all content from v2 docs
     - grab all content from v1 docs not already covered in v2
     - grab content from the README (for dev, mostly)
-    - go through code looking for undocumented features
+    ✓ go through code looking for undocumented features
     ✓ insert missing content markers
     - add described links to other pages in the home page
     - add pointer to how to contribute to the docs, submit issues, etc.
@@ -37,6 +37,7 @@ TOC:
         ✓ Getting Support
         - Common problems
             - still using v1 (or v2)
+            - specification published by multiple groups
     ✓ Usage
         ✓ list based on configurations + previous docs
         ✓ examples using same system as RSv2
@@ -45,7 +46,7 @@ TOC:
         - prevRecHeader?
         - testSuiteURI?
         - implementationReportURI?
-        - doRDFa
+        - doRDFa, RDFa in general
         - noIDLSorting
         - noIDLIn
         - addPatentNote?
@@ -57,6 +58,10 @@ TOC:
         - <aside>
         - noTOC
         - is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
+        - requirements, .req, a.reqRef
+        - markdown support
+        - mention ARIA support
+        - CG/BG
     ✓ Reference
         ✓ configuration items
         ✓ elements
@@ -65,6 +70,11 @@ TOC:
         - scheme (deprecated?)
         - .practicelab
         - .externalDFN
+        - wg, wgURI, wgPatentURI can be an array
+        - charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
+        - noLegacyStyle
+        - noIDLSectionTitle
+        - idlOldStyleExceptions
         
     - Developers
         - GitHub
