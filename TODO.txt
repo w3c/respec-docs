@@ -3,9 +3,8 @@ Missing:
     ✓ best practices
     ✓ .practicelab
 
-    - prevRecHeader?
-    - testSuiteURI?
-    - implementationReportURI?
+    ✓ testSuiteURI
+    ✓ implementationReportURI
     - addPatentNote?
     - scheme (deprecated?)
     - doRDFa, RDFa in general
