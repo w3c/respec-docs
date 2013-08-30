@@ -8,20 +8,20 @@ Missing:
     ✓ addPatentNote
     ✓ data-oninclude (instead of data-transform for included stuff)
     ✓ charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
-    - noTOC
-    - scheme (deprecated?)
-    - doRDFa, RDFa in general
-    - noIDLSorting, noIDLIn, noLegacyStyle, noIDLSectionTitle, idlOldStyleExceptions
-    - dfn algorithm (from v1), .externalDFN
-    - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
-    - .example @title, pre.illegal-example, aside.example, example numbering, <aside>
-    ✓ is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
-    - requirements, .req, a.reqRef
+    ✓ noTOC
     - markdown support
     - mention ARIA support
     - CG/BG
     - wg, wgURI, wgPatentURI can be an array
+    - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
+    - .example @title, pre.illegal-example, aside.example, example numbering, <aside>
+    - noIDLSorting, noIDLIn, noLegacyStyle, noIDLSectionTitle, idlOldStyleExceptions
+    - doRDFa, RDFa in general
+    - requirements, .req, a.reqRef
+    - dfn algorithm (from v1), .externalDFN
+    ✓ is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
     - trace, preProcess, postProcess, afterEnd
+    - scheme (deprecated?)
     
     - Common problems
         - still using v1 (or v2)
