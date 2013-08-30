@@ -604,14 +604,19 @@
           the functionality to ReSpec itself. However, in a pinch, this approach will work as well.
           The way in which it is done is that you include a globally available Javascript function
           that takes the ReSpec <code>utils</code> object as its first parameter and a string of the
-          content to be transformed as its second; then returns the processed value (when used on an
-          element that also performs a <code><a>data-include</a></code> a third parameter is
-          included indicating the relative URL from which the content was loaded). Then where you
+          content to be transformed as its second; then returns the processed value. Then where you
           wish the transformation to apply, you place a <code><a>data-transform</a></code> attribute
           — it will then process the entire content. The value of <code><a>data-transform</a></code>
           is a white space separated list of JavaScript function names. They are applied left to
           right, as if they were a pipeline. Again, I would like to stress that, in general, that is
           not the recommended approach.
+        </p>
+        <p>
+          If you wish to transform content brought in with <code><a>data-include</a></code>
+          irrespective of whether it is loaded synchronously or not, use
+          <code><a>data-oninclude</a></code>. It behaves exactly like
+          <code><a>data-transform</a></code> except that the function gets a third parameter
+          indicating the relative URL from which the content was loaded
         </p>
       </section>
     </section>
