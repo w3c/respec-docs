@@ -7,7 +7,7 @@ Missing:
     ✓ implementationReportURI
     ✓ addPatentNote
     ✓ data-oninclude (instead of data-transform for included stuff)
-    - charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
+    ✓ charterDisclosureURI ("IG-NOTEs must link to charter's disclosure section using charterDisclosureURI")
     - noTOC
     - scheme (deprecated?)
     - doRDFa, RDFa in general
