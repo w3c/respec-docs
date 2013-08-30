@@ -26,11 +26,11 @@ DOCS:
     ✓ grab all content from v1 docs not already covered in v2
     ✓ redirect old docs to new
     ✓ remove docs from respec source
-    - grab content from the README (for dev, mostly)
+    ✓ grab content from the README (for dev, mostly)
     ✓ go through code looking for undocumented features
     ✓ insert missing content markers
-    - add described links to other pages in the home page
-    - add pointer to how to contribute to the docs, submit issues, etc.
+    ✓ add described links to other pages in the home page
+    ✓ add pointer to how to contribute to the docs, submit issues, etc.
 
 Missing:
     ✓ best practices
