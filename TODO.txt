@@ -22,6 +22,12 @@ Missing:
     ✓ is .sectionRef needed or not? It seems to work no matter what! Maybe drop the code?
     - trace, preProcess, postProcess, afterEnd
     - scheme (deprecated?)
+    - overrideCopyright
+    - subjectPrefix
+    - otherLinks
+    - .removeOnSave (when it works)
+    
+    - try setting .container on body, might be faster and can be done earlier in processing
     
     - Common problems
         - still using v1 (or v2)
