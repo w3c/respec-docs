@@ -24,7 +24,7 @@ Missing:
     - scheme (deprecated?)
     - overrideCopyright
     - subjectPrefix
-    - otherLinks
+    ✓ otherLinks
     - .removeOnSave (when it works)
     
     - try setting .container on body, might be faster and can be done earlier in processing
