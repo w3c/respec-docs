@@ -26,6 +26,7 @@ Missing:
     - subjectPrefix
     ✓ otherLinks
     - .removeOnSave (when it works)
+    - license
     
     - try setting .container on body, might be faster and can be done earlier in processing
     
