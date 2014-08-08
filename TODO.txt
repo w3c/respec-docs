@@ -15,7 +15,7 @@ Missing:
     - wg, wgURI, wgPatentURI can be an array
     - .issue, .note, data-number, .atrisk, issueBase, atRiskBase
     - .example @title, pre.illegal-example, aside.example, example numbering, <aside>
-    - noIDLSorting, noIDLIn, noLegacyStyle, noIDLSectionTitle, idlOldStyleExceptions
+    - noIDLSorting, noIDLIn, noIDLSectionTitle, idlOldStyleExceptions
     - doRDFa, RDFa in general
     - requirements, .req, a.reqRef
     - dfn algorithm (from v1), .externalDFN
