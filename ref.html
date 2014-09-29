@@ -238,6 +238,39 @@
 </section>
 
 <section>
+    <h2>logos</h2>
+    <p><code>logos</code> gives you the ability to override the standard W3C logo
+        with one or more other logos.  </p>
+    <p>The <code>logos</code> property takes an array that contains a set of objects.
+        Each of these objects contains at least a `<code>src</code>` or an `<code>alt</code>`
+        property, along with optional `<code>height</code>`, `<code>width</code>`,
+        `<code>id</code>`, and `<code>url</code>` properties that can be used to
+        further customize the included logo.</p>
+    <p>The above makes more sense when seen in an example:</p>
+    <pre class='example highlight'>
+logos: [
+   {
+      src: 'http://example.com/logo.gif',
+      href: "http://example.com",
+      alt: "example.com",
+      width: 100,
+      height: 42,
+      id: 'something'
+   }
+]</pre>
+    <p>This causes the standard logo to replaced with
+<pre class='example highlight'>
+&lt;p>
+  &lt;a href="http://example.com">
+    &lt;span id="something">
+      &lt;img src="http://example.com/logo.gif" width='100' height='42' alt='example.com' />
+    &lt;/span>
+  &lt;/a>
+&lt;/p>
+</pre>
+</section>
+
+<section>
   <h2>maxTocLevel</h2>
   <p>
     A number indicating the maximum depth of the table of contents, in case you wish to limit it

@@ -102,7 +102,6 @@ blockquote{padding:11px 22px;margin:0 0 22px;font-size:20px;border-left:5px soli
 blockquote footer,blockquote small,blockquote .small{display:block;font-size:80%;line-height:1.428571429;color:#777}blockquote footer:before,blockquote small:before,blockquote .small:before{content:'\2014 \00A0'}
 .blockquote-reverse,blockquote.pull-right{padding-right:15px;padding-left:0;border-right:5px solid #eee;border-left:0;text-align:right}.blockquote-reverse footer:before,blockquote.pull-right footer:before,.blockquote-reverse small:before,blockquote.pull-right small:before,.blockquote-reverse .small:before,blockquote.pull-right .small:before{content:''}
 .blockquote-reverse footer:after,blockquote.pull-right footer:after,.blockquote-reverse small:after,blockquote.pull-right small:after,.blockquote-reverse .small:after,blockquote.pull-right .small:after{content:'\00A0 \2014'}
-blockquote:before,blockquote:after{content:""}
 address{margin-bottom:22px;font-style:normal;line-height:1.428571429}
 code,kbd,pre,samp{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}
 code{padding:2px 4px;font-size:90%;color:#ff9822;background-color:#f9f9f9;border-radius:4px}
@@ -251,8 +250,8 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
 .nav-tabs-justified{border-bottom:0}.nav-tabs-justified>li>a{margin-right:0;border-radius:4px}
 .nav-tabs-justified>.active>a,.nav-tabs-justified>.active>a:hover,.nav-tabs-justified>.active>a:focus{border:1px solid #ddd}
 @media (min-width:768px){.nav-tabs-justified>li>a{border-bottom:1px solid #ddd;border-radius:4px 4px 0 0} .nav-tabs-justified>.active>a,.nav-tabs-justified>.active>a:hover,.nav-tabs-justified>.active>a:focus{border-bottom-color:#fff}}
-.tab-content>.tab-pane{display:none}
-.tab-content>.active{display:block}
+.tab-content>.tab-pane{display:none;visibility:hidden}
+.tab-content>.active{display:block;visibility:visible}
 .nav-tabs .dropdown-menu{margin-top:-1px;border-top-right-radius:0;border-top-left-radius:0}
 .jumbotron{padding:30px 15px;margin-bottom:30px;color:#fff;background-color:#2bb6f7}.jumbotron h1,.jumbotron .h1{color:#fff}
 .jumbotron p{margin-bottom:15px;font-size:24px;font-weight:200}
