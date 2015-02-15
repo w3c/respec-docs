@@ -996,7 +996,69 @@ otherLinks: [{
       <p>ReSpec has a general event publish / subscribe system.  Developers extending
       the system can do so by subscribing to events they care about and performing actions
       when those events are fired.  The interfaces and events are documented in this section.</p>
-      <!-- EVENTS -->
+      <section>
+  <h2>respecEvents.pub</h2>
+  <p>
+    A method to publish event.  The event will be delivered to each subscriber.
+  </p>
+  <pre>
+  respecEvents.pub(eventName, message)
+  </pre>
+  <dl>
+      <dt>eventName</dt>
+      <dd>The name of the event to publish.</dd>
+      <dt>message</dt>
+      <dd>A message to send to subscribers about the event.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>respecEvents.sub</h2>
+  <p>
+    A method to subscribe to an event.
+  </p>
+  <pre>
+  respecEvents.sub(eventName, handler)
+  </pre>
+  <dl>
+      <dt>eventName</dt>
+      <dd>The name of the event to which to subscribe.</dd>
+      <dt>handler</dt>
+      <dd>A function that will be called when the event is received.  It is passed the "message" from
+      the event as its only parameter.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Events</h2>
+  <p>
+    The following events are currently available from ReSpec.
+  </p>
+  <dl>
+      <dt>start-all</dt>
+      <dd>An event fired at the very start of ReSpec processing.</dd>
+      <dt>start</dt>
+      <dd>An event fired at the start of each included plugin.  The message contains the name of the
+      plugin being processed.</dd>
+      <dt>end</dt>
+      <dd>An event fired at the end of each included plugin.  The message contains the name of the
+      plugin for which processing just completed.</dd>
+      <dt>end-all</dt>
+      <dd>An event fired at the very end of ReSpec processing.</dd>
+      <dt>error</dt>
+      <dd>An event fired whenever ReSpec encounters an error while processing.  The message contains
+      the nature of the error.</dd>
+      <dt>warn</dt>
+      <dd>An event fired whenever ReSpec encounters a warning while processing.  The message contains
+      the nature of the warning.</dd>
+      <dt>save</dt>
+      <dd>An event fired at the start of any of the ReSpec save snapshot functions.  The message contains the
+      name of the save type being executed.  Defined save types are "toString" for HTML, "toXML5" for
+      XHTML5, "toXML1" for XHTML 1.0, and "toDiffHTML" for diffmarked HTML.</dd>
+  </dl>
+</section>
+
+
     </section>
   </body>
 </html>

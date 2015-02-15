@@ -74,7 +74,7 @@ function buildDocs (cb) {
         ;
         content = mungeHeaders(content);
         if (src === "ref") {
-            var incs = "conf els attrs classes".split(" ")
+            var incs = "conf els attrs classes events".split(" ")
             ,   refs = {}
             ;
             for (var j = 0, m = incs.length; j < m; j++) {
