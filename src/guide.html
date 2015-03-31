@@ -545,7 +545,7 @@
       <section>
         <h2>Examples &amp; Syntax Highlighting</h2>
         <p>
-          Any <code>pre</code> or <code>div</code> element that has the <code>example</code> class
+          Any <code>pre</code> or <code>aside</code> element that has the <code>example</code> class
           on it will get the additional example header and style. Additionally, if a
           <code>highlight</code> class is added to the same, the content will get syntax
           highlighted. The syntax highlighter does not need to be instructed about which language it
@@ -740,6 +740,12 @@
           The names are usually rather logical, and most of the time can be guessed. In other cases,
           you can go look for them in the central bibliographical database that is maintained at <a
           href='https://github.com/tobie/specref'>SpecRef database</a>.
+        </p>
+        <p>
+          If you ever want to use <code>[[\TextInDoubleBrackets]]</code> that doesn't represent
+          a reference, for example to represent an
+          <a href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-internal-methods-and-internal-slots">ECMAScript
+          internal slot</a>, write it as <code>[[<span>\InternalSlot</span>]]</code>.
         </p>
       </section>
       
