@@ -678,7 +678,7 @@
           <code>acronym</code> is a valid element or not; if you use it, it will process it.
         </p>
       </section>
-      <section>
+      <section id="definitions-and-linking">
         <h2>Definitions and Linking</h2>
         <p>
           HTML also supports the notion that you can give a term's definition using the
@@ -824,62 +824,80 @@
         support, but naturally if you're not writing an API specification then you can definitely
         save yourself the trouble and skip this section.
       </p>
-      <p class='note'>
-        The WebIDL support in ReSpec is getting old compared current practices. In most cases it is
-        still serviceable and it still beats managing the interlinking in a complex API by hand.
-        That said, it is slated for an upgrade that will bring it more in line with the way APIs
-        are defined today. Stay tuned.
-      </p>
       <p>
-        The issues with editing WebIDL by hand are as follow:
+        ReSpec supports two ways to write IDL and link it to documentation:
+        contiguously in <code>&lt;pre class="idl"></code> blocks, or structured
+        in <code>&lt;dl class="idl"></code> trees.
       </p>
-      <ul>
-        <li>
-          while evolving an API, it is easy to get the WebIDL proper and the accompanying prose out
-          of sync;
-        </li>
-        <li>
-          proper linking from WebIDL to content and back is often too tedious to be done in full;
-        </li>
-        <li>
-          syntax highlighting is generally given up on, at a cost in readability.
-        </li>
-      </ul>
-      <p>
-        ReSpec does its best to provide all three of the above at a minimal cost. It does that by
-        destructuring the WebIDL syntax so as to make it easy to keep definition and documentation
-        together.
-      </p>
-      <p>
-        The approach is simple. An interface is defined using a <code>dl</code> element, with a
-        <code>class</code> of "<code>idl</code>" and a <code>title</code> attribute that is the
-        defining line for the interface, for instance <code>[Constructor] interface Dahut : Mammal,
-        Cryptoid</code> or <code>exception Boom</code>.
-      </p>
-      <p>
-        Inside the <code>dl</code>, each <code>dt</code>/<code>dd</code> pair defines an interface
-        member (attribute, constant, operation). The content of the <code>dt</code> element is the
-        line that defines the member (e.g. <code>readonly attribute DOMString chirality</code> or
-        <code>void yell ([AllowAny] unsigned long volume, [TreatNullAs=EmptyString] DOMString
-        sentence)</code>); and the <code>dd</code> element contains the description in HTML.
-      </p>
-      <p>
-        This format has the advantage of keeping information well-grouped together, using HTML
-        markup for the most part (so that even WYSIWYG editors can be used), while being simple
-        to parse and sufficiently expressive for most needs (especially as more features are
-        added).
-      </p>
-      <p>
-        The output that is generated replaces the <code>dl</code> with a syntax-highlighted and
-        linked WebIDL segment with all the members for the given interface in the order in which
-        they were defined; followed by subsections listing attributes, constants, and methods
-        in alphabetical order.
-      </p>
-      <p>
-        An example will probably speak more clearly. Here is an interface that inherits from another
-        before defining some constants, attributes, and operations.
-      </p>
-      <pre class='example highlight'>
+
+      <section id="contiguous-idl">
+        <h2>Contiguous IDL</h2>
+
+        <p>
+          Contiguous IDL uses the <a href="https://github.com/darobin/webidl2.js/">webidl2.js</a> parser,
+          and supports everything it can parse. See the <a href="examples/webidl-contiguous.html">Contiguous
+          IDL document</a> for an introduction and exhaustive examples.
+        </p>
+      </section>
+
+      <section>
+        <h2>IDL in trees</h2>
+
+        <p class='note'>
+          This mode is getting old compared to current practices. In most cases it
+          is still serviceable, but <a href="#contiguous-idl"></a> supports more
+          modern IDL.
+        </p>
+        <p>
+          The issues with editing WebIDL by hand are as follow:
+        </p>
+        <ul>
+          <li>
+            while evolving an API, it is easy to get the WebIDL proper and the accompanying prose out
+            of sync;
+          </li>
+          <li>
+            proper linking from WebIDL to content and back is often too tedious to be done in full;
+          </li>
+          <li>
+            syntax highlighting is generally given up on, at a cost in readability.
+          </li>
+        </ul>
+        <p>
+          ReSpec does its best to provide all three of the above at a minimal cost. It does that by
+          destructuring the WebIDL syntax so as to make it easy to keep definition and documentation
+          together.
+        </p>
+        <p>
+          The approach is simple. An interface is defined using a <code>dl</code> element, with a
+          <code>class</code> of "<code>idl</code>" and a <code>title</code> attribute that is the
+          defining line for the interface, for instance <code>[Constructor] interface Dahut : Mammal,
+          Cryptoid</code> or <code>exception Boom</code>.
+        </p>
+        <p>
+          Inside the <code>dl</code>, each <code>dt</code>/<code>dd</code> pair defines an interface
+          member (attribute, constant, operation). The content of the <code>dt</code> element is the
+          line that defines the member (e.g. <code>readonly attribute DOMString chirality</code> or
+          <code>void yell ([AllowAny] unsigned long volume, [TreatNullAs=EmptyString] DOMString
+          sentence)</code>); and the <code>dd</code> element contains the description in HTML.
+        </p>
+        <p>
+          This format has the advantage of keeping information well-grouped together, using HTML
+          markup for the most part (so that even WYSIWYG editors can be used), while being simple
+          to parse and sufficiently expressive for most needs (especially as more features are
+          added).
+        </p>
+        <p>
+          The output that is generated replaces the <code>dl</code> with a syntax-highlighted and
+          linked WebIDL segment with all the members for the given interface in the order in which
+          they were defined; followed by subsections listing attributes, constants, and methods
+          in alphabetical order.
+        </p>
+        <p>
+          An example will probably speak more clearly. Here is an interface that inherits from another
+          before defining some constants, attributes, and operations.
+        </p>
+        <pre class='example highlight'>
 &lt;dl title='[Constructor] interface Dahut : Mammal' class='idl'>
   &lt;dt>const unsigned short LEVROGYROUS = 0&lt;/dt>
   &lt;dd>
@@ -911,17 +929,18 @@
     Lorem ipsum dolor sit amet, consectetur adipisicing elit (...)
   &lt;/dd>
 &lt;/dl></pre>
-      <p>
-        Most WebIDL constructs are supported. The best way to learn is likely to look at the
-        <a href='examples/webidl.html'>WebIDL examples document</a> and to compare the source with
-        the generated output.
-      </p>
-      <p>
-        At times you may wish to have multiple WebIDL constructs shown in a single section instead
-        of spread across several. For that, you can use the <code><a>data-merge</a></code>
-        attribute. It contains a white space separated list of WebIDL object names to be merged with
-        the interface.
-      </p>
+        <p>
+          Most WebIDL constructs are supported. The best way to learn is likely to look at the
+          <a href='examples/webidl.html'>WebIDL examples document</a> and to compare the source with
+          the generated output.
+        </p>
+        <p>
+          At times you may wish to have multiple WebIDL constructs shown in a single section instead
+          of spread across several. For that, you can use the <code><a>data-merge</a></code>
+          attribute. It contains a white space separated list of WebIDL object names to be merged with
+          the interface.
+        </p>
+      </section>
     </section>
   </body>
 </html>
