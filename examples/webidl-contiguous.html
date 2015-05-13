@@ -67,23 +67,40 @@
       </pre>
       <p>
         Then document the interface and its fields using
-        <code>&lt;dfn for="<var>interface-name</var>" title="<var>entity-name</var>"></code>.
-        For example, to document <code>Dahut.trip</code>, you'd write, <code>When
-          &lt;dfn for="Dahut" title="trip">Dahut.trip&lt;/dfn> is called, the UA
-          MUST ...</code>. This automatically links the IDL declaration to the
-        prose definition: <dfn for="Dahut" title="trip">Dahut.trip</dfn>.
+        <code>&lt;dfn><var>interface-name</var>&lt;/dfn></code> and
+        <code>&lt;dfn><var>interface-name</var>.<var>member-name</var>&lt;/dfn></code>.
+        For example, to discuss <dfn>Dahut</dfn>, you'd write <code>&lt;dfn>Dahut&lt;/dfn></code>,
+        and to document <dfn>Dahut.trip</dfn>, you'd write
+        <code>&lt;dfn>Dahut.trip&lt;/dfn></code>.
+        This also automatically links the IDL declaration to the prose definition.
       </p>
-      <p dfn-for="Dahut">
-        Both <code>for</code> and <code>title</code> attributes are optional. <code>title</code>
-        defaults to the contents of the <code>&lt;dfn></code> element, just
-        like when <a href="../guide.html#definitions-and-linking">defining a non-IDL term</a>.
-        <code>for</code> defaults to nothing, which is useful when defining
-        interfaces like <dfn>Dahut</dfn> (<code>&lt;dfn>Dahut&lt;/dfn></code>).
-        You can also set the <code>dfn-for</code> attribute on any ancestor
-        element of the <code>&lt;dfn></code> element. Since this paragraph
-        defines members of <a>Dahut</a>, its tag is <code>&lt;p dfn-for="Dahut"></code>,
+      <p>
+        You can also link to IDL terms in a similar way.
+        <code>&lt;a>Dahut.trip&lt;/a></code> will link to the definition above:
+        <a>Dahut.trip</a>.
+      </p>
+      <p dfn-for="Dahut" link-for="Dahut">
+        If you have a whole paragraph about a single interface, you can also set the <code>dfn-for</code> or <code>link-for</code> attribute on any ancestor
+        element of the <code>&lt;dfn></code> or <code>&lt;a></code> element, respectively. Since this paragraph
+        defines members of <a>Dahut</a>, its tag is <code>&lt;p dfn-for="Dahut" link-for="Dahut"></code>,
         which allows a simple <code>&lt;dfn>chirality&lt;/dfn></code> tag to
-        define the <dfn>chirality</dfn> attribute.
+        define the <dfn>chirality</dfn> attribute and a simple
+        <code>&lt;a>LEVROGYROUS&lt;/a></code> tag to link to the <a>LEVROGYROUS</a>
+        constant.
+      </p>
+      <p>
+        Finally, if you need a one-off definition or link whose text isn't
+        exactly the IDL entity it's discussing, you can specify the <code>for</code>
+        and/or <code>title</code> attributes directly on the <code>&lt;dfn></code> or
+        <code>&lt;a></code> tag, similarly to when
+        <a href="../guide.html#definitions-and-linking">defining or
+        linking to a non-IDL term</a>. The <dfn for="Dahut" title="turnAround">
+        <code>turnAround</code> member of the <code>Dahut</code> interface</dfn> can
+        be defined with <code>&lt;dfn for="Dahut"
+        title="turnAround">&lt;code>turnAround&lt;/code> member of the
+        &lt;code>Dahut&lt;/code> interface&lt;/dfn></code>. We can also link to
+        <a for="Dahut" title="LEVROGYROUS">some constant</a> with
+        <code>&lt;a for="Dahut" title="LEVROGYROUS">some constant&lt;/a></code>.
       </p>
     </section>
     <section>
