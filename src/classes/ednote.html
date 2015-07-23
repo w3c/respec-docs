@@ -26,6 +26,9 @@ will fix it in the next revision!
     will fix it in the next revision!&lt;p>
 &lt;div>
 </pre>
+    <p>If the element is an 'inline' element (e.g., span) then the
+    element is left as is and any <code>title</code> attribute 
+    does not effect the appearance of the note.</p>
     <p>An inline example:</p>
 <pre>
 &lt;p>Sometimes, when you are looking at an URL
@@ -37,7 +40,7 @@ note that the 'scheme' helps understand the rest of the syntax.&lt;p>
     <p>Would be emitted as:</p>
 <pre>
 &lt;p>Sometimes, when you are looking at an URL
-&lt;span class="note" title="Should this be 'an'?">I pronounce this
+&lt;span class="ednote" title="Should this be 'an'?">I pronounce this
 as 'earl', so 'An Earl' feels right.  But if I said the letters it is
 'you are ell', so 'A You Are Ell' would be better.  Help?&lt;span>
 note that the 'scheme' helps understand the rest of the syntax.&lt;p>
