@@ -1,0 +1,47 @@
+<section>
+  <h2>ednote</h2>
+  <p>
+    Marks the contents of an element as a "Editor's Note". If the element
+    is a 'block' element (e.g., <code>div</code> or
+    <code>p</code>) then the Editor's Note will be emitted in a 
+    block that includes an Editor's Note "header" and the contents of the
+    element as the text of the note.  
+    If the element also has a
+    <code>title</code> attribute, the content of the title will
+    be appended to the header (e.g., "Editor's Note: This is my note").
+    </p>
+
+    <p>A block example:</p>
+<pre>
+&lt;p class="ednote" title="This section will be reformatted">
+We are aware that the formatting of this section isn't great.  We
+will fix it in the next revision!
+&lt;p>
+</pre>
+    <p>Would be emitted as:</p>
+<pre>
+&lt;div class='ednote'>
+    &lt;div class='ednote-title'>&lt;span>Editor's Note: This section will be reformatted&lt;span>&lt;div>
+    &lt;p>We are aware that the formatting of this section isn't great. We
+    will fix it in the next revision!&lt;p>
+&lt;div>
+</pre>
+    <p>An inline example:</p>
+<pre>
+&lt;p>Sometimes, when you are looking at an URL
+&lt;span class="note" title="Should this be 'an'?">I pronounce this
+as 'earl', so 'An Earl' feels right.  But if I said the letters it is
+'you are ell', so 'A You Are Ell' would be better.  Help?&lt;span>
+note that the 'scheme' helps understand the rest of the syntax.&lt;p>
+</pre>
+    <p>Would be emitted as:</p>
+<pre>
+&lt;p>Sometimes, when you are looking at an URL
+&lt;span class="note" title="Should this be 'an'?">I pronounce this
+as 'earl', so 'An Earl' feels right.  But if I said the letters it is
+'you are ell', so 'A You Are Ell' would be better.  Help?&lt;span>
+note that the 'scheme' helps understand the rest of the syntax.&lt;p>
+</pre>
+    <p>In other words, the <code>title</code> attribute is ignored when the containing
+    element is "inline".</p>
+</section>
