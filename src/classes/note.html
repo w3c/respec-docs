@@ -1,0 +1,48 @@
+<section>
+  <h2>note</h2>
+  <p>
+    Marks the contents of an element as a "Note". If the element
+    is a 'block' element (e.g., <code>div</code> or
+    <code>p</code>) then the Note will be emitted in a 
+    block that includes a Note "header" and the contents of the
+    element as the text of the note.  
+    If the element also has a
+    <code>title</code> attribute, the content of the title will
+    be appended to the header (e.g., "Note: This is my note").
+    </p>
+
+    <p>A block example:</p>
+<pre>
+&lt;p class="note" title="Always rely upon native semantics">
+Remember - if you are using the &lt;code>role&lt;/code> attribute to say 
+that a paragraph is a button, you are probably doing it wrong!
+&lt;p>
+</pre>
+    <p>Would be emitted as:</p>
+<pre>
+&lt;div class='note'>
+    &lt;div class='note-title'>&lt;span>Note: Always rely upon native semantics&lt;span>&lt;div>
+    &lt;p>Remember - if you are using the &lt;code>role&lt;code> attribute to say 
+    that a paragraph is a button, you are probably doing 
+    it wrong!&lt;p>
+&lt;div>
+</pre>
+    <p>An inline example:</p>
+<pre>
+&lt;p>This is really important: 
+&lt;span class="note" title="PAY ATTENTION!">Try to imagine all
+life as you know it stopping instantaneously and every molecule
+in your body exploding at the speed of light&lt;span> 
+Don't cross the streams!&lt;p>
+</pre>
+    <p>Would be emitted as:</p>
+<pre>
+&lt;p>This is really important: 
+&lt;span class="note" title="PAY ATTENTION!">Try to imagine all
+life as you know it stopping instantaneously and every molecule           
+in your body exploding at the speed of light&lt;span>                       
+Don't cross the streams!&lt;p>
+</pre>
+    <p>In other words, the <code>title</code> attribute is ignored when the containing
+    element is "inline".</p>
+</section>
