@@ -87,7 +87,7 @@
           <code>https://www.w3.org/Tools/respec/respec-w3c-common</code>. That is the ReSpec 
           profile for W3C specifications. If you look at examples in the wild you may on occasion
           find other links — but use this one. You may also be tempted to save the script to your
-          local directory and use it from there. That may on occasion be useful (e.g. if you're on
+          local directory and use it from there. That may on occasion be useful (e.g., if you're on
           a flight and your cache is busted) but I strongly recommend that you link to the 
           canonical URL provided above. The code is regularly updated and this will allow you to
           benefit from bug fixes and enhancements without even having to think about it. To give
@@ -120,7 +120,7 @@
           Also note that this is just a simple JavaScript variable; there is nothing magical about
           the way in which it is declared (it just needs to be fully defined when the load event
           triggers). If for instance you are working on a family of specifications that share
-          some information (e.g. working group, editors) you can specify those in a common file
+          some information (e.g., working group, editors) you can specify those in a common file
           which you load, and then add the document-specific fields.
         </p>
       </section>
@@ -220,7 +220,7 @@
         <p>
           When these groups release a document, they must include some information that is
           relevant and specific to them — all of this information is required. Documents produced
-          in other situations (e.g. Submissions, unofficial drafts, etc.) don't require these
+          in other situations (e.g., Submissions, unofficial drafts, etc.) don't require these
           options.
         </p>
         <div data-include='src/conf/wg.html' data-oninclude='mungeConf'></div>
@@ -399,7 +399,7 @@
         </p>
         <p>
           If you wish the copyright date to span several years rather than just the year matching
-          <a>publishDate</a> (e.g. 2009-2013) then you can use <a>copyrightStart</a>.
+          <a>publishDate</a> (e.g., 2009-2013) then you can use <a>copyrightStart</a>.
         </p>
         <p>
           At times, the patent situation of a specification may warrant being documented beyond the
@@ -413,7 +413,7 @@
           If you are working on a new version of an existing Recommendation, then it is required
           that your document point to that previous version. This is done using the
           <a>prevRecShortname</a> and <a>prevRecURI</a> options, which respectively provide the
-          <a>shortName</a> for the existing Recommendation (e.g. "SVG", as opposed to "SVG2") and
+          <a>shortName</a> for the existing Recommendation (e.g., "SVG", as opposed to "SVG2") and
           its URI. You can <a
           href='examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look
           at an example</a>. If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is,
@@ -658,7 +658,7 @@
         <p>
           A very common construct in specifications is to use keywords defined in RFC 2119 which
           indicate precisely, using commonly agreed conventions, what requirements are placed on an
-          implementation with what degree of strength (e.g. MUST, SHOULD NOT). All you need to do as
+          implementation with what degree of strength (e.g., MUST, SHOULD NOT). All you need to do as
           an author is to include an all-caps MUST in your source and it will automatically get
           marked up as such (with the accompanying style applied to it afterwards).
         </p>
@@ -688,13 +688,14 @@
           definition, that would be a problematic approach since it would risk linking the same term
           used with a different meaning. What it does instead is that it allows you to use an
           <code>href</code>-less <code>a</code> element around a term when you use it, and it will
-          manage the link on its own (e.g. <code>&lt;a>term&lt;/a></code>).
+          manage the link on its own (e.g., <code>&lt;a>term&lt;/a></code>).
         </p>
         <p>
           On occasion that won't be enough since you may be using the term in plural or conjugated,
           or in some other variant that does not exactly match the <code>dfn</code>. If so, then you
-          can use the <code>title</code> attribute on the <code>a</code> element in order to
-          indicate the exact term that you wish to have a link to. Alternately, and more interestingly, 
+          can use the <code>lt</code> attribute on the <code>a</code> element in order to
+          indicate the exact term that you wish to have a link to (the mnemonic here being "link term").
+          Alternately, and more interestingly, 
           you can specify an <code>lt</code> attribute on the associated <code>dfn</code> element with 
           variants of the spelling of the term separated by vertical bars
           (e.g., <code>lt="the term|the terms|terms"</code>).
@@ -703,6 +704,12 @@
           Also note that the <code>href</code>-less <code>a</code> element is not limited to linking
           to definitions but also knows how to link to other items such as WebIDL interfaces.
         </p>
+        <p class="note" title="title attribute deprecated">In earlier versions of ReSpec, it was possible
+        to use the <code>title</code> attribute to specify the link title for a definition or a reference
+        to a definition.  This is now <em>deprecated</em> and support for it will be removed in a future
+        version of ReSpec.  Please migrate to using the <code>lt</code> attribute.  This is consistent with
+        Bikeshed (another popular publication tool) and will allow the use of the <code>title</code> attribute
+        for other, more appropriate things in the future.</p>
       </section>
       <section>
         <h2>References</h2>
@@ -880,7 +887,7 @@
         <p>
           Inside the <code>dl</code>, each <code>dt</code>/<code>dd</code> pair defines an interface
           member (attribute, constant, operation). The content of the <code>dt</code> element is the
-          line that defines the member (e.g. <code>readonly attribute DOMString chirality</code> or
+          line that defines the member (e.g., <code>readonly attribute DOMString chirality</code> or
           <code>void yell ([AllowAny] unsigned long volume, [TreatNullAs=EmptyString] DOMString
           sentence)</code>); and the <code>dd</code> element contains the description in HTML.
         </p>
