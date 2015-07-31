@@ -693,12 +693,12 @@
         <p>
           On occasion that won't be enough since you may be using the term in plural or conjugated,
           or in some other variant that does not exactly match the <code>dfn</code>. If so, then you
-          can use the <code>lt</code> attribute on the <code>a</code> element in order to
+          can use the <code>data-lt</code> attribute on the <code>a</code> element in order to
           indicate the exact term that you wish to have a link to (the mnemonic here being "link term").
           Alternately, and more interestingly, 
-          you can specify an <code>lt</code> attribute on the associated <code>dfn</code> element with 
+          you can specify a <code>data-lt</code> attribute on the associated <code>dfn</code> element with 
           variants of the spelling of the term separated by vertical bars
-          (e.g., <code>lt="the term|the terms|terms"</code>).
+          (e.g., <code>data-lt="the term|the terms|terms"</code>).
         </p>
         <p>
           Also note that the <code>href</code>-less <code>a</code> element is not limited to linking
@@ -707,7 +707,7 @@
         <p class="note" title="title attribute deprecated">In earlier versions of ReSpec, it was possible
         to use the <code>title</code> attribute to specify the link title for a definition or a reference
         to a definition.  This is now <em>deprecated</em> and support for it will be removed in a future
-        version of ReSpec.  Please migrate to using the <code>lt</code> attribute.  This is consistent with
+        version of ReSpec.  Please migrate to using the <code>data-lt</code> attribute.  This is consistent with
         Bikeshed (another popular publication tool) and will allow the use of the <code>title</code> attribute
         for other, more appropriate things in the future.</p>
       </section>
