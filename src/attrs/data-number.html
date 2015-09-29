@@ -1,0 +1,20 @@
+<section>
+  <h2>data-number</h2>
+  <p>
+    Can be used in conjunction with the configuration option <code>issueBase</code> and with
+    a paragraph with class value <code>issue</code>. The issue number is added to
+    the header of the paragraph, and linked to the issue by concatenating the values
+    of <code>issueBase</code> and <code>data-number</code>. This is particularly
+    useful when using GitHub to link into the discussion thread of a particular issue.
+    A typical example for a file in the github repository <code>https:/github.com/w3c/dpub-pwd</code>
+    would include, for example:
+  </p>
+<pre><code>
+   &lt;p class="issue" data-number="1"&gt;Change the terminology to "Portable Web Publication"&lt;\p&gt;
+</code></pre>
+  <p>
+    If the configuration of the file includes <code>issueBase:"https:/github.com/w3c/dpub-pwd/issues"</code>,
+    then the paragraph will be automatically entitled "ISSUE 1", with a link to the
+    corresponding Github issue.
+  </p>
+</section>
