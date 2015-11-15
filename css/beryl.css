@@ -1,4 +1,4 @@
-@font-face{font-family:'latolight';src:url('fonts/lato-light-webfont.eot');src:url('fonts/lato-light-webfont.eot?#iefix') format('embedded-opentype'),url('fonts/lato-light-webfont.woff') format('woff'),url('fonts/lato-light-webfont.ttf') format('truetype');font-weight:normal;font-style:normal}
+
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
@@ -42,7 +42,7 @@ td,th{padding:0}
 @media print{*,*:before,*:after{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important} a,a:visited{text-decoration:underline} a[href]:after{content:" (" attr(href) ")"} abbr[title]:after{content:" (" attr(title) ")"} a[href^="#"]:after,a[href^="javascript:"]:after{content:""} pre,blockquote{border:1px solid #999;page-break-inside:avoid} thead{display:table-header-group} tr,img{page-break-inside:avoid} img{max-width:100% !important} p,h2,h3{orphans:3;widows:3} h2,h3{page-break-after:avoid} .navbar{display:none} .btn>.caret,.dropup>.btn>.caret{border-top-color:#000 !important} .label{border:1px solid #000} .table{border-collapse:collapse !important}.table td,.table th{background-color:#fff !important} .table-bordered th,.table-bordered td{border:1px solid #ddd !important}}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-body{font-family:latolight;font-size:16px;line-height:1.428571429;color:#333;background-color:#fff}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.428571429;color:#333;background-color:#fff}
 input,button,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit}
 a{color:#165b7c;text-decoration:none}a:hover,a:focus{color:#0a2b3b;text-decoration:underline}
 a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}
