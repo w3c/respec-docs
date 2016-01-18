@@ -1,8 +1,8 @@
 <section>
   <h2>editors</h2>
   <p>
-    An array of objects describing the editors of the document (in order). Each object must follow
-    the structure below:
+    An array of objects describing the editors of the document (in order). Each object
+    must follow the structure below:
   </p>
   <dl>
     <dt>name</dt>
@@ -27,15 +27,24 @@
     </dd>
     <dt>note</dt>
     <dd>
-      Additional information on the person, often used to indicate a former employer (if the person
-      switched companies during edition) or to clarify that an editor is no longer active even if
-      her name is still attached to the document out of respect for her past contributions.
+      Additional information on the person, often used to indicate a former employer (if
+      the person switched companies during edition) or to clarify that an editor
+      is no longer active even if her name is still attached to the document out
+      of respect for her past contributions.
     </dd>
     <dt>w3cid</dt>
-     <dd>
-       Numeric id of the editor profile in W3C (W3C account holders can find their id by visiting
-       their <a href="https://www.w3.org/users/myprofile">W3C profile</a>); it is used by the W3C
-       publication system to associate specifications with their editors.
+    <dd>
+      Numeric id of the editor profile in W3C (W3C account holders can find their id by
+      visiting their <a href="https://www.w3.org/users/myprofile">W3C profile</a>);
+      it is used by the W3C publication system to associate specifications with their
+      editors.
     </dd>
+    <dt>extras</dt>
+    <dd>Array of objects consisting of the <code>name</code>, <code>href</code>, and
+      <code>class</code> entries. The generated content is a sequence of elements
+      the form <code>&lt;span class="<i>class</i>&gt;&lt;a href="
+      <i>href</i>"&gt;<i>name</i>&lt;/a&gt;&lt;/span&gt;</code>
+      added to the end of the person's entry. Can be used to add, e.g., the twitter
+      account, ORCID ID, etc., of the person.</dd>
   </dl>
 </section>
