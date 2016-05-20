@@ -192,7 +192,7 @@
         We will start by using an example of a basic specification very similar
         to the one used in the previous section.
       </p>
-      <pre class="example highlight" data-include='examples/boilerplate.html'
+      <pre class="example" data-include='examples/boilerplate.html'
       data-include-format='text'></pre>
       <p>
         You can <a href='examples/boilerplate.html'>see the result in
@@ -383,7 +383,7 @@
           group is mentioned). Here is an example of specifying two editors and
           one author (with the surrounding document clipped for readability):
         </p>
-        <pre class='example highlight'>
+        <pre class='example'>
           var respecConfig = {
               // ...
               editors: [
@@ -546,7 +546,7 @@
         content in order to exemplify some features, but it should nevertheless
         be easy to understand.
       </p>
-      <pre class="example highlight" data-include='examples/structure.html'
+      <pre class="example" data-include='examples/structure.html'
       data-include-format='text'></pre>
       <p>
         You can see <a href='examples/structure.html'>this example in
@@ -666,17 +666,14 @@
         <p>
           Any <code>pre</code> or <code>aside</code> element that has the
           <code>example</code> class on it will get the additional example
-          header and style. Additionally, if a <code>highlight</code> class is
-          added to the same, the content will get syntax highlighted. The
-          syntax highlighter does not need to be instructed about which
-          language it is highlighting and will try to do a decent job of
-          guessing.
+          header and style. Content inside <code>pre</code> elements is syntax
+          highlighted. The syntax highlighter does not need to be instructed
+          about which language it is highlighting and will try to do a decent
+          job of guessing.
         </p>
         <p>
-          You can also use <code>highlight</code> on <code>code</code>
-          elements. If the highlighting is insufficient for your needs, or in
-          the wrong colours, you can override the applicable styles in your own
-          style sheet.
+          You can disable syntax highlighting on a <code>pre</code> element by
+          adding a "nohighlight" class.
         </p>
       </section>
       <section>
@@ -793,7 +790,7 @@
         detection, <code>dfn</code> definitions, and easier in-document
         linking.
       </p>
-      <pre class="example highlight" data-include='examples/inlines.html'
+      <pre class="example" data-include='examples/inlines.html'
       data-include-format='text'></pre>
       <p>
         You can <a href='examples/inlines.html'>see this example in action</a>.
@@ -1019,136 +1016,29 @@
         WebIDL Support
       </h2>
       <p>
-        This chapter is about WebIDL, the schema language for APIs. ReSpec has
+        This chapter is about WebIDL, the binding language for APIs. ReSpec has
         extensive WebIDL support, but naturally if you're not writing an API
         specification then you can definitely save yourself the trouble and
         skip this section.
       </p>
       <p>
-        ReSpec supports two ways to write IDL and link it to documentation:
-        contiguously in <code>&lt;pre class="idl"&gt;</code> blocks, or
-        structured in <code>&lt;dl class="idl"&gt;</code> trees.
+        ReSpec allows you to write WebIDL into pre blocks. Simply :
       </p>
-      <section id="contiguous-idl">
-        <h2>
-          Contiguous IDL
-        </h2>
-        <p>
-          Contiguous IDL uses the <a href=
-          "https://github.com/darobin/webidl2.js/">webidl2.js</a> parser, and
-          supports everything it can parse. See the <a href=
-          "examples/webidl-contiguous.html">Contiguous IDL document</a> for an
-          introduction and exhaustive examples.
-        </p>
-      </section>
-      <section>
-        <h2>
-          IDL in trees
-        </h2>
-        <p class='note'>
-          This mode is getting old compared to current practices. In most cases
-          it is still serviceable, but <a href="#contiguous-idl"></a> supports
-          more modern IDL.
-        </p>
-        <p>
-          The issues with editing WebIDL by hand are as follow:
-        </p>
-        <ul>
-          <li>while evolving an API, it is easy to get the WebIDL proper and
-          the accompanying prose out of sync;
-          </li>
-          <li>proper linking from WebIDL to content and back is often too
-          tedious to be done in full;
-          </li>
-          <li>syntax highlighting is generally given up on, at a cost in
-          readability.
-          </li>
-        </ul>
-        <p>
-          ReSpec does its best to provide all three of the above at a minimal
-          cost. It does that by destructuring the WebIDL syntax so as to make
-          it easy to keep definition and documentation together.
-        </p>
-        <p>
-          The approach is simple. An interface is defined using a
-          <code>dl</code> element, with a <code>class</code> of
-          "<code>idl</code>" and a <code>title</code> attribute that is the
-          defining line for the interface, for instance <code>[Constructor]
-          interface Dahut : Mammal, Cryptoid</code> or <code>exception
-          Boom</code>.
-        </p>
-        <p>
-          Inside the <code>dl</code>, each <code>dt</code>/<code>dd</code> pair
-          defines an interface member (attribute, constant, operation). The
-          content of the <code>dt</code> element is the line that defines the
-          member (e.g., <code>readonly attribute DOMString chirality</code> or
-          <code>void yell ([AllowAny] unsigned long volume,
-          [TreatNullAs=EmptyString] DOMString sentence)</code>); and the
-          <code>dd</code> element contains the description in HTML.
-        </p>
-        <p>
-          This format has the advantage of keeping information well-grouped
-          together, using HTML markup for the most part (so that even WYSIWYG
-          editors can be used), while being simple to parse and sufficiently
-          expressive for most needs (especially as more features are added).
-        </p>
-        <p>
-          The output that is generated replaces the <code>dl</code> with a
-          syntax-highlighted and linked WebIDL segment with all the members for
-          the given interface in the order in which they were defined; followed
-          by subsections listing attributes, constants, and methods in
-          alphabetical order.
-        </p>
-        <p>
-          An example will probably speak more clearly. Here is an interface
-          that inherits from another before defining some constants,
-          attributes, and operations.
-        </p>
-        <pre class='example highlight'>
-&lt;dl title='[Constructor] interface Dahut : Mammal' class='idl'&gt;
-  &lt;dt&gt;const unsigned short LEVROGYROUS = 0&lt;/dt&gt;
-  &lt;dd&gt;
-    Turning left.
-  &lt;/dd&gt;
-  &lt;dt&gt;const unsigned short DEXTROGYROUS = 1&lt;/dt&gt;
-  &lt;dd&gt;
-    Turning right.
-  &lt;/dd&gt;
-  &lt;dt&gt;readonly attribute DOMString chirality&lt;/dt&gt;
-  &lt;dd&gt;
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit (...)
-  &lt;/dd&gt;
-  &lt;dt&gt;attribute unsigned long age&lt;/dt&gt;
-  &lt;dd&gt;
-     Ut enim ad minim veniam, quis nostrud exercitation (...)
-  &lt;/dd&gt;
-  &lt;dt&gt;Dahut turnAround (float angle, boolean fall)&lt;/dt&gt;
-  &lt;dd&gt;
-    Duis aute irure dolor in reprehenderit in voluptate (...)
-  &lt;/dd&gt;
-  &lt;dt&gt;unsigned long trip ()&lt;/dt&gt;
-  &lt;dd&gt;
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa (...)
-  &lt;/dd&gt;
-  &lt;dt&gt;void yell ([AllowAny] unsigned long volume,
-                    [TreatNullAs=EmptyString] DOMString sentence)&lt;/dt&gt;
-  &lt;dd&gt;
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit (...)
-  &lt;/dd&gt;
-&lt;/dl&gt;</pre>
-        <p>
-          Most WebIDL constructs are supported. The best way to learn is likely
-          to look at the <a href='examples/webidl.html'>WebIDL examples
-          document</a> and to compare the source with the generated output.
-        </p>
-        <p>
-          At times you may wish to have multiple WebIDL constructs shown in a
-          single section instead of spread across several. For that, you can
-          use the <code><a>data-merge</a></code> attribute. It contains a white
-          space separated list of WebIDL object names to be merged with the
-          interface.
-        </p>
-      </section>
+      <pre class="example" title="WebIDL example">
+      &lt;pre&gt;
+      interface Foo(){
+        readonly attribte bar;
+        Promise toDoSomething(Thing withThing);
+      };
+      dictionary Things{
+        color;
+      };
+      &lt;pre&gt;
+      </pre>
+      <p>
+        See the <a href="examples/webidl-contiguous.html">Contiguous IDL
+        document</a> for an introduction and exhaustive examples.
+      </p>
     </section>
   </body>
 </html>
