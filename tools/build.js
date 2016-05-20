@@ -71,14 +71,14 @@ function mungeHeaders(content) {
 
 function buildDocs(cb) {
 
-  var sources = "index guide dev ref".split(" ");
+  var sources = "index guide dev".split(" ");
   for (var i = 0, n = sources.length; i < n; i++) {
     var src = sources[i],
       fileName = src + ".html",
       content = fs.readFileSync(pth.join(srcPath, fileName), "utf8"),
       out = pth.join(outPath, fileName);
     content = mungeHeaders(content);
-    if (src === "ref") {
+    if (src === "index") {
       var incs = "conf els attrs classes events".split(" "),
         refs = {};
       for (var j = 0, m = incs.length; j < m; j++) {
