@@ -3,321 +3,390 @@
   <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width'>
-    <title>ReSpec: User's Guide</title>
-    <script src='js/beryl-config.js' class='remove'></script>
-    <script src='js/beryl.min.js' async class='remove'></script>
+    <title>
+      ReSpec: User's Guide
+    </title>
+    <script src='js/beryl-config.js' class='remove'>
+    </script>
+    <script src='js/beryl.min.js' async class='remove'>
+    </script>
     <!-- <script src='node_modules/respec/js/require.js' data-main='beryl/beryl' async class='remove'></script> -->
+    <script src='js/beryl.min.js' async class='remove'></script>
+
+    <link rel='stylesheet' href='css/beryl.css'>
+  </head>
   <body>
-    
     <section>
       <p>
-        The primary use case for ReSpec is writing W3C specifications and this is what this guide
-        covers. It can indeed be used for other document types (this documentation is itself
-        written using a different ReSpec profile) but if that is your situation either of two
-        cases apply: 1) you're using an existing profile that someone wrote, if so please consult
-        the documentation for that profile; or 2) you're developing your own profile in which case
-        you will want to read the <a href='dev.html'>Developer's Guide</a>.
+        The primary use case for ReSpec is writing W3C specifications and this
+        is what this guide covers. It can indeed be used for other document
+        types (this documentation is itself written using a different ReSpec
+        profile) but if that is your situation either of two cases apply: 1)
+        you're using an existing profile that someone wrote, if so please
+        consult the documentation for that profile; or 2) you're developing
+        your own profile in which case you will want to read the <a href=
+        'dev.html'>Developer's Guide</a>.
       </p>
       <p>
-        The User's Guide is organised in such a way that a complete newcomer may read it linearly
-        and understand everything. That being said, read it in whatever order you think makes most
-        sense to you, there are only limited references spanning sections.
+        The User's Guide is organized in such a way that a complete newcomer
+        may read it linearly and understand everything. That being said, read
+        it in whatever order you think makes most sense to you, there are only
+        limited references spanning sections.
       </p>
     </section>
-
     <div id='toc'></div>
-
     <section>
-      <h2>Basic Layout</h2>
+      <h2>
+        Basic Layout
+      </h2>
       <p>
-        Here we introduces the basic template that most specifications will want to start from,
-        explaining the core principles at play. We also look at basics elements of styling and
-        parts that you can't do without.
+        A ReSpec document is a straightforward HTML document that brings in the
+        ReSpec script, defines a few configuration variables, and follows a few
+        conventions. The simplest way to see it at work is to look at an
+        example — and don't worry if everything isn't immediately clear.
+      </p>
+      <pre class="example" data-include='examples/minimal-w3c.html'
+      data-include-format='text'></pre>
+      <p>
+        Before anything else, you may wish to see <a href=
+        'examples/minimal-w3c.html'>this example in action</a>.
       </p>
       <p>
-        A ReSpec document is essentially a straightforward HTML document that brings in the ReSpec
-        script, defines a few configuration variables, and follows a few conventions. The simplest
-        way to see it at work is to look at an example — and don't worry if everything isn't
-        immediately clear.
-      </p>
-      <pre class="example highlight" data-include='examples/minimal-w3c.html' data-include-format='text'></pre>
-      <p>
-        Before anything else, you may wish to see <a href='examples/minimal-w3c.html'>this example
-        in action</a>.
-      </p>
-      <p>
-        That is essentially the smallest W3C specification you can write using ReSpec (in
-        practice, you could eliminate a few things but then you would have a truly useless
-        document). Some of the configuration may seem cryptic, but it is there because all W3C
-        documents must have some specific information available — all will be explained soon.
+        That is essentially the smallest W3C specification you can write using
+        ReSpec (in practice, you could eliminate a few things but then you
+        would have a truly useless document). Some of the configuration may
+        seem cryptic, but it is there because all W3C documents must have some
+        specific information available — all will be explained soon.
       </p>
       <section>
-        <h2>The Very Basics</h2>
+        <h2>
+          The Very Basics
+        </h2>
         <p>
-          As you can see, the document that is rendered in your browser is quite different from
-          the one which is authored here. Yet they are the same document, with a sprinkle of
-          ReSpec on top. If you have a tool in your browser such as Firebug, Dragonfly, or other
-          such developer tools, you may wish to take a look at the real DOM that is being produced
-          and compare it with the source.
+          As you can see, the document that is rendered in your browser is
+          quite different from the one which is authored here. Yet they are the
+          same document, with a sprinkle of ReSpec on top. Using your browser's
+          developer tools, you may wish to take a look at the real DOM that is
+          being produced and compare it with the source.
         </p>
         <p>
-          Some basic things can be seen above. First, as you can see from the <code>DOCTYPE</code>
-          and the <code>section</code> elements, ReSpec documents are built on HTML5. This does
-          not imply that you need to know the ins and outs of HTML5 — just a few simple bits will
-          suffice. It also does not imply that the resulting document that you will produce at the
-          end will be HTML5. It is the recommended output format, but if you need to you can also
-          produce XHTML.
+          Some basic things can be seen above. First, as you can see from the
+          <code>DOCTYPE</code> and the <code>section</code> elements, ReSpec
+          documents are built on HTML. This does not imply that you need to
+          know the ins and outs of HTML — just a few simple bits will suffice.
+          It also does not imply that the resulting document that you will
+          produce at the end will be HTML (you can output a limited set of
+          other formats).
         </p>
         <p>
-          Note that the <code>title</code> of the document is reused as the title of the
-          specification in the resulting document's <code>h1</code>. It's a small win, but that's
-          always something less to repeat.
-        </p>
-        <p>
-          The <code>meta</code> element is merely there to indicate the encoding in cases in which
-          it may be misunderstood (which are many). It may not always be necessary, but I
-          recommend that you leave it there. (You're saving your documents as UTF-8, right? Right?
-          Right? Yes, of course you are. Right?)
+          Note that the <code>title</code> of the document is reused as the
+          title of the specification in the resulting document's
+          <code>h1</code>. It's a small win, but that's always something less
+          to repeat.
         </p>
       </section>
       <section>
-        <h2>Including ReSpec</h2>
+        <h2>
+          Including ReSpec
+        </h2>
         <p>
-          You can see that the example above includes a script sourced at 
-          <code>https://www.w3.org/Tools/respec/respec-w3c-common</code>. That is the ReSpec 
-          profile for W3C specifications. If you look at examples in the wild you may on occasion
-          find other links — but use this one. You may also be tempted to save the script to your
-          local directory and use it from there. That may on occasion be useful (e.g., if you're on
-          a flight and your cache is busted) but I strongly recommend that you link to the 
-          canonical URL provided above. The code is regularly updated and this will allow you to
-          benefit from bug fixes and enhancements without even having to think about it. To give
-          an example: in 2013 the copyright line changed to include Beihang university. Anyone
-          using the canonical ReSpec got that upgrade without ever knowing it; while all other
-          editors had to make the change manually (typically at publication time, while under
-          pressure).
+          You can see that the example above includes a script sourced at
+          <code>https://www.w3.org/Tools/respec/respec-w3c-common</code>. That
+          is the ReSpec profile for W3C specifications. If you look at examples
+          in the wild you may on occasion find other links — but use this one.
+          You may also be tempted to save the script to your local directory
+          and use it from there. That may on occasion be useful (e.g., if
+          you're on a flight and your cache is busted) but strongly recommend
+          that you link to the canonical URL provided above. The code is
+          regularly updated and this will allow you to benefit from bug fixes
+          and enhancements without even having to think about it.
         </p>
         <p>
-          You may be wondering what that <code>class='remove'</code> is doing in there. We'll get
-          to that later, but be sure to keep it on those <code>script</code> elements.
+          You may be wondering what that <code>class='remove'</code> is doing
+          in there. We'll get to that later, but be sure to keep it on those
+          <code>script</code> elements.
         </p>
       </section>
       <section>
-        <h2>Specifying Configuration</h2>
+        <h2>
+          Specifying Configuration
+        </h2>
         <p>
           In the example you can see a <code>script</code> element defining a
-          <code>respecConfig</code> variable. Astute as you are, you've guessed that this is the
-          ReSpec configuration. There are many things that can be done there, but we won't get
-          into the details right now, but rather explore it piece by piece as needed. No doubt you
-          can guess what some of those fields do.
+          <code>respecConfig</code> variable. Astute as you are, you've guessed
+          that this is the ReSpec configuration. There are many things that can
+          be done there, but we won't get into the details right now, but
+          rather explore it piece by piece as needed. No doubt you can guess
+          what some of those fields do.
         </p>
         <p>
-          One thing to remember though is this: that is how configuration is specified in ReSpec.
-          Whenever you will see an indication that you can set a configuration option to a given
-          value, it will be by modifying this object, simply adding, removing, or changing one of
-          its fields.
+          One thing to remember though is this: that is how configuration is
+          specified in ReSpec. Whenever you will see an indication that you can
+          set a configuration option to a given value, it will be by modifying
+          this object, simply adding, removing, or changing one of its fields.
         </p>
         <p>
-          Also note that this is just a simple JavaScript variable; there is nothing magical about
-          the way in which it is declared (it just needs to be fully defined when the load event
-          triggers). If for instance you are working on a family of specifications that share
-          some information (e.g., working group, editors) you can specify those in a common file
-          which you load, and then add the document-specific fields.
-        </p>
-      </section>
-      <section>
-        <h2>Sections</h2>
-        <p>
-          Sections in ReSpec specifications are specified using — shock! — the
-          <code>section</code> element. These can be nested, and the first <code>h*</code>
-          child element is taken to be the section's title. You do not need to worry about nesting
-          depth: ReSpec will take any element in the <code>h1</code>-<code>h6</code> range and
-          renumber it to match the section's nesting depth correctly. It is a common convention
-          (though by no means a requirement) to use <code>h2</code> for all sections.
-        </p>
-        <p>
-          The two first sections in this example specification are special (and required). We will
-          get to those in the next chapter. For the time being, just accept them as part of the 
-          basic specification template.
-        </p>
-        <p>
-          The last section in the specification is a regular section — it is simply there in order
-          for there to be a little bit of content. There is no requirement to start a document
-          with an introduction, though of course that's not necessarily a bad idea.
+          Also note that this is just a simple JavaScript variable; there is
+          nothing magical about the way in which it is declared (it just needs
+          to be fully defined when the load event triggers). If for instance
+          you are working on a family of specifications that share some
+          information (e.g., working group, editors) you can specify those in a
+          common file which you load, and then add the document-specific
+          fields.
         </p>
       </section>
       <section>
-        <h2>Language</h2>
+        <h2>
+          Sections
+        </h2>
         <p>
-          W3C specifications are assumed to be in English. As a result, if you don't specify a
-          <code>lang</code> attribute on your root element, ReSpec will add <code>lang='en'</code>
-          as well as <code>dir='ltr'</code>. This does not prevent you from using other languages
-          though: simply specify your own <code>lang</code> (in which case you may wish to also
-          specify your own <code>dir</code> for good measure).
+          Sections in ReSpec specifications are specified using HTML's
+          <code>section</code> element. These can be nested, and the first
+          <code>h*</code> child element is taken to be the section's title. You
+          do not need to worry about nesting depth: ReSpec will take any
+          element in the <code>h1</code>-<code>h6</code> range and renumber it
+          to match the section's nesting depth correctly. It is a common
+          convention (though by no means a requirement) to use <code>h2</code>
+          for all sections.
+        </p>
+        <p>
+          The "abstract" and "sotd" sections in the example specification are
+          special (and required). We will get to those in the next chapter. For
+          the time being, just accept them as part of the basic specification
+          template.
+        </p>
+        <p>
+          The last section in the specification is a regular section — it is
+          simply there in order for there to be a little bit of content. There
+          is no requirement to start a document with an introduction, though of
+          course that's not necessarily a bad idea.
+        </p>
+      </section>
+      <section>
+        <h2>
+          Language
+        </h2>
+        <p>
+          W3C specifications are assumed to be in English. As a result, if you
+          don't specify a <code>lang</code> attribute on your root element,
+          ReSpec will add <code>lang='en'</code> as well as
+          <code>dir='ltr'</code>. This does not prevent you from using other
+          languages though: simply specify your own <code>lang</code> (in which
+          case you may wish to also specify your own <code>dir</code> for good
+          measure).
         </p>
       </section>
     </section>
-
     <section>
-      <h2>Essential W3C Boilerplate</h2>
+      <h2>
+        Essential W3C Boilerplate
+      </h2>
       <p>
-        W3C boilerplate is extremely repetitive, but beneath the tedium is a wealth of options and
-        subtle variations that are precisely what makes crafting the boilerplate by hand so hard
-        to get right. This covers options for specification maturity, publication dates,
-        alternatives (editor's drafts, other versions, other formats...), legalese variants, the
-        various W3C specification URLs, the people writing it, information about the working
-        group, and core sections such as Abstract, Status of this Document, and Conformance.
+        W3C boilerplate is extremely repetitive, but beneath the tedium is a
+        wealth of options and subtle variations that are precisely what makes
+        crafting the boilerplate by hand so hard to get right. This covers
+        options for specification maturity, publication dates, alternatives
+        (editor's drafts, other versions, other formats...), legalese variants,
+        the various W3C specification URLs, the people writing it, information
+        about the working group, and core sections such as Abstract, Status of
+        this Document, and Conformance.
       </p>
       <p>
-        We will start by using an example of a basic specification very similar to the one used in
-        the previous section.
+        We will start by using an example of a basic specification very similar
+        to the one used in the previous section.
       </p>
-      <pre class="example highlight" data-include='examples/boilerplate.html' data-include-format='text'></pre>
+      <pre class="example" data-include='examples/boilerplate.html'
+      data-include-format='text'></pre>
       <p>
-        You can <a href='examples/boilerplate.html'>see the result in action</a>.
+        You can <a href='examples/boilerplate.html'>see the result in
+        action</a>.
       </p>
       <p class='note'>
-        There's a nifty trick that you will likely want to keep in your toolbox: many of ReSpec's
-        configuration options can be specified in the query string (separated by semicolons) and
-        they override the options specified in the source. We will use it a lot in this
-        documentation so as to avoid having to generate examples for each small change that is
-        possible (there are quite a few). So if I want to test the <a>subtitle</a> option without
-        generating a copy of the same example with just that option changed, instead of accessing 
+        There's a nifty trick that you will likely want to keep in your
+        toolbox: many of ReSpec's configuration options can be specified in the
+        query string (separated by semicolons) and they override the options
+        specified in the source. We will use it a lot in this documentation so
+        as to avoid having to generate examples for each small change that is
+        possible (there are quite a few). So if I want to test the
+        <a>subtitle</a> option without generating a copy of the same example
+        with just that option changed, instead of accessing
         <code>examples/boilerplate.html</code> I can simply go to
         <code>examples/boilerplate.html?subtitle=This%20is%20a%20subtitle</code>.
       </p>
       <section>
-        <h2>Title, Subtitle, Short Name</h2>
+        <h2>
+          Title, Subtitle, Short Name
+        </h2>
         <p>
-          As noted in the previous chapter, the <code>title</code> of the document is reused as
-          the title of the specification in the resulting document's <code>h1</code>. That way,
-          they are always in sync and you need not worry about specifying it twice. Including a
-          title is required.
+          As noted in the previous chapter, the <code>title</code> of the
+          document is reused as the title of the specification in the resulting
+          document's <code>h1</code>. That way, they are always in sync and you
+          need not worry about specifying it twice. Including a title is
+          required.
         </p>
         <p>
-          Optionally, you can also specify a subtitle. The <a>subtitle</a> configuration option
-          takes a simple string that will be used as a subtitle for the specification, right under
-          the title. You can <a
-          href='examples/boilerplate.html?subtitle=Breaking%20the%20web%20in%20the%20animal%20kingdom'>look
-          at an example</a>.
+          Optionally, you can also specify a subtitle. The <a>subtitle</a>
+          configuration option takes a simple string that will be used as a
+          subtitle for the specification, right under the title. You can
+          <a href=
+          'examples/boilerplate.html?subtitle=Breaking%20the%20web%20in%20the%20animal%20kingdom'>
+          look at an example</a>.
         </p>
         <p>
-          Specifications typically require having a "short name", which is the name used (amongst
-          other places) in the canonical "http://w3.org/TR/short-name/" URLs. This is specified
-          using the <a>shortName</a> option, as seen in the example above.
-          <a href='examples/boilerplate.html?shortName=something-else'>Look at an example</a>.
+          Specifications typically require having a "short name", which is the
+          name used (amongst other places) in the canonical
+          "http://w3.org/TR/short-name/" URLs. This is specified using the
+          <a>shortName</a> option, as seen in the example above. <a href=
+          'examples/boilerplate.html?shortName=something-else'>Look at an
+          example</a>.
         </p>
       </section>
       <section>
-        <h2>Working Group Information</h2>
+        <h2>
+          Working Group Information
+        </h2>
         <p>
-          Most (but not all) W3C documents are produced by groups of some sort: Working Groups
-          (WG), Interest Groups (IG), Incubator Groups (XG, now defunct), Coordination Groups, the
-          TAG, and Community or Business Groups (CG, BG). For simplicity, we will be referring to
-          all of the above as "Working Groups", since one should not be required to understand the
-          many subtleties of the W3C Process in order to write a good specification. Configuration
-          options that are prefixed with <code>wg</code> work equally well for all group types.
+          Most (but not all) W3C documents are produced by groups of some sort:
+          Working Groups (WG), Interest Groups (IG), Incubator Groups (XG, now
+          defunct), Coordination Groups, the TAG, and Community or Business
+          Groups (CG, BG). For simplicity, we will be referring to all of the
+          above as "Working Groups", since one should not be required to
+          understand the many subtleties of the W3C Process in order to write a
+          good specification. Configuration options that are prefixed with
+          <code>wg</code> work equally well for all group types.
         </p>
         <p>
-          When these groups release a document, they must include some information that is
-          relevant and specific to them — all of this information is required. Documents produced
-          in other situations (e.g., Submissions, unofficial drafts, etc.) don't require these
+          When these groups release a document, they must include some
+          information that is relevant and specific to them — all of this
+          information is required. Documents produced in other situations
+          (e.g., Submissions, unofficial drafts, etc.) don't require these
           options.
         </p>
         <div data-include='src/conf/wg.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/wgURI.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/wgPublicList.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/subjectPrefix.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/wgPatentURI.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/wgURI.html' data-oninclude='mungeConf'>
+        </div>
+        <div data-include='src/conf/wgPublicList.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/subjectPrefix.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/wgPatentURI.html' data-oninclude=
+        'mungeConf'></div>
         <p>
-          The result of changing these configuration options can be seen in the "Status of this
-          Document" section. Here is <a
-          href='examples/boilerplate.html?wg=Supercool%20Incubator%20Group;wgURI=http://berjon.com/;wgPublicList=public-supercool-xg;wgPatentURI=http://berjon.com/'>an
-          example with different values</a>.
+          The result of changing these configuration options can be seen in the
+          "Status of this Document" section. Here is <a href=
+          'examples/boilerplate.html?wg=Supercool%20Incubator%20Group;wgURI=http://berjon.com/;wgPublicList=public-supercool-xg;wgPatentURI=http://berjon.com/'>
+          an example with different values</a>.
         </p>
         <p>
-          Incubator Groups require some additional information in addition to the above, but since
-          this group type no longer exists they are deprecated:
-          <a href='ref.html#xgrGroupShortName'>xgrGroupShortName</a>,
-          <a href='ref.html#xgrDocShortName'>xgrDocShortName</a>.
-        </p>
-      </section>
-      <section>
-        <h2>Specification Status</h2>
-        <p>
-          At any given time a specification must be in a given status. The <a>specStatus</a>
-          option indicates which status that is. Typically, a status has implications in terms of
-          what other options may be required. For instance, a document that is intended to become
-          a Recommendation eventually and that is not the First Public Working Draft (FPWD) of
-          that specification will require <a>previousPublishDate</a> and <a>previousMaturity</a>
-          to be specified. The following table lists the values currently understood. Each of them
-          has an example link demonstrating what it produces.
-        </p>
-        <p>
-          The values for this configuration are rich and complex, and so are detailed in the
-          <a href='ref.html#specStatus'>reference section for specStatus</a>.
+          Incubator Groups require some additional information in addition to
+          the above, but since this group type no longer exists they are
+          deprecated: <a href=
+          'ref.html#xgrGroupShortName'>xgrGroupShortName</a>, <a href=
+          'ref.html#xgrDocShortName'>xgrDocShortName</a>.
         </p>
       </section>
       <section>
-      	<h2>Extra links at top of the document</h2>
+        <h2>
+          Specification Status
+        </h2>
         <p>
-        	There are times when you might need extra links or other important information to appear
-          together with other links at the top of the document. For example, you might want to have
-          a link to the commit history for the specification.  
-         </p>
-         
-         <p>
-           ReSpec supports adding additional links by specifying an <code>otherLinks</code> property 
-           in the configuration. The values for this configuration option are rich and complex, so are
-           detailed in the <a href="ref.html#otherLinks">reference section for otherLinks</a>.
-         </p>
-      </section>
-      <section>
-        <h2>Extra Styling</h2>
-        <p>
-          If you wish to add your own additional styles to your document, just use the regular
-          <code>link</code> and <code>style</code> elements. Be warned however that the W3C styles
-          will <em>always</em> be added after yours, so if you wish to override them you will need
-          to use more specific selectors.
+          At any given time a specification must be in a given status. The
+          <a>specStatus</a> option indicates which status that is. Typically, a
+          status has implications in terms of what other options may be
+          required. For instance, a document that is intended to become a
+          Recommendation eventually and that is not the First Public Working
+          Draft (FPWD) of that specification will require
+          <a>previousPublishDate</a> and <a>previousMaturity</a> to be
+          specified. The following table lists the values currently understood.
+          Each of them has an example link demonstrating what it produces.
         </p>
         <p>
-          In some old documents, you will on occasion find an <a>extraCSS</a> configuration
-          option. Do not use it, it is deprecated.
+          The values for this configuration are rich and complex, and so are
+          detailed in the <a href='ref.html#specStatus'>reference section for
+          specStatus</a>.
         </p>
       </section>
       <section>
-        <h2>Dates</h2>
+        <h2>
+          Extra links at top of the document
+        </h2>
         <p>
-          The process of publishing specifications typically involves releasing multiple versions
-          in a row that have specific dates (so that people can see the evolution, and also for IP
-          reasons). Additionally, some specification statuses involve delimited review periods.
-          These are all specified using date-related options.
+          There are times when you might need extra links or other important
+          information to appear together with other links at the top of the
+          document. For example, you might want to have a link to the commit
+          history for the specification.
+        </p>
+        <p>
+          ReSpec supports adding additional links by specifying an
+          <code>otherLinks</code> property in the configuration. The values for
+          this configuration option are rich and complex, so are detailed in
+          the <a href="ref.html#otherLinks">reference section for
+          otherLinks</a>.
+        </p>
+      </section>
+      <section>
+        <h2>
+          Extra Styling
+        </h2>
+        <p>
+          If you wish to add your own additional styles to your document, just
+          use the regular <code>link</code> and <code>style</code> elements. Be
+          warned however that the W3C styles will <em>always</em> be added
+          after yours, so if you wish to override them you will need to use
+          more specific selectors.
+        </p>
+        <p>
+          In some old documents, you will on occasion find an <a>extraCSS</a>
+          configuration option. Do not use it, it is deprecated.
+        </p>
+      </section>
+      <section>
+        <h2>
+          Dates
+        </h2>
+        <p>
+          The process of publishing specifications typically involves releasing
+          multiple versions in a row that have specific dates (so that people
+          can see the evolution, and also for IP reasons). Additionally, some
+          specification statuses involve delimited review periods. These are
+          all specified using date-related options.
         </p>
         <p>
           The format used for all dates is <code>YYYY-MM-DD</code>.
         </p>
-        <div data-include='src/conf/publishDate.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/previousPublishDate.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/previousMaturity.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/lcEnd.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/crEnd.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/publishDate.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/previousPublishDate.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/previousMaturity.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/lcEnd.html' data-oninclude='mungeConf'>
+        </div>
+        <div data-include='src/conf/crEnd.html' data-oninclude='mungeConf'>
+        </div>
       </section>
       <section>
-        <h2>Editors &amp; Authors</h2>
+        <h2>
+          Editors & Authors
+        </h2>
         <p>
-          Every specification must have some <a>editors</a> (at least one) and may have some 
-          <a>authors</a>.
+          Every specification must have some <a>editors</a> (at least one) and
+          may have some <a>authors</a>.
         </p>
-        <div data-include='src/conf/editors.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/authors.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/editors.html' data-oninclude='mungeConf'>
+        </div>
+        <div data-include='src/conf/authors.html' data-oninclude='mungeConf'>
+        </div>
         <p>
-          Editors are the people in charge of the document. Authors are people who produced
-          substantial contributions, but did not manage the document per se. Most of the time
-          authors are not specified, but that practice varies between groups (it was more common
-          in XGs for instance, or sometimes in order to get academic credit the whole group is
-          mentioned). Here is an example of specifying two editors and one author (with the
-          surrounding document clipped for readability):
+          Editors are the people in charge of the document. Authors are people
+          who produced substantial contributions, but did not manage the
+          document per se. Most of the time authors are not specified, but that
+          practice varies between groups (it was more common in XGs for
+          instance, or sometimes in order to get academic credit the whole
+          group is mentioned). Here is an example of specifying two editors and
+          one author (with the surrounding document clipped for readability):
         </p>
-        <pre class='example highlight'>
+        <pre class='example'>
           var respecConfig = {
               // ...
               editors: [
@@ -336,7 +405,7 @@
                     {   name:       "Ada Lovelace",
                         url:        "http://findingada.com/",
                         company:    "Aristocracy",
-                        note:       "until &lt;time>1852-11-27&lt;/time>"
+                        note:       "until &lt;time&gt;1852-11-27&lt;/time&gt;"
                     }
               ],
               // ...
@@ -344,432 +413,542 @@
         </pre>
       </section>
       <section>
-        <h2>Editor's Drafts</h2>
+        <h2>
+          Editor's Drafts
+        </h2>
         <p>
-          Most groups maintain some form of version control system which is exposed over the web
-          so that people can keep track of what edits are being made to a specification in between
-          official releases. It is often useful to point to such documents, including from
-          released specifications, so that people wishing to report issues can make sure that they
-          aren't already fixed, and in general get the very latest version. In fact, EDs are often
-          considered to be the most useful reference to have to a group's work. Two options control
-          this.
+          Most groups maintain some form of version control system which is
+          exposed over the web so that people can keep track of what edits are
+          being made to a specification in between official releases. It is
+          often useful to point to such documents, including from released
+          specifications, so that people wishing to report issues can make sure
+          that they aren't already fixed, and in general get the very latest
+          version. In fact, EDs are often considered to be the most useful
+          reference to have to a group's work. Two options control this.
         </p>
-        <div data-include='src/conf/edDraftURI.html' data-oninclude='mungeConf'></div>
-        <div data-include='src/conf/prevED.html' data-oninclude='mungeConf'></div>
+        <div data-include='src/conf/edDraftURI.html' data-oninclude=
+        'mungeConf'></div>
+        <div data-include='src/conf/prevED.html' data-oninclude='mungeConf'>
+        </div>
       </section>
       <section>
-        <h2>Related Documents</h2>
+        <h2>
+          Related Documents
+        </h2>
         <p>
-          A specification does not always travel alone. In some cases, there can be an accompanying 
-          <a>errata</a> document, which you can specify by providing a URL for it
-          (<a href='examples/boilerplate.html?specStatus=REC;errata=http://dictionary.reference.com/browse/erratum'>example</a>).
+          A specification does not always travel alone. In some cases, there
+          can be an accompanying <a>errata</a> document, which you can specify
+          by providing a URL for it (<a href=
+          'examples/boilerplate.html?specStatus=REC;errata=http://dictionary.reference.com/browse/erratum'>example</a>).
         </p>
         <p>
-          Likewise, some groups occasionally find it desirable to produce alternative formats in
-          which people may read the specification. For instance, to access it on an ebook reader
-          you may produce an ePub alternative, or if your specification is intended to be read by
+          Likewise, some groups occasionally find it desirable to produce
+          alternative formats in which people may read the specification. For
+          instance, to access it on an ebook reader you may produce an ePub
+          alternative, or if your specification is intended to be read by
           printing devices you might use PDF. The <a>alternateFormats</a>
-          option is set to an array of objects, each of which has two required fields:
-          <code>uri</code>, for the link to the alternate document, and <code>label</code>, for a
-          human readable string that matches it.
+          option is set to an array of objects, each of which has two required
+          fields: <code>uri</code>, for the link to the alternate document, and
+          <code>label</code>, for a human readable string that matches it.
         </p>
         <p>
-          If your specification has a test suite (it does, right?), then you can point to it using
-          <a>testSuiteURI</a>. And when your tests have successfully passed in enough
-          implementations, you will want to document that in an implementation report which you can
-          link to using <a>implementationReportURI</a>.
-        </p>
-      </section>
-      <section>
-        <h2>Copyrights &amp; Patents</h2>
-        <p>
-          All the best fun in standards brought to you neatly packaged in a single section!
-        </p>
-        <p>
-          By default, W3C specifications all get the regular W3C copyright notice and archaic
-          document license, except for unofficial documents which are under CC-BY. In some cases
-          however, you will want to modify that.
-        </p>
-        <p>
-          For all document types other than "unofficial", you can use <a>additionalCopyrightHolders</a>
-          to indicate that the copyright is shared not just amongst the W3C's hosts but also with
-          other organisations (typically this is used for documents developed jointly with another
-          SDO such as the IETF). For unofficial documents, this simply replaces the default CC-BY
-          license.
-        </p>
-        <p>
-          If you wish the copyright date to span several years rather than just the year matching
-          <a>publishDate</a> (e.g., 2009-2013) then you can use <a>copyrightStart</a>.
-        </p>
-        <p>
-          At times, the patent situation of a specification may warrant being documented beyond the
-          usual boilerplate. In such cases, use <a>addPatentNote</a>. Its content will get injected
-          at the end of the SotD section (right after the patent policy paragraph).
+          If your specification has a test suite (it does, right?), then you
+          can point to it using <a>testSuiteURI</a>. And when your tests have
+          successfully passed in enough implementations, you will want to
+          document that in an implementation report which you can link to using
+          <a>implementationReportURI</a>.
         </p>
       </section>
       <section>
-        <h2>Note &amp; Recommendation Tracks</h2>
+        <h2>
+          Copyrights & Patents
+        </h2>
         <p>
-          If you are working on a new version of an existing Recommendation, then it is required
-          that your document point to that previous version. This is done using the
-          <a>prevRecShortname</a> and <a>prevRecURI</a> options, which respectively provide the
-          <a>shortName</a> for the existing Recommendation (e.g., "SVG", as opposed to "SVG2") and
-          its URI. You can <a
-          href='examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>look
-          at an example</a>. If <a>prevRecURI</a> is not specified but <a>prevRecShortname</a> is,
-          the latter will be used to generate the former by prefixing "http://www.w3.org/TR/" to
-          it. Note however that while in the overwhelming majority of cases this works, it is not
-          recommended to use this approach since if the Recommendation is later Rescinded, the
-          link will be stale. Instead, use the dated link to the Recommendation.
+          All the best fun in standards brought to you neatly packaged in a
+          single section!
         </p>
         <p>
-          The process for the publication of Notes has been a source of confusion. When producing
-          multiple drafts of a Note in succession, some groups have traditionally simply published them all as
-          Notes one after the other, indicating in the abstract or SotD if they intend to
-          work further on this document or if it is final. Since Notes are not normative and
-          entail no IP concerns, they don't need an elaborate process and this process was perhaps
-          not entirely bad. However, that's not how Notes are commonly handled nowadays.
+          By default, W3C specifications all get the regular W3C copyright
+          notice and archaic document license, except for unofficial documents
+          which are under CC-BY. In some cases however, you will want to modify
+          that.
         </p>
         <p>
-          The currently recommended process for Notes is closer to that which is used for
-          Recommendation Track documents, typically: FPWD -> WD (<var>n</var> times) -> LC ->
-          Note. Given that any group may decide at any time to release a Rec-Track document as a
-          Note instead (often because it has been abandoned) this is Process-correct but it does
-          involve jumping through hoops (notably for IP) that likely should not be needed. It has
-          been explained to me several times why this switch took place, but I can never recall
-          the justification. At any rate, if you are confused with the Note track process but wish
-          to stick to it, you can do so by setting <a>noRecTrack</a> to <code>true</code>.
+          For all document types other than "unofficial", you can use
+          <a>additionalCopyrightHolders</a> to indicate that the copyright is
+          shared not just amongst the W3C's hosts but also with other
+          organisations (typically this is used for documents developed jointly
+          with another SDO such as the IETF). For unofficial documents, this
+          simply replaces the default CC-BY license.
+        </p>
+        <p>
+          If you wish the copyright date to span several years rather than just
+          the year matching <a>publishDate</a> (e.g., 2009-2013) then you can
+          use <a>copyrightStart</a>.
+        </p>
+        <p>
+          At times, the patent situation of a specification may warrant being
+          documented beyond the usual boilerplate. In such cases, use
+          <a>addPatentNote</a>. Its content will get injected at the end of the
+          SotD section (right after the patent policy paragraph).
+        </p>
+      </section>
+      <section>
+        <h2>
+          Note & Recommendation Tracks
+        </h2>
+        <p>
+          If you are working on a new version of an existing Recommendation,
+          then it is required that your document point to that previous
+          version. This is done using the <a>prevRecShortname</a> and
+          <a>prevRecURI</a> options, which respectively provide the
+          <a>shortName</a> for the existing Recommendation (e.g., "SVG", as
+          opposed to "SVG2") and its URI. You can <a href=
+          'examples/boilerplate.html?prevRecShortname=dahuts-v0;prevRecURI=http://w3.org/TR/dahuts-v0/'>
+          look at an example</a>. If <a>prevRecURI</a> is not specified but
+          <a>prevRecShortname</a> is, the latter will be used to generate the
+          former by prefixing "http://www.w3.org/TR/" to it. Note however that
+          while in the overwhelming majority of cases this works, it is not
+          recommended to use this approach since if the Recommendation is later
+          Rescinded, the link will be stale. Instead, use the dated link to the
+          Recommendation.
+        </p>
+        <p>
+          The process for the publication of Notes has been a source of
+          confusion. When producing multiple drafts of a Note in succession,
+          some groups have traditionally simply published them all as Notes one
+          after the other, indicating in the abstract or SotD if they intend to
+          work further on this document or if it is final. Since Notes are not
+          normative and entail no IP concerns, they don't need an elaborate
+          process and this process was perhaps not entirely bad. However,
+          that's not how Notes are commonly handled nowadays.
+        </p>
+        <p>
+          The currently recommended process for Notes is closer to that which
+          is used for Recommendation Track documents, typically: FPWD -&gt; WD
+          (<var>n</var> times) -&gt; LC -&gt; Note. Given that any group may
+          decide at any time to release a Rec-Track document as a Note instead
+          (often because it has been abandoned) this is Process-correct but it
+          does involve jumping through hoops (notably for IP) that likely
+          should not be needed. It has been explained to me several times why
+          this switch took place, but I can never recall the justification. At
+          any rate, if you are confused with the Note track process but wish to
+          stick to it, you can do so by setting <a>noRecTrack</a> to
+          <code>true</code>.
         </p>
       </section>
     </section>
-
     <section>
-      <h2>Structure</h2>
+      <h2>
+        Structure
+      </h2>
       <p>
-        This chapter covers all the aspects of a ReSpec document's structure that were not covered
-        as part of the very basics. As usual, let's start with an example. It is fairly long as it
-        needs a decent amount of content in order to exemplify some features, but it should
-        nevertheless be easy to understand.
+        This chapter covers all the aspects of a ReSpec document's structure
+        that were not covered as part of the very basics. As usual, let's start
+        with an example. It is fairly long as it needs a decent amount of
+        content in order to exemplify some features, but it should nevertheless
+        be easy to understand.
       </p>
-      <pre class="example highlight" data-include='examples/structure.html' data-include-format='text'></pre>
+      <pre class="example" data-include='examples/structure.html'
+      data-include-format='text'></pre>
       <p>
-        You can see <a href='examples/structure.html'>this example in action</a>.
+        You can see <a href='examples/structure.html'>this example in
+        action</a>.
       </p>
       <section>
-        <h2>Sections</h2>
+        <h2>
+          Sections
+        </h2>
         <p>
-          Sections, subsections, appendices, and whatever other structural items are marked up in
-          ReSpec using <code>&lt;section></code> elements. If you're concerned about using an HTML5
-          construct that won't degrade well to older browsers, don't worry: ReSpec also adds the 
-          HTML5 shim/shiv and styling that makes them work.
+          Sections, subsections, appendices, and whatever other structural
+          items are marked up in ReSpec using <code>&lt;section&gt;</code>
+          elements. If you're concerned about using an HTML5 construct that
+          won't degrade well to older browsers, don't worry: ReSpec also adds
+          the HTML5 shim/shiv and styling that makes them work.
         </p>
         <p>
           The first child element of a section is expected to be one of the
-          <code>h1</code>-<code>h6</code> elements. Any old one will do, since whichever one you
-          pick will be renamed to use the level that matches the depth at which your section is
-          nested. As you can see, the example uses only <code>h2</code> elements, but that is not
-          what appears in the output. Using <code>h2</code> everywhere is sort of a tacit
-          convention, but if you prefer <code>h5</code> that'll work just the same.
+          <code>h1</code>-<code>h6</code> elements. Any old one will do, since
+          whichever one you pick will be renamed to use the level that matches
+          the depth at which your section is nested. As you can see, the
+          example uses only <code>h2</code> elements, but that is not what
+          appears in the output. Using <code>h2</code> everywhere is sort of a
+          tacit convention, but if you prefer <code>h5</code> that'll work just
+          the same.
         </p>
         <p>
-          Sections will be automatically numbered. If you wish a section to have a specific ID, then
-          simply use an <code>id</code> attribute on it. If you don't, ReSpec will generate one for
-          you based on the section title, and will ensure that it is unique.
+          Sections will be automatically numbered. If you wish a section to
+          have a specific ID, then simply use an <code>id</code> attribute on
+          it. If you don't, ReSpec will generate one for you based on the
+          section title, and will ensure that it is unique.
         </p>
         <p>
           ReSpec sections understand some specific classes. First is the
-          <code><a>introductory</a></code> class. It is used (rarely) for preliminary content that
-          sits at the beginning of the document and which is not expected to be linked to from the
-          table of contents. The abstract, SotD, and ToC sections automatically fall into this
-          category (you need not worry about flagging them as such); the example above adds an
-          “Overview” section exemplifying the behaviour. If you <em>do</em> wish all the
-          introductory sections to be present in the ToC, see <a>tocIntroductory</a>.
+          <code><a>introductory</a></code> class. It is used (rarely) for
+          preliminary content that sits at the beginning of the document and
+          which is not expected to be linked to from the table of contents. The
+          abstract, SotD, and ToC sections automatically fall into this
+          category (you need not worry about flagging them as such); the
+          example above adds an “Overview” section exemplifying the behaviour.
+          If you <em>do</em> wish all the introductory sections to be present
+          in the ToC, see <a>tocIntroductory</a>.
         </p>
         <p>
-          Then is the <code><a>informative</a></code> class. It is used for regular sections or
-          appendices that are not meant to contain normative material. It will automatically preface
-          its content with the well-know “This section is non-normative” paragraph. The
+          Then is the <code><a>informative</a></code> class. It is used for
+          regular sections or appendices that are not meant to contain
+          normative material. It will automatically preface its content with
+          the well-know “This section is non-normative” paragraph. The
           “Introduction” section in the example shows how it works.
         </p>
         <p>
-          And finally is the <code><a>appendix</a></code> class. It marks a section as being an
-          appendix, as can be seen appearing at the end of the example. One important thing to know
-          about appendix sections is that all the sections that follow an appendix will also be
-          marked as appendices.
+          And finally is the <code><a>appendix</a></code> class. It marks a
+          section as being an appendix, as can be seen appearing at the end of
+          the example. One important thing to know about appendix sections is
+          that all the sections that follow an appendix will also be marked as
+          appendices.
         </p>
         <p>
-          If you wish to link to a section and have its number and title automatically appear as
-          part of the link, then you can use an empty anchor pointing to that ID, as in <code>&lt;a
-          href='#foo'>&lt;/a></code>. The “Overview” section contains an example of that.
+          If you wish to link to a section and have its number and title
+          automatically appear as part of the link, then you can use an empty
+          anchor pointing to that ID, as in <code>&lt;a
+          href='#foo'&gt;&lt;/a&gt;</code>. The “Overview” section contains an
+          example of that.
         </p>
         <p>
-          A table of contents is generated automatically and placed right after the SotD. If you
-          have a deeply nested document structure and find that the ToC is either too long or too
-          deep, you can use the <a>maxTocLevel</a> option to limit how deep it goes. In the example
-          used above, there is no limit and indeed one section is numbered 4.1.1.1.1.1 — rather
-          deep. Setting <a>maxTocLevel</a> to other values will yield <a
-          href='examples/structure.html?maxTocLevel=1'>different results</a> (<a
-          href='examples/structure.html?maxTocLevel=2'>other example with maxTocLevel=2</a>).
+          A table of contents is generated automatically and placed right after
+          the SotD. If you have a deeply nested document structure and find
+          that the ToC is either too long or too deep, you can use the
+          <a>maxTocLevel</a> option to limit how deep it goes. In the example
+          used above, there is no limit and indeed one section is numbered
+          4.1.1.1.1.1 — rather deep. Setting <a>maxTocLevel</a> to other values
+          will yield <a href='examples/structure.html?maxTocLevel=1'>different
+          results</a> (<a href='examples/structure.html?maxTocLevel=2'>other
+          example with maxTocLevel=2</a>).
         </p>
         <p>
-          The more observant readers will have noted that ReSpec also inserts some strange-looking
-          comments in the generated source, that look like <code>&lt;!-- OddPage --></code>. These
-          are present so that <code>html2ps</code> knows how to paginate correctly. Perhaps not
-          useful to most but helpful to those who rely on it for printing, and harmless.
+          The more observant readers will have noted that ReSpec also inserts
+          some strange-looking comments in the generated source, that look like
+          <code>&lt;!-- OddPage --&gt;</code>. These are present so that
+          <code>html2ps</code> knows how to paginate correctly. Perhaps not
+          useful to most but helpful to those who rely on it for printing, and
+          harmless.
         </p>
         <p>
-          If for whatever reason you wish to have no table of contents, simply set
-          <code><a>noTOC</a></code> to <code>true</code>.
+          If for whatever reason you wish to have no table of contents, simply
+          set <code><a>noTOC</a></code> to <code>true</code>.
         </p>
       </section>
       <section>
-        <h2>Figures</h2>
+        <h2>
+          Figures
+        </h2>
         <p>
-          Figures are also supported natively, using the <code>figure</code> and <code>figcaption</code>
-          elements, and exhibit some features similar to sections. They are automatically granted an
-          ID, and the caption is remembered for use elsewhere, as described below.
+          Figures are also supported natively, using the <code>figure</code>
+          and <code>figcaption</code> elements, and exhibit some features
+          similar to sections. They are automatically granted an ID, and the
+          caption is remembered for use elsewhere, as described below.
         </p>
         <p>
-          The Table of Figures is not generated by default, but making it happen is straightforward:
-          all you need to do is add a section with ID <code>tof</code> anywhere in the document.
-          ReSpec will do its best to guess if it should be an appendix, introductory, or just a
-          regular section. Because the list has no depth, there is no equivalent to
+          The Table of Figures is not generated by default, but making it
+          happen is straightforward: all you need to do is add a section with
+          ID <code>tof</code> anywhere in the document. ReSpec will do its best
+          to guess if it should be an appendix, introductory, or just a regular
+          section. Because the list has no depth, there is no equivalent to
           <a>maxTocLevel</a>.
         </p>
         <p>
-          And finally, automatic linking to figures works just as it does for sections, with
-          <code>&lt;a href='#foo-figures'>&lt;/a></code>. All of the above is demonstrated in the
-          example.
+          And finally, automatic linking to figures works just as it does for
+          sections, with <code>&lt;a href='#foo-figures'&gt;&lt;/a&gt;</code>.
+          All of the above is demonstrated in the example.
         </p>
       </section>
       <section>
-        <h2>Examples &amp; Syntax Highlighting</h2>
+        <h2>
+          Examples & Syntax Highlighting
+        </h2>
         <p>
-          Any <code>pre</code> or <code>aside</code> element that has the <code>example</code> class
-          on it will get the additional example header and style. Additionally, if a
-          <code>highlight</code> class is added to the same, the content will get syntax
-          highlighted. The syntax highlighter does not need to be instructed about which language it
-          is highlighting and will try to do a decent job of guessing.
+          Any <code>pre</code> or <code>aside</code> element that has the
+          <code>example</code> class on it will get the additional example
+          header and style. Content inside <code>pre</code> elements is syntax
+          highlighted. The syntax highlighter does not need to be instructed
+          about which language it is highlighting and will try to do a decent
+          job of guessing.
         </p>
         <p>
-          You can also use <code>highlight</code> on <code>code</code> elements. If the highlighting
-          is insufficient for your needs, or in the wrong colours, you can override the applicable
-          styles in your own style sheet.
+          You can disable syntax highlighting on a <code>pre</code> element by
+          adding a "nohighlight" class.
         </p>
       </section>
       <section>
-        <h2>Inclusions &amp; Transformations</h2>
+        <h2>
+          Inclusions & Transformations
+        </h2>
         <p>
-          At times you need to include an external resource directly into your document. This may be
-          because your specifications have additional boilerplate, or (like it's done in this very
-          guide) because you want examples to be both inlined and accessed directly without having
-          to make sure that they are always in sync.
+          At times you need to include an external resource directly into your
+          document. This may be because your specifications have additional
+          boilerplate, or (like it's done in this very guide) because you want
+          examples to be both inlined and accessed directly without having to
+          make sure that they are always in sync.
         </p>
         <p>
-          Inclusion of external content in ReSpec is done using the <code><a>data-include</a></code>
-          attribute. It is expected to point to a resource, using its relative path from the
-          including document. The content will get included as a child of the element on which the
-          inclusion is performed (unless <a>data-include-replace</a> is used, in which case it
-          replaces the element), replacing its existing content.
+          Inclusion of external content in ReSpec is done using the
+          <code><a>data-include</a></code> attribute. It is expected to point
+          to a resource, using its relative path from the including document.
+          The content will get included as a child of the element on which the
+          inclusion is performed (unless <a>data-include-replace</a> is used,
+          in which case it replaces the element), replacing its existing
+          content.
         </p>
         <p>
-          The include filter runs recursively so that included content that contains
-          <code><a>data-include</a></code> attributes will work (just be sure not to build a circular loop
-          in there, ReSpec won't detect it if only because it doesn't mind if you're shooting yourself in
-          the foot).
+          The include filter runs recursively so that included content that
+          contains <code><a>data-include</a></code> attributes will work (just
+          be sure not to build a circular loop in there, ReSpec won't detect it
+          if only because it doesn't mind if you're shooting yourself in the
+          foot).
         </p>
         <p>
-          By default the inclusion is asynchronous, which means that the included content may or may
-          not be further processed by ReSpec after it gets added to the DOM (the result won't be
-          deterministic and so is only useful if the content is <em>not</em> meant to be further
-          processed). If you wish to ensure that ReSpec processing is applied to the content, use
-          <code><a>data-include-sync</a></code>. Be warned that there is a steep performance penalty
-          in doing so, since all ReSpec processing will effectively pause until the content has been
+          By default the inclusion is asynchronous, which means that the
+          included content may or may not be further processed by ReSpec after
+          it gets added to the DOM (the result won't be deterministic and so is
+          only useful if the content is <em>not</em> meant to be further
+          processed). If you wish to ensure that ReSpec processing is applied
+          to the content, use <code><a>data-include-sync</a></code>. Be warned
+          that there is a steep performance penalty in doing so, since all
+          ReSpec processing will effectively pause until the content has been
           fully fetched and inserted.
         </p>
         <p>
-          In the processing pipeline, inclusion happens right after everything to do with the document's
-          headers, style, and transformations have happened, which means that all the processing to do
-          with structure, inlines, WebIDL, and everything else is applied to the included content as if it
-          had always been part of the source.
+          In the processing pipeline, inclusion happens right after everything
+          to do with the document's headers, style, and transformations have
+          happened, which means that all the processing to do with structure,
+          inlines, WebIDL, and everything else is applied to the included
+          content as if it had always been part of the source.
         </p>
         <p>
-          At times however one does not wish included content to be processed as if it were intended
-          to be ReSpec content. For instance, content containing HTML may be an example that should
-          not be processed (the examples in this document are included that way). In such cases, you
-          can specify <code><a>data-include-format</a>='text'</code>. This will include the content
-          as if it were text, and therefore only process it as much as text is expected to be. The
-          only recognised value is <code>text</code>, nominally you can always set it to
+          At times however one does not wish included content to be processed
+          as if it were intended to be ReSpec content. For instance, content
+          containing HTML may be an example that should not be processed (the
+          examples in this document are included that way). In such cases, you
+          can specify <code><a>data-include-format</a>='text'</code>. This will
+          include the content as if it were text, and therefore only process it
+          as much as text is expected to be. The only recognised value is
+          <code>text</code>, nominally you can always set it to
           <code>html</code> but that's the default value.
         </p>
         <p>
-          There is an important caveat to take into account with the <code>data-include</code>
-          functionality. ReSpec is designed so as to make life easier on editors. Because of that,
-          people who do not wish to run a local web server and simply want to edit and refresh the
-          specification they're working on from their local drives, using a <code>file:</code> URI
-          in the browser, are completely supported in doing so (this involves some trickery behind
-          the scenes since it would normally make it impossible to load some of the content that
-          ReSpec uses — but that's not something you should ever have to know). When using
-          <code>data-include</code> however, this is no longer possible. You either have to serve
-          your ReSpec content from a web server or the included content will get blocked by the
-          same-origin policy (which applies to all things <code>file:</code>). There is,
-          unfortunately, no easy way to work around this. Be sure to note however that if you're
-          <em>not</em> using <code>data-include</code>, you <em>never</em> have to worry about this.
+          There is an important caveat to take into account with the
+          <code>data-include</code> functionality. ReSpec is designed so as to
+          make life easier on editors. Because of that, people who do not wish
+          to run a local web server and simply want to edit and refresh the
+          specification they're working on from their local drives, using a
+          <code>file:</code> URI in the browser, are completely supported in
+          doing so (this involves some trickery behind the scenes since it
+          would normally make it impossible to load some of the content that
+          ReSpec uses — but that's not something you should ever have to know).
+          When using <code>data-include</code> however, this is no longer
+          possible. You either have to serve your ReSpec content from a web
+          server or the included content will get blocked by the same-origin
+          policy (which applies to all things <code>file:</code>). There is,
+          unfortunately, no easy way to work around this. Be sure to note
+          however that if you're <em>not</em> using <code>data-include</code>,
+          you <em>never</em> have to worry about this.
         </p>
         <p>
-          Finally, at times, you may wish to perform a quick and dirty transformation of some of
-          your content. If the transformation is one that is commonly used and could be of general
-          usefulness outside your own specification, then the proper way of handling it is to add
-          the functionality to ReSpec itself. However, in a pinch, this approach will work as well.
-          The way in which it is done is that you include a globally available Javascript function
-          that takes the ReSpec <code>utils</code> object as its first parameter and a string of the
-          content to be transformed as its second; then returns the processed value. Then where you
-          wish the transformation to apply, you place a <code><a>data-transform</a></code> attribute
-          — it will then process the entire content. The value of <code><a>data-transform</a></code>
-          is a white space separated list of JavaScript function names. They are applied left to
-          right, as if they were a pipeline. Again, I would like to stress that, in general, that is
-          not the recommended approach.
+          Finally, at times, you may wish to perform a quick and dirty
+          transformation of some of your content. If the transformation is one
+          that is commonly used and could be of general usefulness outside your
+          own specification, then the proper way of handling it is to add the
+          functionality to ReSpec itself. However, in a pinch, this approach
+          will work as well. The way in which it is done is that you include a
+          globally available Javascript function that takes the ReSpec
+          <code>utils</code> object as its first parameter and a string of the
+          content to be transformed as its second; then returns the processed
+          value. Then where you wish the transformation to apply, you place a
+          <code><a>data-transform</a></code> attribute — it will then process
+          the entire content. The value of <code><a>data-transform</a></code>
+          is a white space separated list of JavaScript function names. They
+          are applied left to right, as if they were a pipeline. Again, I would
+          like to stress that, in general, that is not the recommended
+          approach.
         </p>
         <p>
-          If you wish to transform content brought in with <code><a>data-include</a></code>
-          irrespective of whether it is loaded synchronously or not, use
-          <code><a>data-oninclude</a></code>. It behaves exactly like
-          <code><a>data-transform</a></code> except that the function gets a third parameter
-          indicating the relative URL from which the content was loaded
+          If you wish to transform content brought in with
+          <code><a>data-include</a></code> irrespective of whether it is loaded
+          synchronously or not, use <code><a>data-oninclude</a></code>. It
+          behaves exactly like <code><a>data-transform</a></code> except that
+          the function gets a third parameter indicating the relative URL from
+          which the content was loaded
         </p>
       </section>
     </section>
-
     <section>
-      <h2>Common Inline Processing</h2>
+      <h2>
+        Common Inline Processing
+      </h2>
       <p>
-        Many repetitive tasks happen at the level of inline text, and ReSpec helps with those as
-        well. This chapter covers references, along with the <a
-        href='https://github.com/tobie/specref'>SpecRef database</a>, the handling of
-        abbreviations and acronyms, automatic RFC 2119 keyword detection, <code>dfn</code>
-        definitions, and easier in-document linking.
+        Many repetitive tasks happen at the level of inline text, and ReSpec
+        helps with those as well. This chapter covers references, along with
+        the <a href='https://github.com/tobie/specref'>SpecRef database</a>,
+        the handling of abbreviations and acronyms, automatic RFC 2119 keyword
+        detection, <code>dfn</code> definitions, and easier in-document
+        linking.
       </p>
-      <pre class="example highlight" data-include='examples/inlines.html' data-include-format='text'></pre>
+      <pre class="example" data-include='examples/inlines.html'
+      data-include-format='text'></pre>
       <p>
         You can <a href='examples/inlines.html'>see this example in action</a>.
       </p>
       <section>
-        <h2>RFC 2119</h2>
+        <h2>
+          RFC 2119
+        </h2>
         <p>
-          A very common construct in specifications is to use keywords defined in RFC 2119 which
-          indicate precisely, using commonly agreed conventions, what requirements are placed on an
-          implementation with what degree of strength (e.g., MUST, SHOULD NOT). All you need to do as
-          an author is to include an all-caps MUST in your source and it will automatically get
-          marked up as such (with the accompanying style applied to it afterwards).
+          A very common construct in specifications is to use keywords defined
+          in RFC 2119 which indicate precisely, using commonly agreed
+          conventions, what requirements are placed on an implementation with
+          what degree of strength (e.g., MUST, SHOULD NOT). All you need to do
+          as an author is to include an all-caps MUST in your source and it
+          will automatically get marked up as such (with the accompanying style
+          applied to it afterwards).
         </p>
       </section>
       <section>
-        <h2>Abbreviations &amp; Acronyms</h2>
+        <h2>
+          Abbreviations & Acronyms
+        </h2>
         <p>
-          HTML supports functionality to mark abbreviations and acronyms (using <code>abbr</code>
-          and <code>acronym</code> respectively), using the <code>title</code> attribute to provide
-          the expanded version. This is something that's nice to do once, but tedious to repeat
-          every time that a given term is used. What ReSpec does is that it allows you to do it just
-          once, and it will detect all other uses of the same in the text and will automatically
-          mark them up in the same way.
+          HTML supports functionality to mark abbreviations and acronyms (using
+          <code>abbr</code> and <code>acronym</code> respectively), using the
+          <code>title</code> attribute to provide the expanded version. This is
+          something that's nice to do once, but tedious to repeat every time
+          that a given term is used. What ReSpec does is that it allows you to
+          do it just once, and it will detect all other uses of the same in the
+          text and will automatically mark them up in the same way.
         </p>
         <p>
-          Note that ReSpec could not possibly care less about whether you think that
-          <code>acronym</code> is a valid element or not; if you use it, it will process it.
+          Note that ReSpec could not possibly care less about whether you think
+          that <code>acronym</code> is a valid element or not; if you use it,
+          it will process it.
         </p>
       </section>
       <section id="definitions-and-linking">
-        <h2>Definitions and Linking</h2>
+        <h2>
+          Definitions and Linking
+        </h2>
         <p>
-          HTML also supports the notion that you can give a term's definition using the
-          <code>dfn</code> element. While that is nice, it is even better to link back to the
-          definition whenever a term is used, which in turn is tedious. While ReSpec could go
-          through the entire text and link every occurrence of a defined term back to its
-          definition, that would be a problematic approach since it would risk linking the same term
-          used with a different meaning. What it does instead is that it allows you to use an
-          <code>href</code>-less <code>a</code> element around a term when you use it, and it will
-          manage the link on its own (e.g., <code>&lt;a>term&lt;/a></code>).
+          HTML also supports the notion that you can give a term's definition
+          using the <code>dfn</code> element. While that is nice, it is even
+          better to link back to the definition whenever a term is used, which
+          in turn is tedious. While ReSpec could go through the entire text and
+          link every occurrence of a defined term back to its definition, that
+          would be a problematic approach since it would risk linking the same
+          term used with a different meaning. What it does instead is that it
+          allows you to use an <code>href</code>-less <code>a</code> element
+          around a term when you use it, and it will manage the link on its own
+          (e.g., <code>&lt;a&gt;term&lt;/a&gt;</code>).
         </p>
         <p>
-          On occasion that won't be enough since you may be using the term in plural or conjugated,
-          or in some other variant that does not exactly match the <code>dfn</code>. If so, then you
-          can use the <code>data-lt</code> attribute on the <code>a</code> element in order to
-          indicate the exact term that you wish to have a link to (the mnemonic here being "link term").
-          Alternately, and more interestingly, 
-          you can specify a <code>data-lt</code> attribute on the associated <code>dfn</code> element with 
-          variants of the spelling of the term separated by vertical bars
-          (e.g., <code>data-lt="the term|the terms|terms"</code>).
+          On occasion that won't be enough since you may be using the term in
+          plural or conjugated, or in some other variant that does not exactly
+          match the <code>dfn</code>. If so, then you can use the
+          <code>data-lt</code> attribute on the <code>a</code> element in order
+          to indicate the exact term that you wish to have a link to (the
+          mnemonic here being "link term"). Alternately, and more
+          interestingly, you can specify a <code>data-lt</code> attribute on
+          the associated <code>dfn</code> element with variants of the spelling
+          of the term separated by vertical bars (e.g., <code>data-lt="the
+          term|the terms|terms"</code>).
         </p>
         <p>
-          Also note that the <code>href</code>-less <code>a</code> element is not limited to linking
-          to definitions but also knows how to link to other items such as WebIDL interfaces.
+          Also note that the <code>href</code>-less <code>a</code> element is
+          not limited to linking to definitions but also knows how to link to
+          other items such as WebIDL interfaces.
         </p>
-        <p class="note" title="title attribute deprecated">In earlier versions of ReSpec, it was possible
-        to use the <code>title</code> attribute to specify the link title for a definition or a reference
-        to a definition.  This is now <em>deprecated</em> and support for it will be removed in a future
-        version of ReSpec.  Please migrate to using the <code>data-lt</code> attribute.  This is consistent with
-        Bikeshed (another popular publication tool) and will allow the use of the <code>title</code> attribute
-        for other, more appropriate things in the future.</p>
-      </section>
-      <section>
-        <h2>References</h2>
-        <p>
-          Specifications typically need to have references to other specifications on which they
-          build to define their own technology. Managing references is a pain, as is linking to them
-          every time that they are mentioned.
-        </p>
-        <p>
-          ReSpec takes the pain out of this with multiple features that are used together. First,
-          when you need to refer to a given specification in the body of the text, simply do so
-          using <code>[[<span>FOO</span>]]</code> for informative references (those that are just
-          intended to clarify the matter at hand) and <code>[[!<spac>FOO</spac>]]</code> for
-          normative ones (those which are required for the implementation of the specification at
-          hand). ReSpec will replace those with the link the reference and the appropriate markup
-          around it.
-        </p>
-        <p>
-          Then, using all the collected references from the document, ReSpec will generate a
-          “References” section with subsections for normative and informative references (when they
-          appear). Inside the latter, it will place the relevant bibliographical data for those
-          references, using the conventional markup.
-        </p>
-        <p>
-          References are loaded from a shared database that is maintained by a group of volunteers.
-          If you need a reference that is not in the database, then the right thing to do is to
-          submit it for inclusion so that others can benefit from it too. However, if that is not
-          possible then you can make use of the <a>localBiblio</a> configuration option.
-        </p>
-        <p>
-          If you wish the “References” section to be prefaced with some text, you can set the
-          <a>refNote</a> option to the content you wish to use, as in <a
-          href='examples/inlines.html?refNote=Some%20text%20inserted%20here'>this example</a>.
-        </p>
-        <p>
-          The only things you therefore need to know for references are the reference names of the
-          specifications you wish to refer to (as well as to how to add your own to the database).
-          The names are usually rather logical, and most of the time can be guessed. In other cases,
-          you can go look for them in the central bibliographical database that is maintained at <a
-          href='https://github.com/tobie/specref'>SpecRef database</a>.
-        </p>
-        <p>
-          If you ever want to use <code>[[\TextInDoubleBrackets]]</code> that doesn't represent
-          a reference, for example to represent an
-          <a href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-internal-methods-and-internal-slots">ECMAScript
-          internal slot</a>, write it as <code>[[<span>\InternalSlot</span>]]</code>.
+        <p class="note" title="title attribute deprecated">
+          In earlier versions of ReSpec, it was possible to use the
+          <code>title</code> attribute to specify the link title for a
+          definition or a reference to a definition. This is now
+          <em>deprecated</em> and support for it will be removed in a future
+          version of ReSpec. Please migrate to using the <code>data-lt</code>
+          attribute. This is consistent with Bikeshed (another popular
+          publication tool) and will allow the use of the <code>title</code>
+          attribute for other, more appropriate things in the future.
         </p>
       </section>
-      
       <section>
-        <h2>Best Practice Documents</h2>
+        <h2>
+          References
+        </h2>
         <p>
-          Best practices may be shown, numbered, and formatted using a <code>div</code> with class
-          <code><a>practice</a></code> containing a <code>p > span.<a>practicelab</a></code> with
-          the practice's title and a <code>p.<a>practicedesc</a></code> with description of the
+          Specifications typically need to have references to other
+          specifications on which they build to define their own technology.
+          Managing references is a pain, as is linking to them every time that
+          they are mentioned.
+        </p>
+        <p>
+          ReSpec takes the pain out of this with multiple features that are
+          used together. First, when you need to refer to a given specification
+          in the body of the text, simply do so using
+          <code>[[<span>FOO</span>]]</code> for informative references (those
+          that are just intended to clarify the matter at hand) and
+          <code>[[!<span>FOO</span>]]</code> for normative ones (those which
+          are required for the implementation of the specification at hand).
+          ReSpec will replace those with the link the reference and the
+          appropriate markup around it.
+        </p>
+        <p>
+          Then, using all the collected references from the document, ReSpec
+          will generate a “References” section with subsections for normative
+          and informative references (when they appear). Inside the latter, it
+          will place the relevant bibliographical data for those references,
+          using the conventional markup.
+        </p>
+        <p>
+          References are loaded from a shared database that is maintained by a
+          group of volunteers. If you need a reference that is not in the
+          database, then the right thing to do is to submit it for inclusion so
+          that others can benefit from it too. However, if that is not possible
+          then you can make use of the <a>localBiblio</a> configuration option.
+        </p>
+        <p>
+          If you wish the “References” section to be prefaced with some text,
+          you can set the <a>refNote</a> option to the content you wish to use,
+          as in <a href=
+          'examples/inlines.html?refNote=Some%20text%20inserted%20here'>this
+          example</a>.
+        </p>
+        <p>
+          The only things you therefore need to know for references are the
+          reference names of the specifications you wish to refer to (as well
+          as to how to add your own to the database). The names are usually
+          rather logical, and most of the time can be guessed. In other cases,
+          you can go look for them in the central bibliographical database that
+          is maintained at <a href='https://github.com/tobie/specref'>SpecRef
+          database</a>.
+        </p>
+        <p>
+          If you ever want to use <code>[[\TextInDoubleBrackets]]</code> that
+          doesn't represent a reference, for example to represent an <a href=
+          "http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object-internal-methods-and-internal-slots">
+          ECMAScript internal slot</a>, write it as
+          <code>[[<span>\InternalSlot</span>]]</code>.
+        </p>
+      </section>
+      <section>
+        <h2>
+          Best Practice Documents
+        </h2>
+        <p>
+          Best practices may be shown, numbered, and formatted using a
+          <code>div</code> with class <code><a>practice</a></code> containing a
+          <code>p &gt; span.<a>practicelab</a></code> with the practice's title
+          and a <code>p.<a>practicedesc</a></code> with description of the
           practice.
         </p>
         <p>
-          This feature is rarely used, and likely needs to be updated. If you wish to use it in
-          anger, please contact me and we can improve support for it.
+          This feature is rarely used, and likely needs to be updated. If you
+          wish to use it in anger, please contact me and we can improve support
+          for it.
         </p>
         <pre class='example'>
 &lt;div class="practice"&gt;
@@ -782,175 +961,87 @@
 &lt;/div&gt;
         </pre>
         <p>
-          If a <code>section</code> element with <code>id</code> "<code>bp-summary</code>" is present,
-          then a summary list of best practices will be placed in it, linked to the best practices
-          that have an id on the <code>span</code> element.
+          If a <code>section</code> element with <code>id</code>
+          "<code>bp-summary</code>" is present, then a summary list of best
+          practices will be placed in it, linked to the best practices that
+          have an id on the <code>span</code> element.
         </p>
         <pre class="example">
           &lt;section id='bp-summary'&gt;&lt;/section&gt;
         </pre>
       </section>
     </section>
-
     <section>
-      <h2>Creating a Static Snapshot</h2>
+      <h2>
+        Creating a Static Snapshot
+      </h2>
       <p>
-        Of course the downside of the approach taken by ReSpec is that the specification as it is
-        expected to be, with all its bells and whistles, exists only in your browser's memory as a
-        DOM. Publishing directly with the script would not work as the source would not pass
-        PubRules and would work poorly with search engines that do not process JS (also people
-        generally frown upon reference documents that do not work without JavaScript). does not work
-        for all browsers (and there are still quite a few people using Internet Explorer out there)
-        and would not show all the content for search indexing.
+        Of course the downside of the approach taken by ReSpec is that the
+        specification as it is expected to be, with all its bells and whistles,
+        exists only in your browser's memory as a DOM. Publishing directly with
+        the script would not work as the source would not pass PubRules and
+        would work poorly with search engines that do not process JS (also
+        people generally frown upon reference documents that do not work
+        without JavaScript). does not work for all browsers (and there are
+        still quite a few people using Internet Explorer out there) and would
+        not show all the content for search indexing.
       </p>
       <p>
-        The solution that is used here is that you hit the <code>Ctrl+Shift+Alt+S</code> key
-        combination. Unless you know what you are doing, pick "Save as HTML (Source)". This will
-        produce a dump of the generated source, which you can paste into the document you want to be
-        your specification snapshot. The process is a little bit tedious, but normally you should
-        only need to do it very rarely. You can hit <code>Esc</code> to hide the menu.
+        The solution that is used here is that you hit the
+        <code>Ctrl+Shift+Alt+S</code> key combination. Unless you know what you
+        are doing, pick "Save as HTML (Source)". This will produce a dump of
+        the generated source, which you can paste into the document you want to
+        be your specification snapshot. The process is a little bit tedious,
+        but normally you should only need to do it very rarely. You can hit
+        <code>Esc</code> to hide the menu.
       </p>
       <p>
-        If you have a copy of the ReSpec repository handy, you may see that there is also a
-        <code>respec2html.js</code> tool under <code>tools/</code>. Feel free to try using it
-        instead of the above process, but please note that it is not used much currently and may
-        behave in a somewhat experimental manner (experiences with it vary — but it's worth a shot
-        if you're looking for a way to generate ReSpec output from the command line).
+        If you have a copy of the ReSpec repository handy, you may see that
+        there is also a <code>respec2html.js</code> tool under
+        <code>tools/</code>. Feel free to try using it instead of the above
+        process, but please note that it is not used much currently and may
+        behave in a somewhat experimental manner (experiences with it vary —
+        but it's worth a shot if you're looking for a way to generate ReSpec
+        output from the command line).
       </p>
       <p>
-        ReSpec is also capable of producing a diff-marked version if you have a configuration
-        setting of <a>previousDiffURI</a> set to a document to compare to (which defaults to
-        <a>previousURI</a>). When you press that button, you will obtained a diffmarked version
-        instead of a regular specification. By default, the diff tool is set to
-        <code>http://www.aptest.com/standards/htmldiff/htmldiff.pl</code>, but you can override this
-        by setting <a>diffTool</a>.
+        ReSpec is also capable of producing a diff-marked version if you have a
+        configuration setting of <a>previousDiffURI</a> set to a document to
+        compare to (which defaults to <a>previousURI</a>). When you press that
+        button, you will obtained a diffmarked version instead of a regular
+        specification. By default, the diff tool is set to
+        <code>http://www.aptest.com/standards/htmldiff/htmldiff.pl</code>, but
+        you can override this by setting <a>diffTool</a>.
       </p>
     </section>
-
     <section>
-      <h2>WebIDL Support</h2>
+      <h2>
+        WebIDL Support
+      </h2>
       <p>
-        This chapter is about WebIDL, the schema language for APIs. ReSpec has extensive WebIDL
-        support, but naturally if you're not writing an API specification then you can definitely
-        save yourself the trouble and skip this section.
+        This chapter is about WebIDL, the binding language for APIs. ReSpec has
+        extensive WebIDL support, but naturally if you're not writing an API
+        specification then you can definitely save yourself the trouble and
+        skip this section.
       </p>
       <p>
-        ReSpec supports two ways to write IDL and link it to documentation:
-        contiguously in <code>&lt;pre class="idl"></code> blocks, or structured
-        in <code>&lt;dl class="idl"></code> trees.
+        ReSpec allows you to write WebIDL into pre blocks. Simply :
       </p>
-
-      <section id="contiguous-idl">
-        <h2>Contiguous IDL</h2>
-
-        <p>
-          Contiguous IDL uses the <a href="https://github.com/darobin/webidl2.js/">webidl2.js</a> parser,
-          and supports everything it can parse. See the <a href="examples/webidl-contiguous.html">Contiguous
-          IDL document</a> for an introduction and exhaustive examples.
-        </p>
-      </section>
-
-      <section>
-        <h2>IDL in trees</h2>
-
-        <p class='note'>
-          This mode is getting old compared to current practices. In most cases it
-          is still serviceable, but <a href="#contiguous-idl"></a> supports more
-          modern IDL.
-        </p>
-        <p>
-          The issues with editing WebIDL by hand are as follow:
-        </p>
-        <ul>
-          <li>
-            while evolving an API, it is easy to get the WebIDL proper and the accompanying prose out
-            of sync;
-          </li>
-          <li>
-            proper linking from WebIDL to content and back is often too tedious to be done in full;
-          </li>
-          <li>
-            syntax highlighting is generally given up on, at a cost in readability.
-          </li>
-        </ul>
-        <p>
-          ReSpec does its best to provide all three of the above at a minimal cost. It does that by
-          destructuring the WebIDL syntax so as to make it easy to keep definition and documentation
-          together.
-        </p>
-        <p>
-          The approach is simple. An interface is defined using a <code>dl</code> element, with a
-          <code>class</code> of "<code>idl</code>" and a <code>title</code> attribute that is the
-          defining line for the interface, for instance <code>[Constructor] interface Dahut : Mammal,
-          Cryptoid</code> or <code>exception Boom</code>.
-        </p>
-        <p>
-          Inside the <code>dl</code>, each <code>dt</code>/<code>dd</code> pair defines an interface
-          member (attribute, constant, operation). The content of the <code>dt</code> element is the
-          line that defines the member (e.g., <code>readonly attribute DOMString chirality</code> or
-          <code>void yell ([AllowAny] unsigned long volume, [TreatNullAs=EmptyString] DOMString
-          sentence)</code>); and the <code>dd</code> element contains the description in HTML.
-        </p>
-        <p>
-          This format has the advantage of keeping information well-grouped together, using HTML
-          markup for the most part (so that even WYSIWYG editors can be used), while being simple
-          to parse and sufficiently expressive for most needs (especially as more features are
-          added).
-        </p>
-        <p>
-          The output that is generated replaces the <code>dl</code> with a syntax-highlighted and
-          linked WebIDL segment with all the members for the given interface in the order in which
-          they were defined; followed by subsections listing attributes, constants, and methods
-          in alphabetical order.
-        </p>
-        <p>
-          An example will probably speak more clearly. Here is an interface that inherits from another
-          before defining some constants, attributes, and operations.
-        </p>
-        <pre class='example highlight'>
-&lt;dl title='[Constructor] interface Dahut : Mammal' class='idl'>
-  &lt;dt>const unsigned short LEVROGYROUS = 0&lt;/dt>
-  &lt;dd>
-    Turning left.
-  &lt;/dd>
-  &lt;dt>const unsigned short DEXTROGYROUS = 1&lt;/dt>
-  &lt;dd>
-    Turning right.
-  &lt;/dd>
-  &lt;dt>readonly attribute DOMString chirality&lt;/dt>
-  &lt;dd>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit (...)
-  &lt;/dd>
-  &lt;dt>attribute unsigned long age&lt;/dt>
-  &lt;dd>
-     Ut enim ad minim veniam, quis nostrud exercitation (...)
-  &lt;/dd>
-  &lt;dt>Dahut turnAround (float angle, boolean fall)&lt;/dt>
-  &lt;dd>
-    Duis aute irure dolor in reprehenderit in voluptate (...)
-  &lt;/dd>
-  &lt;dt>unsigned long trip ()&lt;/dt>
-  &lt;dd>
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa (...)
-  &lt;/dd>
-  &lt;dt>void yell ([AllowAny] unsigned long volume,
-                    [TreatNullAs=EmptyString] DOMString sentence)&lt;/dt>
-  &lt;dd>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit (...)
-  &lt;/dd>
-&lt;/dl></pre>
-        <p>
-          Most WebIDL constructs are supported. The best way to learn is likely to look at the
-          <a href='examples/webidl.html'>WebIDL examples document</a> and to compare the source with
-          the generated output.
-        </p>
-        <p>
-          At times you may wish to have multiple WebIDL constructs shown in a single section instead
-          of spread across several. For that, you can use the <code><a>data-merge</a></code>
-          attribute. It contains a white space separated list of WebIDL object names to be merged with
-          the interface.
-        </p>
-      </section>
+      <pre class="example" title="WebIDL example">
+      &lt;pre&gt;
+      interface Foo(){
+        readonly attribte bar;
+        Promise toDoSomething(Thing withThing);
+      };
+      dictionary Things{
+        color;
+      };
+      &lt;pre&gt;
+      </pre>
+      <p>
+        See the <a href="examples/webidl-contiguous.html">Contiguous IDL
+        document</a> for an introduction and exhaustive examples.
+      </p>
     </section>
   </body>
 </html>

@@ -3,216 +3,214 @@
   <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width'>
-    <title>ReSpec: Developer's Guide</title>
-    <script src='js/beryl-config.js' class='remove'></script>
-    <script src='js/beryl.min.js' async class='remove'></script>
-    <!-- <script src='node_modules/respec/js/require.js' data-main='beryl/beryl' async class='remove'></script> -->
+    <title>
+      ReSpec - Spec Generator
+    </title>
+    <script src='js/beryl-config.js' class='remove'>
+    </script>
+    <script src='js/beryl.min.js' class='remove'>
+    </script>
+    <link rel='stylesheet' href='css/beryl.css'>
   </head>
   <body>
     <section>
       <p>
-        ReSpec v3 is composed of many small and (mostly) simple plugins that perform one task
-        (sometimes two) and do that well. You can think of it as a set of small Unix command-line
-        utilities through which content is piped (except that in some cases they can operate
-        asynchronously). Removing or adding plugins is trivial, and defining new ones is very
-        simple. The only difficulty is that there are quite a few files and that you need to know
-        where to look for what. This guide will explain the basic layout and architecture,
-        introduce you to writing plugins, and tell you how to create your own ReSpec profile so as
-        to be able to edit your own document types.
+        ReSpec is a tool that makes writing specifications easier.
+        Specifications tend to follow all manners of formalism, and in some
+        cases will follow a strict set of conventions (e.g. W3C's "PubRules").
+        As an editor, you focus on actual features and correctness, ReSpec
+        handle the likes of styling, referential integrity, bibliographical
+        data, and a whole set of other dragons.
       </p>
     </section>
-
     <div id='toc'></div>
-
     <section>
-      <h2>Project Basics</h2>
+      <h2>
+        Concepts
+      </h2>
       <p>
-        The source for ReSpec can be found at <a
-        href='https://github.com/w3c/respec/'>https://github.com/w3c/respec/</a>. That is
-        also where issues and pull requests are made. More general discussion about ReSpec
-        development takes place on <a href='mailto:spec-prod@w3.org'>spec-prod@w3.org</a> (<a
-        href='http://lists.w3.org/Archives/Public/spec-prod/'>archives</a>, <a
-        href='mailto:spec-prod-request@w3.org?Subject=subscribe'>subscribe</a>).
+        The fundamental ideas that underlie ReSpec are:
       </p>
-      <section>
-        <h2>How to contribute</h2>
-        <p>
-          ReSpec has a healthy and lively contributor base and we are happy for you to join the
-          gang. You certainly are welcome to submit whatever change you wish to. Note however that
-          if it is a complex feature or add substantial syntax to the language please try to
-          coordinate with others first to avoid working long on something that will then be
-          rejected).
-        </p>
-        <p>
-          If you're familiar with GitHub then contributing is simple: just fork and make pull
-          requests. Please just be careful to note that the primary branch is <code>gh-pages</code>
-          and not <code>master</code> (this ensures that the result gets published on the Web).
-          <em>More importantly</em>, please note that the development branch is
-          <code>develop</code>. If you are making patches and pull requests, please base them off
-          this branch.
-        </p>
-        <p>
-          If you're not familiar with GitHub, you need to follow the following steps:
-        </p>
-        <ul>
-          <li>
-            Get a GitHub account. This is done quickly, and the GH people will not bother you at
-            all. Plus, it's pretty much a requirement for the majority of OSS communities these
-            days.
-          </li>
-          <li>
-            If all you want to make is a small, simple change, you can use the Web interface.
-            Navigate to the file that you want to change, click “Edit this file” in the toolbar,
-            then save your changes — they will get sent to the project for approval (which ought to
-            be quick).
-          </li>
-          <li>
-            If you wish to make more complex changes, you will need to fork the project (click
-            “Fork”), clone the resulting repository, make the changes there, and push it back. Then
-            click the “Pull Request” button. This allows you to request that the project integrate
-            your changes. Those should normally get processed relatively fast (depending on how
-            complex they are).
-          </li>
-        </ul>
-        <p>
-          If you have an existing fork, please make sure to synchronise it with the upstream
-          repository before you make a pull request.
-        </p>
-      </section>
-      <section>
-        <h2>Running the test suite</h2>
-        <p>
-          ReSpec runs a number of high level, end-to-end tests using <a
-          href='http://jasmine.github.io/'>Jasmine</a>. These tests are run by <a
-          href='https://travis-ci.org/w3c/respec'>Travis</a>, a hosted continuous integration
-          solution, on each pull requests.
-        </p>
-        <p>
-          There are two options to run these tests locally: in a browser or using <a
-          href='http://phantomjs.org/'>PhantomJS</a>.
-        </p>
-        <section>
-          <h2>In a browser</h2>
-          <p>
-            The tests need to be served using a proper Web server, from the root of the repository
-            to function properly. Any server will do. For instance, if you're one of those people
-            who like Python, this will work:
-          </p>
-          <pre class='example highlight'>
-            $ cd /path/to/repo/
-            $ python -m SimpleHTTPServer
-            Serving HTTP on 0.0.0.0 port 8000 ...
-          </pre>
-          <p>
-            Navigating to <code>http://localhost:8000/tests/SpecRunner.html</code> with any recent
-            browser will launch the test suite.
-          </p>
-        </section>
-        <section>
-          <h2>In PhantomJS</h2>
-          <p>
-            PhantomJS is a headless, WebKit-based browser. It allows running the tests directly from
-            the command line.
-          </p>
-          <p>
-            In order to run the test from the command line, you need to <a
-            href='https://nodejs.org/download/'>install Node</a>, <a
-            href='https://npmjs.org/'>npm</a> and <a
-            href='http://phantomjs.org/download.html'>PhantomJS</a>. <em>Note that npm comes bundled
-            with recent versions of Node.</em>
-          </p>
-          <p>
-            Once these dependencies are installed, running the test suite should be as simple as:
-          </p>
-          <pre class='highlight'>$ npm test</pre>
-        </section>
-      </section>
-    </section>
-    
-    <section>
-      <h2>Building ReSpec</h2>
+      <dl>
+        <dt>
+          It's Just HTML
+        </dt>
+        <dd>
+          You just edit HTML, with some extra convention but nothing extra. All
+          the decoration is performed by the script, informed by some very
+          basic configuration. There is a simple <a href=
+          'examples/template.html'>template</a> that you can use to get
+          started.
+        </dd>
+        <dt>
+          No Tool
+        </dt>
+        <dd>
+          You never have to run a tool outside of your editor and browser.
+          While the specification is being developed that's all that's needed.
+          When a snapshot is needed for publication, all it takes is saving the
+          generated DOM to a file (the script is very careful to cleanly remove
+          itself and its dependencies so that you should normally get a
+          document that's immediately PubRules-OK). Moving from an <em>Edit-Run
+          Tool-Browser</em> cycle to an <em>Edit-Browser</em> cycle can
+          obviously be shown to make editors 33% more efficient.
+        </dd>
+        <dt>
+          <abbr title="Don't Repeat Yourself">DRY</abbr>
+        </dt>
+        <dd>
+          Specifications often require repetitive structure (e.g. the header
+          boilerplate, table of contents), repetitive markup (e.g.
+          cross-linking to definitions, identifying conformance requirements),
+          repeated information (e.g. an interface definition and its unfolded
+          description), and many other things that make the process slow,
+          painful, and error-prone. ReSpec makes every attempt to either
+          generate that information for you based only on what varies from
+          document to document, and to avoid repeating information inside of a
+          document by reusing information automatically as much as possible.
+        </dd>
+        <dt>
+          DWIM (Do What I Mean)
+        </dt>
+        <dd>
+          There are many things in specifications that are somewhat obvious,
+          but which you have to take care of anyway. RFC 2119 statements need
+          to be marked up for instance, or references to definitions need
+          linking. These are all handled for you trivially, so that you can
+          focus on breaking the web and forget about the annoying details.
+        </dd>
+        <dt>
+          (Almost) All In The Browser
+        </dt>
+        <dd>
+          Typical technical writing tools will work in three steps: 1) make
+          changes to the document, 2) run some arcane processing tool that will
+          turn it into a format that can be displayed, 3) refresh the display
+          to see if the change looks right — then rinse and repeat. ReSpec gets
+          rid of the second step by making all the processing happen in the
+          browser, which is also the tool you use for step 3. By skipping one
+          stage out of three, it will make you 33% more efficient as an editor.
+          The only case in which you will need to play with a processing tool
+          is when you need to publish a snapshot of your specification as
+          static HTML. This part is somewhat less trivial than the iterative
+          use of ReSpec while editing, but it should be rare enough (typically
+          once every few months) that it should pose no major issue.
+        </dd>
+      </dl>
       <p>
-        Normally, producing a build of ReSpec should not be necessary for anyone, unless you're on
-        the core development team (and even then, mostly Robin does this). Certainly don't bother
-        with this if you are providing pull requests. But on occasion it can be useful in order to
-        debug a painful corner-case, so here are the instructions. This not being something normally
-        exposed to the world, they are a bit convoluted (and may be simplified).
+        There are many good existing tools that can be used to produce W3C
+        specifications. A non-exhaustive list includes:
       </p>
-      <ol>
+      <ul>
         <li>
-          Make sure you are up to date and on the develop branch (<code>git up; git checkout
-          develop</code>).
+          <a href='http://www.w3.org/2002/xmlspec/'>XMLSpec</a>
         </li>
         <li>
-          You will need to have <a href='https://github.com/nvie/gitflow'>git flow</a>.
+          <a href='http://www.w3.org/Style/Group/css3-src/bin/postprocess'>CSS3
+          Module PostProcessor</a>
         </li>
         <li>
-          Get the current version (<code>grep version package.json</code>) and increment it in your
-          head (or, you know, on a piece of paper).
+          <a href='http://anolis.gsnedders.com/'>Anolis</a>
         </li>
         <li>
-          Start a new release in git flow using v$NEW_VERSION as the name, e.g. <code>git flow
-          release start v3.1.61</code> if you are currently on 3.1.60.
+          <a href='http://dev.w3.org/2006/webapi/ReSpec/'>ReSpec</a> (Perl
+          version)
         </li>
-        <li>
-          Update the version in <code>package.json</code>.
+        <li>Many I forget...
         </li>
-        <li>
-          Run the build script (<code>node tools/build-w3c-common.js</code>). This should respond
-          "OK!" (if not, fix the issue).
-        </li>
-        <li>
-          Add the new build (<code>git add builds/respec-w3c-common-3.1.61.js</code>).
-        </li>
-        <li>
-          Commit your changes (<code>git commit -am v3.1.61</code>).
-        </li>
-        <li>
-          Finish the release git flow (<code>git flow release finish v3.1.61</code>). This should
-          prompt you to enter a message for the tag.
-        </li>
-        <li>
-          Push everything back to the server (<em>make sure you are pushing at least the develop and
-          gh-pages branches</em>).
-        </li>
-      </ol>
+      </ul>
       <p>
-        That should be all. Normally, within a few minutes the W3C server will have picked up,
-        gzipped, and published the latest and greatest version.
-      </p>
-    </section>
-
-    <section>
-      <h2>Anatomy of a Plugin</h2>
-      <p>
-        In this chapter we look at how a plugin is structured and how it ticks, how to handle its
-        dependencies including to non-Javascript resources, how context and continuations work
-        (including for asynchronous processing), what is available from the <code>utils</code>
-        plugin, and some general information about how the templating language is used.
+        But I was dissatisfied with all of them, including the one I wrote. The
+        primary reason for that was that they all require one to run a tool in
+        between editing and reloading the browser — an extra step that at the
+        end of a long day's work editing is one step too many. Beyond that
+        there are some smaller issues that I personally have with each, but it
+        is largely a matter of taste.
       </p>
       <p>
-        XXX to be written
-      </p>
-    </section>
-
-    <section>
-      <h2>Defining Your Own Profile</h2>
-      <p>
-        Creating your own profile is trivial: it can often consist of a very simple Javascript
-        file, a little bit of CSS, and perhaps a straightforward HTML template. This chapter
-        covers all of this, plus important information about plugin ordering and how to build and
-        release your profile.
-      </p>
-      <p>
-        XXX to be written
+        The first version of ReSpec was shipped in August 2009. Since then, it
+        has become the most popular tool for specification editing at W3C. It
+        benefits from a lively community of users that provide support to one
+        another and contribute patches regularly. Now at version 3, it is a
+        robust, full-featured tool surrounded by kind people.
       </p>
     </section>
     <section>
-      <h2>Events</h2>
-      <p>ReSpec has a general event publish / subscribe system.  Developers extending
-      the system can do so by subscribing to events they care about and performing actions
-      when those events are fired.  The interfaces and events are documented in this section.</p>
-      <!-- EVENTS -->
+      <h2>
+        Getting Support
+      </h2>
+      <p>
+        The official support channel for ReSpec is <a href=
+        'mailto:spec-prod@w3.org'>spec-prod@w3.org</a>. The archives are
+        available at <a href=
+        'http://lists.w3.org/Archives/Public/spec-prod/'>http://lists.w3.org/Archives/Public/spec-prod/</a>.
+        You can subscribe by sending email to <a href=
+        'mailto:spec-prod-request@w3.org?Subject=subscribe'>spec-prod-request@w3.org</a>
+        with "subscribe" as the subject line.
+      </p>
+      <p>
+        <em>Please</em> use that instead of emailing me (Robin) directly as the
+        chances are that questions or enhancement ideas will be shared by
+        others. Thanks!
+      </p>
+      <p>
+        The source code for ReSpec is maintained in its <a href=
+        'https://github.com/darobin/respec'>GitHub repository</a>. Feel free to
+        fork and improve it! If you find a bug, you can consult the <a href=
+        'https://github.com/darobin/respec/issues'>list of known issues</a> and
+        <a href='https://github.com/darobin/respec/issues/new'>file a new
+        issue</a> if needed.
+      </p>
+      <p>
+        In the extremely unlikely event that you would find a problem with this
+        documentation, you can find the repository <a href=
+        'https://github.com/darobin/respec-docs'>on GitHub</a>. That is also
+        the place where issues are handled (and discussion is also on
+        spec-prod).
+      </p>
+    </section>
+    <section>
+      <p>
+        This chapter lists all the items (JS configuration, elements,
+        attributes, classes) that can form the ReSpec language.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Configuration Options
+      </h2><!-- CONF -->
+    </section>
+    <section>
+      <h2>
+        Elements
+      </h2><!-- ELS -->
+    </section>
+    <section>
+      <h2>
+        Attributes
+      </h2><!-- ATTRS -->
+    </section>
+    <section>
+      <h2>
+        Classes
+      </h2><!-- CLASSES -->
+    </section>
+    <section>
+      <h2>
+        Acknowledgments
+      </h2>
+      <p>
+        A list of <a href=
+        "https://github.com/w3c/respec/graphs/contributors">contributors</a>
+        can be found on GitHub.
+      </p>
+      <p>
+        Thanks to Expway, Vodafone, W3C, and Mozilla, for their direct support
+        of this project.
+      </p>
+      <p>
+        Based on Bert Bos' CSS pre-processor and Geoffrey Sneddon's Anolis.
+      </p>
     </section>
   </body>
 </html>
